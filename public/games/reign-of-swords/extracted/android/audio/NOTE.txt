@@ -1,0 +1,4 @@
+Android audio (32 MP3 clips) is packed in audio.dat with an index layout that is
+not yet cracked (the [A, offset, size] record interpretation does not align to the
+MP3 frame boundaries). The raw archive is preserved at  android/_raw/audio.dat .
+iOS audio extracted cleanly as WAV (see ios-episode-1/audio and ios-episode-2/audio).

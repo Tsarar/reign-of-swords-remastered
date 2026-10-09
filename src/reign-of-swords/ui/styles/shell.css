@@ -1,0 +1,982 @@
+/* ============================================================
+   STORY SHELL — menu, campaign map, cutscenes, upgrade, MP.
+   Parchment/wood skin, using the recovered game dialogue & faces.
+   ============================================================ */
+.ros-shell {
+  min-height: 420px;
+  position: relative;
+} /* positioning context so shell-level overlays (multiplayer) stay inside the game frame */
+/* Desktop: a floor for the game's height, about the main menu's own (657px Episode II, ~693px Episode I at 1280px
+   wide), so no screen collapses below it: the story dialogues and the spoils share one stage (.ros-cutscene, 513px on
+   its own) that would otherwise shrink the game to a strip. Battles (778px+), the world map, the Skirmish list and
+   the Field Manual are taller anyway. Phones fit the game to the screen instead (phone.css), so this stays off there. */
+@media (min-width: 821px) and (min-height: 601px) {
+  .ros-shell {
+    min-height: 700px;
+  }
+  .ros-shell .ros-cutscene {
+    min-height: 660px; /* (outranks the stage's own 460px below) */
+  }
+}
+
+/* --- Main menu --- */
+.ros-menu {
+  text-align: center;
+  padding: 34px 20px 40px;
+  max-width: 960px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 3px solid var(--wood);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 154, 58, 0.6),
+    0 8px 26px rgba(0, 0, 0, 0.45);
+}
+.ros-menu-emblem {
+  font-size: 2.6rem;
+  color: var(--wood);
+  filter: drop-shadow(0 1px 0 var(--gold-lt));
+}
+.ros-menu-title {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  -webkit-text-fill-color: #6b3f12;
+  font-size: 2.6rem;
+  margin: 4px 0 2px;
+  text-shadow: 0 2px 0 var(--gold-lt);
+}
+.ros-menu-sub {
+  font-family: var(--ros-body);
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+  letter-spacing: 0.03em;
+}
+/* --- Menu with original splash art: the extracted title background fills the card, darkened by a scrim
+   so the logo + parchment buttons stay legible over the (dark) artwork. --- */
+.ros-menu-art {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.ros-menu-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(12, 9, 20, 0.3) 0%, rgba(12, 9, 20, 0.55) 45%, rgba(12, 9, 20, 0.78) 100%);
+}
+.ros-menu-art > * {
+  position: relative;
+  z-index: 1;
+}
+/* Ep2 splash art reads busier than Ep1's camp scene, so pull it back a touch (zoom out) — the scrim
+   fills the small letterbox the reduced scale leaves. */
+.ros-menu-ep2 {
+  background-size: cover;
+}
+.ros-menu-logo {
+  display: block;
+  max-width: min(360px, 82%);
+  height: auto;
+  margin: 8px auto 14px;
+  image-rendering: -webkit-optimize-contrast;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.65));
+}
+.ros-menu-art .ros-menu-sub {
+  color: #ecdfc2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+.ros-menu-art .ros-menu-foot {
+  color: #d3c19b;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+.ros-menu-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.ros-menu-btns .btn,
+.ros-menu-btns .btn-primary {
+  font-size: 1.05rem;
+  padding: 12px 18px;
+}
+.ros-menu-main {
+  font-family: var(--ros-title);
+  letter-spacing: 0.04em;
+}
+.ros-menu-mp {
+  opacity: 0.9;
+}
+.ros-menu-foot {
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  margin: 24px auto 0;
+  max-width: 440px;
+  line-height: 1.5;
+}
+
+/* --- Generic screen (campaign / upgrade) --- */
+.ros-screen {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 18px 20px 28px;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  /* match .ros-menu's frame EXACTLY (radius + shadow) so the panel corner doesn't shift menu↔screen. */
+  border: 3px solid var(--wood);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 154, 58, 0.6),
+    0 8px 26px rgba(0, 0, 0, 0.45);
+}
+.ros-screen-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.ros-screen-head h2 {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  -webkit-text-fill-color: #6b3f12;
+  margin: 0;
+  font-size: 1.7rem;
+  text-shadow: 0 1px 0 var(--gold-lt);
+}
+.ros-screen-sub {
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  margin: 0 0 16px;
+}
+
+/* --- Field Manual (recovered help text) --- */
+.ros-help-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.ros-help-tab {
+  font-family: var(--ros-body);
+  font-size: 0.82rem;
+  color: var(--ink);
+  cursor: pointer;
+  background: rgba(107, 74, 22, 0.1);
+  border: 2px solid var(--wood);
+  border-radius: 8px;
+  padding: 5px 12px;
+}
+.ros-help-tab:hover {
+  background: rgba(107, 74, 22, 0.18);
+}
+.ros-help-tab.on {
+  background: var(--wood);
+  color: var(--gold-lt);
+}
+.ros-help-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+.ros-help-item {
+  border: 1px solid var(--wood);
+  border-radius: 8px;
+  padding: 10px 13px;
+  background: rgba(255, 246, 214, 0.45);
+}
+.ros-help-title {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  -webkit-text-fill-color: #6b3f12;
+  font-size: 0.98rem;
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+.ros-help-text {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.ros-help-note {
+  grid-column: 1 / -1;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  background: rgba(138, 26, 26, 0.08);
+  border: 1px solid rgba(138, 26, 26, 0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0;
+}
+/* Ability cards tagged with the units that carry them */
+.ros-help-ability {
+  display: flex;
+  flex-direction: column;
+}
+.ros-help-ability .ros-help-text {
+  flex: 1;
+}
+.ros-help-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ros-help-title .ros-svg {
+  color: var(--gold);
+  font-size: 0.88em;
+}
+.ros-help-units {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 9px;
+}
+.ros-help-unit {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--ros-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #5a3a12;
+  background: rgba(201, 154, 58, 0.16);
+  border: 1px solid rgba(107, 74, 22, 0.32);
+  border-radius: 12px;
+  padding: 1px 9px 1px 3px;
+}
+.ros-help-unit .ros-unit-bare {
+  height: 18px;
+}
+.ros-help-orphan {
+  opacity: 0.7;
+  border-style: dashed;
+}
+.ros-help-none {
+  margin-top: 9px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: #8a5a1a;
+  font-style: italic;
+}
+
+/* --- Campaign map --- */
+.ros-kingdoms {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ros-kingdom-block {
+  border: 2px solid var(--wood-lt);
+  border-radius: 9px;
+  padding: 10px 12px;
+  background: rgba(255, 246, 214, 0.35);
+}
+.ros-kingdom-block.locked {
+  opacity: 0.55;
+}
+.ros-kingdom-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  font-family: var(--ros-body);
+}
+.ros-kingdom-title > span:first-child {
+  font-weight: 700;
+  color: #6b3f12;
+  font-size: 1.02rem;
+}
+.ros-kingdom-prog {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-family: var(--mono);
+}
+.ros-mission-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ros-mission-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 2px solid var(--wood);
+  border-radius: 7px;
+  padding: 8px 12px;
+  min-width: 150px;
+  background: linear-gradient(180deg, #f3e2ba, #e2caa0);
+  color: var(--ink);
+  font-family: var(--ros-body);
+  transition:
+    transform 0.08s,
+    box-shadow 0.08s;
+}
+.ros-mission-card:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+.ros-mission-card.locked {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background: #ded0b2;
+}
+.ros-mission-card.done {
+  border-color: #2f7a34;
+}
+.ros-mc-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--wood);
+  color: var(--gold-lt);
+  font-weight: 700;
+  font-size: 0.82rem;
+  flex: none;
+}
+.ros-mission-card.done .ros-mc-num {
+  background: #2f7a34;
+  color: #fff;
+}
+.ros-mc-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* --- Cutscene / dialogue --- */
+.ros-cutscene {
+  position: relative;
+  min-height: 460px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  background: radial-gradient(120% 100% at 50% 0%, #2a2013, #140d06 90%);
+  border: 3px solid var(--wood);
+}
+.ros-cutscene.ros-reward-screen {
+  align-items: center; /* the spoils card stands in the middle of the stage, the dialogue box at its foot */
+}
+.ros-cut-stage {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  width: 100%;
+  max-width: 720px;
+}
+.ros-cut-stage.ros-cut-right {
+  flex-direction: row-reverse;
+}
+.ros-cut-portrait {
+  width: 150px;
+  height: 250px;
+  object-fit: contain;
+  object-position: bottom;
+  image-rendering: pixelated;
+  /* no drop-shadow (it bled below the box baseline and read as misaligned); sit just above the box on z-index. */
+  flex: none;
+  margin-right: -4px;
+  margin-bottom: 3px;
+  align-self: flex-end;
+  position: relative;
+  z-index: 2;
+}
+.ros-cut-right .ros-cut-portrait {
+  margin-right: 0;
+  margin-left: -4px;
+}
+.ros-cut-box {
+  flex: 1;
+  min-height: 150px;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 3px solid var(--wood);
+  border-radius: 10px;
+  padding: 14px 18px 12px;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 154, 58, 0.6),
+    0 6px 18px rgba(0, 0, 0, 0.55);
+}
+.ros-cut-name {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  -webkit-text-fill-color: #6b3f12;
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+  text-shadow: 0 1px 0 var(--gold-lt);
+}
+.ros-cut-chapter {
+  text-align: center;
+  font-size: 1.4rem;
+}
+.ros-cut-text {
+  font-family: var(--ros-body);
+  color: var(--ink);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  margin: 0 0 12px;
+  min-height: 3em;
+}
+.ros-cut-caret {
+  color: var(--gold);
+  animation: rosblink 1s steps(2) infinite;
+}
+@keyframes rosblink {
+  50% {
+    opacity: 0;
+  }
+}
+/* --- Spoils-of-victory screen --- */
+.ros-reward {
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 3px solid var(--wood);
+  border-radius: 12px;
+  padding: 22px 24px 20px;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 154, 58, 0.6),
+    0 8px 24px rgba(0, 0, 0, 0.6);
+}
+.ros-reward-head {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  -webkit-text-fill-color: #6b3f12;
+  font-size: 1.5rem;
+  text-shadow: 0 1px 0 var(--gold-lt);
+}
+.ros-reward-sub {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.ros-reward-grp {
+  margin: 12px 0;
+}
+.ros-reward-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.ros-reward-label i {
+  font-style: normal;
+  opacity: 0.7;
+  text-transform: none;
+}
+.ros-reward-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.ros-reward-item {
+  background: rgba(107, 74, 22, 0.12);
+  border: 1px solid var(--wood);
+  border-radius: 10px;
+  padding: 5px 11px;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+.ros-reward-item b {
+  color: #6b3f12;
+}
+/* Episode II: the battle opened a new unit's upgrade */
+.ros-reward-unlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  background: rgba(107, 74, 22, 0.12);
+  border: 1px solid var(--wood);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+.ros-preview-spoils {
+  margin: 10px 0 4px;
+}
+.ros-preview-spoils .ros-reward-label {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.ros-preview-spoils .ros-reward-items {
+  justify-content: flex-start;
+}
+.ros-preview-spoils .ros-reward-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.ros-preview-note {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+.ros-reward-none {
+  opacity: 0.85;
+}
+.ros-reward .btn-primary {
+  margin-top: 14px;
+}
+.ros-cut-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ros-cut-count {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+.ros-cut-btns {
+  display: flex;
+  gap: 8px;
+}
+/* fixed width so "Next ▸" ↔ "Continue ▸" doesn't resize the button (intro cutscene + mid-battle event). */
+.ros-cut-foot .btn-primary {
+  min-width: 108px;
+  text-align: center;
+}
+
+/* --- Upgrade army --- */
+.ros-unit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px;
+}
+.ros-unit-tile {
+  border: 2px solid var(--wood);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: rgba(255, 246, 214, 0.4);
+}
+.ros-unit-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.ros-unit-top b {
+  color: #6b3f12;
+  font-size: 1rem;
+}
+.ros-unit-cost {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--gold);
+  background: var(--wood);
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+.ros-unit-role {
+  font-family: var(--ros-body);
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  margin: 2px 0 6px;
+}
+.ros-unit-kit {
+  display: flex;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.ros-unit-note {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* --- Campaign battle bar bits + MP modal --- */
+.ros-camp-name {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  -webkit-text-fill-color: #6b3f12;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 0 var(--gold-lt);
+}
+.ros-menu-btn {
+  margin-left: auto;
+}
+.ros-skirmish-head {
+  max-width: 100%;
+  margin-bottom: 10px;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 2px solid var(--wood);
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+.ros-skirmish-head h2 {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  -webkit-text-fill-color: #6b3f12;
+  margin: 0;
+  font-size: 1.4rem;
+}
+.ros-mp-card {
+  max-width: 460px;
+}
+/* ⚙ Settings (language + sound) */
+.ros-settings-card {
+  max-width: 440px;
+  text-align: left;
+  /* fits the screen: the title and Close stay put, the groups between them scroll */
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 24px);
+  max-height: calc(100dvh - 24px);
+}
+.ros-settings-card > h2 {
+  margin-top: 0;
+}
+.ros-settings-body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #b08d4a transparent;
+  margin: 0 -6px; /* room for the scrollbar without narrowing the rows */
+  padding: 0 6px;
+}
+.ros-settings-card > .ros-over-btns {
+  flex: none;
+  margin-top: 10px;
+}
+/* A phone upright: clear of the screen edges (the frame's gold rim stands 9px out), tighter padding and type. */
+@media (max-width: 560px) {
+  .ros-overlay > .ros-settings-card {
+    width: calc(100% - 32px);
+    padding: 16px 14px 14px;
+  }
+  .ros-settings-card > h2 {
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+  }
+  .ros-settings-group {
+    margin: 10px 0;
+  }
+  .ros-overlay .ros-settings-card .ros-settings-note {
+    font-size: 0.75rem;
+  }
+  .ros-vol-row {
+    grid-template-columns: minmax(6.5em, auto) 1fr 3em;
+    font-size: 0.8rem;
+  }
+}
+/* A phone on its side: wide and short — the groups in two columns, so most of it shows without scrolling. */
+@media (max-height: 500px) and (orientation: landscape),
+  (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  .ros-overlay > .ros-settings-card {
+    max-width: min(860px, calc(100vw - 32px));
+    width: 100%;
+    padding: 12px 18px 10px;
+  }
+  .ros-settings-card > h2 {
+    font-size: 1.25rem;
+    margin-bottom: 2px;
+  }
+  .ros-settings-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 22px;
+    align-items: start;
+  }
+  .ros-settings-group {
+    margin: 8px 0;
+  }
+  .ros-overlay .ros-settings-card .ros-settings-note {
+    font-size: 0.74rem;
+  }
+  .ros-settings-card > .ros-over-btns {
+    margin-top: 6px;
+  }
+}
+.ros-settings-group {
+  margin: 12px 0;
+}
+.ros-settings-label {
+  font-family: var(--ros-title);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+.ros-settings-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ros-settings-opt.on {
+  background: var(--gold);
+  color: #1b1408;
+  -webkit-text-fill-color: #1b1408;
+}
+.ros-dbg-card {
+  max-width: 560px;
+  width: min(560px, 92vw);
+}
+.ros-dbg-text {
+  width: 100%;
+  height: 160px;
+  font:
+    11px/1.35 ui-monospace,
+    Consolas,
+    monospace;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.ros-vol {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+.ros-vol-row {
+  display: grid;
+  grid-template-columns: minmax(7.5em, auto) 1fr 3.2em;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+.ros-vol-row input[type="range"] {
+  width: 100%;
+  min-width: 0;
+  accent-color: var(--gold);
+}
+.ros-vol-val {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+/* (under .ros-settings-card: the modal card's own `p` rule — 0.95rem, 18px below — otherwise outranks it) */
+.ros-settings-card .ros-settings-note {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 6px 0 0;
+}
+.ros-settings-file {
+  cursor: pointer;
+}
+.ros-settings-card .ros-transfer-status {
+  color: #3d6b2a;
+  font-weight: 600;
+}
+.ros-settings-card .ros-transfer-status.bad {
+  color: #8a2b1d;
+}
+.ros-menu-btns-top {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 6px;
+}
+.ros-menu-btns-top .ros-menu-btn {
+  margin-left: 0;
+}
+.ros-mp-note {
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+}
+
+@media (max-width: 560px) {
+  .ros-cut-portrait {
+    width: 86px;
+    height: 150px;
+  }
+  .ros-menu-title {
+    font-size: 2rem;
+  }
+}
+
+/* --- Online Battles: the lobby (ui/online/OnlineLobby.jsx) and the match bar (ui/online/OnlineMatch.jsx) --- */
+.ros-online {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 18px 24px;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 3px solid var(--wood);
+  border-radius: 12px;
+  color: var(--ink);
+}
+.ros-online-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 6px 0 12px;
+}
+.ros-online-tabs .on {
+  background: var(--gold);
+  color: #1b1408;
+  -webkit-text-fill-color: #1b1408;
+}
+.ros-online-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.ros-online-panel h3 {
+  font-family: var(--ros-title);
+  margin: 4px 0 8px;
+}
+.ros-online-list {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.ros-online-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--wood-lt);
+  border-radius: 8px;
+  background: rgba(255, 246, 214, 0.35);
+}
+.ros-online-list li.mine {
+  border-color: var(--gold);
+}
+.ros-online-list small {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+.ros-online-form {
+  display: grid;
+  gap: 5px;
+}
+.ros-online-form label {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+.ros-online-form input,
+.ros-online-form select {
+  font: inherit;
+  padding: 7px 9px;
+  border: 1px solid var(--wood-lt);
+  border-radius: 6px;
+  background: #fffaf0;
+  color: var(--ink);
+  min-width: 0;
+}
+.ros-online-form .btn {
+  margin-top: 10px;
+}
+.ros-online-note {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.ros-online-err {
+  color: #8a2b1d;
+  font-weight: 600;
+}
+.ros-online-board {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.ros-online-board th,
+.ros-online-board td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--wood-lt);
+}
+.ros-online-board tr.me td {
+  font-weight: 700;
+  background: rgba(201, 154, 58, 0.18);
+}
+.ros-online-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 0 0 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 2px solid var(--wood);
+  color: var(--ink);
+}
+.ros-online-bar.mine {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(201, 154, 58, 0.45);
+}
+.ros-online-text {
+  font-family: var(--ros-title);
+  flex: 1;
+}
+.ros-online-clock {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.ros-online-clock.low {
+  color: #8a2b1d;
+}
+.ros-online-wait {
+  max-width: 560px;
+  margin: 20px auto;
+  display: grid;
+  gap: 10px;
+}
+@media (max-width: 760px) {
+  .ros-online-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.ros-online-tabbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 6px 0 12px;
+}
+.ros-online-tabbar .ros-online-tabs {
+  margin: 0;
+}
+.ros-online-custom {
+  display: grid;
+  gap: 6px;
+}
+.ros-online-side {
+  display: grid;
+  grid-template-columns: minmax(70px, auto) 1fr 1fr;
+  align-items: end;
+  gap: 6px;
+}
+.ros-online-side b {
+  align-self: center;
+  font-size: 0.85rem;
+}
+.ros-online-side label {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+}
+.ros-online-side label.bad input {
+  border-color: #8a2b1d;
+}
+.ros-online-away {
+  color: #8a2b1d;
+  font-size: 0.85rem;
+  font-weight: 600;
+}

@@ -1,0 +1,713 @@
+/* ============================================================================
+   PHONE battle polish (≤820px). The battle covers the whole screen (site header included — Menu ◂ leaves it),
+   the mission bar and HUD share ONE row, and the unit readout is a fixed two-line strip: name + stats, the aimed
+   skills beside them. ⓘ opens the full card as a sheet over the board, so selecting a unit never resizes the
+   battlefield (ui/ReignOfSwords.jsx cardOpen). Desktop: the ⓘ button and the scrim don't exist.
+   ============================================================================ */
+.ros-uc-more,
+.ros-uc-scrim {
+  display: none;
+}
+/* the tile readout's per-class move costs (the original's Map::getMoveCost row) */
+.ros-tile-costs {
+  font-family: var(--ros-body);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.ros-tile-costs b {
+  color: var(--ink);
+}
+.ros-tile-costs .no b {
+  color: #8a2c22;
+}
+/* "♪ Next song ▸": text glyphs in the button's own ink (not emoji), so it matches "◂ Menu" */
+.ros-song-btn {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+.ros-song-note {
+  font-size: 1.15em;
+  line-height: 1;
+}
+.ros-song-txt {
+  font-size: 0.8rem;
+}
+.ros-song-skip {
+  font-size: 0.8rem;
+}
+@media (max-width: 820px), (max-height: 500px) and (orientation: landscape), (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  .ros.ros-battle {
+    top: 0;
+    z-index: 60;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 4px);
+    padding-left: calc(env(safe-area-inset-left, 0px) + 6px);
+    padding-right: calc(env(safe-area-inset-right, 0px) + 6px);
+  }
+
+  /* --- one top row: the HUD (counts · phase · turn) on the left, the buttons on the right --- */
+  .ros-battle .ros-topbar {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 4px;
+  }
+  .ros-battle .ros-hud {
+    order: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 3px 8px;
+    margin: 0;
+    gap: 6px;
+  }
+  .ros-battle .ros-mission-bar {
+    order: 1;
+    flex: none;
+    padding: 3px 5px;
+    gap: 4px;
+    border-bottom: none;
+    border-left: 1.5px solid rgba(74, 54, 32, 0.28);
+  }
+  .ros-battle .ros-kingdom {
+    display: none;
+  }
+  .ros-battle .ros-mission-bar > .ros-menu-btn,
+  .ros-battle .ros-menu-btns-top {
+    display: flex;
+    gap: 3px;
+  }
+  .ros-battle .ros-menu-btn {
+    padding: 4px 7px !important;
+    min-height: 38px;
+    min-width: 38px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  .ros-battle .ros-vs .ros-phase,
+  .ros-battle .ros-turn {
+    white-space: nowrap;
+  }
+  .ros-battle .ros-song-txt,
+  .ros-battle .ros-song-skip {
+    display: none;
+  } /* phones: just ♪ (the label is in the tooltip / aria-label) */
+  .ros-battle .ros-hud .ros-badge {
+    display: none;
+  }
+  .ros-battle .ros-count {
+    font-size: 1.15rem;
+    min-width: 22px;
+  }
+  .ros-battle .ros-vs {
+    font-size: 0.74rem;
+    white-space: normal;
+  }
+  .ros-battle .ros-turn {
+    font-size: 0.66rem;
+  }
+  .ros-battle .ros-medal-track {
+    font-size: 0.62rem;
+  }
+
+  /* --- the unit strip: a fixed height whatever is selected --- */
+  .ros-battle .ros-uc-slot {
+    flex: none;
+    height: 66px;
+    position: relative;
+  }
+  .ros-battle .ros-unitcard {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-auto-rows: min-content;
+    align-content: center;
+    column-gap: 8px;
+    row-gap: 4px;
+    padding: 6px 44px 6px 10px;
+  }
+  .ros-battle .ros-unitcard > * {
+    grid-column: 1;
+    min-width: 0;
+    margin-top: 0;
+  }
+  .ros-battle
+    .ros-unitcard:not(.open)
+    > :not(.ros-uc-head):not(.ros-uc-stats):not(.ros-aim-skills):not(.ros-uc-more):not(.ros-uc-empty) {
+    display: none;
+  }
+  .ros-battle .ros-uc-head {
+    flex-wrap: nowrap;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .ros-battle .ros-uc-name {
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ros-battle .ros-uc-role {
+    flex: none;
+    font-size: 0.66rem;
+    padding: 1px 6px;
+  }
+  .ros-battle .ros-unitcard:not(.open) .ros-uc-role {
+    display: none;
+  } /* the class is in the ⓘ sheet */
+  .ros-battle .ros-uc-stats {
+    flex-wrap: nowrap;
+    gap: 9px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .ros-battle .ros-uc-stats .ros-hpbar {
+    flex: 1 1 40px;
+    min-width: 30px;
+  }
+  .ros-battle .ros-uc-stat b {
+    font-size: 0.82rem;
+    margin-left: 3px;
+  }
+  .ros-battle .ros-uc-empty {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  /* the aimed skills (spells, Grapeshot, Barrage, Conjure…) stay one tap away: icon buttons beside the stats */
+  .ros-battle .ros-unitcard:not(.open) > .ros-aim-skills {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    flex-wrap: nowrap;
+    gap: 4px;
+    margin: 0;
+  }
+  .ros-battle .ros-unitcard:not(.open) .ros-aim-skills-label,
+  .ros-battle .ros-unitcard:not(.open) .ros-aim-skill .ros-skill-rng {
+    display: none;
+  }
+  .ros-battle .ros-unitcard:not(.open) .ros-aim-skill {
+    position: relative;
+    font-size: 0;
+    padding: 4px !important;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ros-battle .ros-unitcard:not(.open) .ros-aim-skill .ros-tool-ico {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+  }
+  .ros-battle .ros-unitcard:not(.open) .ros-aim-skill .ros-skill-cnt {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    margin: 0;
+    font-size: 0.6rem;
+    padding: 0 4px;
+  }
+  /* ⓘ / ✕ */
+  .ros-battle .ros-uc-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #6b3f12;
+    background: rgba(255, 246, 214, 0.7);
+    border: 1.5px solid var(--wood);
+  }
+  /* the open sheet rises over the board from the strip; the scrim behind it closes it */
+  .ros-battle .ros-uc-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 61;
+    background: rgba(10, 6, 2, 0.45);
+  }
+  .ros-battle .ros-unitcard.open {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 62;
+    height: auto;
+    max-height: min(64vh, 520px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 7px;
+    padding: 12px 14px 14px;
+    box-shadow:
+      inset 0 0 0 2px rgba(201, 154, 58, 0.55),
+      0 -8px 24px rgba(0, 0, 0, 0.55);
+  }
+  /* every row keeps its height — the sheet scrolls when it's taller than the screen (a phone on its side) instead
+     of squashing the header and stats rows until their text is cut */
+  .ros-battle .ros-unitcard.open > * {
+    flex-shrink: 0;
+  }
+  .ros-battle .ros-unitcard.open .ros-uc-more {
+    top: 8px;
+    right: 8px;
+    transform: none;
+  }
+  .ros-battle .ros-unitcard.open .ros-uc-head {
+    padding-right: 40px;
+    white-space: normal;
+    flex-wrap: wrap;
+  }
+  .ros-battle .ros-unitcard.open .ros-uc-stats {
+    flex-wrap: wrap;
+  }
+  .ros-battle .ros-unitcard.open .ros-shift-btn {
+    min-height: 40px;
+  }
+
+  /* --- muster: a two-column roster under small category headings, a one-line goal --- */
+  .ros-battle .ros-deploy {
+    max-height: 38vh;
+  }
+  .ros-battle .ros-deploy-head {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+  .ros-battle .ros-deploy-title {
+    display: none;
+  } /* the HUD already reads "Deployment" */
+  .ros-battle .ros-deploy-points,
+  .ros-battle .ros-deploy-medals {
+    white-space: nowrap;
+    font-size: 0.8rem;
+  }
+  .ros-battle .ros-deploy-points b,
+  .ros-battle .ros-deploy-medals b {
+    font-size: 0.95rem;
+  }
+  .ros-battle .ros-deploy-btns .btn {
+    white-space: nowrap;
+    padding: 6px 12px;
+  }
+  .ros-battle .ros-deploy-goal {
+    margin: 0;
+    padding: 4px 8px;
+    font-size: 0.78rem;
+    line-height: 1.3;
+  }
+  .ros-battle .ros-rost-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+  }
+  .ros-battle .ros-rost-cat {
+    flex: none;
+    text-align: left;
+    padding: 2px 0 0 2px;
+  }
+  .ros-battle .ros-rost-cards {
+    display: grid;
+    /* two per row where a card gets 140px (a portrait phone), one in a phone-on-its-side's narrow column —
+       below ~140px the icon and cost leave the unit's name no room */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 4px;
+  }
+  .ros-battle .ros-rost {
+    min-width: 0;
+    min-height: 42px;
+    padding: 4px 6px;
+  }
+  .ros-battle .ros-rost-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.74rem;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ros-battle .ros-rost-cost {
+    flex: none;
+    font-size: 0.74rem;
+    padding: 0 5px;
+  }
+
+  /* --- controls: big enough to hit, one scrolling row --- */
+  .ros-battle .ros-controls > .btn,
+  .ros-battle .ros-controls > .btn-run {
+    padding: 8px 11px;
+    font-size: 0.8rem;
+    min-height: 42px;
+    white-space: nowrap;
+  }
+}
+/* short phones (and landscape): trim the strip and the bars a little more */
+@media (max-width: 820px) and (max-height: 640px), (max-height: 500px) and (orientation: landscape), (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  .ros-battle .ros-uc-slot {
+    height: 58px;
+  }
+  .ros-battle .ros-controls > .btn,
+  .ros-battle .ros-controls > .btn-run {
+    min-height: 38px;
+    padding: 6px 10px;
+  }
+  .ros-battle .ros-menu-btn {
+    min-height: 32px;
+  }
+}
+
+/* PHONE menus & screens (≤560px): less nested padding so text runs the width of the phone; titles that fit beside
+   their ◂ button. */
+@media (max-width: 560px) {
+  .ros-screen {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .ros-screen-head {
+    gap: 8px;
+  }
+  .ros-screen-head h2 {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+  .ros-screen-head .btn-run,
+  .ros-screen-head .btn {
+    flex: none;
+    white-space: nowrap;
+  }
+  .ros-help-list {
+    padding-left: 0;
+    grid-template-columns: 1fr;
+  }
+  /* the collectibles bar: six icons + the heraldry crest in one row inside the panel */
+  .ros-resbar,
+  .ros-camp-panel .ros-resbar {
+    flex-wrap: wrap;
+    gap: 3px;
+    padding: 6px 7px;
+  }
+  .ros-res,
+  .ros-camp-panel .ros-res {
+    width: 35px;
+    height: 35px;
+  }
+  .ros-res-img {
+    width: 33px;
+    height: 33px;
+  }
+  .ros-res-count {
+    font-size: 0.62rem;
+    right: -3px;
+    bottom: -5px;
+  }
+  .ros-camp-panel .ros-res-crest,
+  .ros-res-crest {
+    width: 38px;
+    height: 40px;
+  }
+  .ros-camp-panel .ros-res-crest .ros-shield,
+  .ros-res-crest .ros-shield {
+    height: 34px;
+  }
+  /* a kingdom's war plans: a centred sheet over the whole screen (it outgrew the little map), scrolling inside */
+  .ros-kpanel-back {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    border-radius: 0;
+    padding: 14px;
+  }
+  .ros-kpanel {
+    width: min(420px, 100%);
+    max-height: 88vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ros-kmission {
+    min-height: 44px;
+  }
+  /* cutscene / dialogue footer: the counter and both buttons on one line */
+  .ros-cut-foot {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .ros-cut-count {
+    white-space: nowrap;
+  }
+  .ros-cut-btns {
+    gap: 5px;
+    margin-left: auto;
+  }
+  .ros-cut-btns .btn,
+  .ros-cut-btns .btn-run,
+  .ros-cut-foot > .btn {
+    white-space: nowrap;
+    padding: 6px 10px;
+    font-size: 0.86rem;
+  }
+  .ros-cut-foot .btn-primary {
+    min-width: 0;
+  }
+}
+
+/* PHONE LANDSCAPE (any short landscape screen — the big phones are wider than 820px): the board takes the full height on the left; the top bar, the controls and the unit strip (or the
+   muster) stack in a column on the right, scrolling inside it when they outgrow it. */
+@media (max-height: 500px) and (orientation: landscape), (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  .ros.ros-battle {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 36%);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    column-gap: 6px;
+    row-gap: 4px;
+  }
+  .ros-battle > .ros-stage {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    min-height: 0;
+  }
+  .ros-battle > .ros-topbar {
+    grid-column: 2;
+    grid-row: 1;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+  .ros-battle > .ros-topbar .ros-hud {
+    flex: 1 1 100%;
+  }
+  .ros-battle > .ros-topbar .ros-mission-bar {
+    flex: 1 1 100%;
+    border-left: none;
+    border-top: 1.5px solid rgba(74, 54, 32, 0.28);
+  }
+  /* the header buttons share the row evenly */
+  .ros-battle > .ros-topbar .ros-menu-btns-top {
+    flex: 1;
+    margin-left: 0;
+  }
+  .ros-battle > .ros-topbar .ros-menu-btn {
+    flex: 1 1 0;
+    margin-left: 0;
+    justify-content: center;
+  }
+  .ros-battle > .ros-topbar .ros-menu-btn:last-child {
+    flex: 1.6 1 auto;
+  } /* "◂ Menu" never narrower than its label */
+  .ros-battle > .ros-topbar .ros-menu-btn.ros-song-btn {
+    flex: 1.2 1 auto;
+  } /* ♪ likewise */
+  .ros-battle > .ros-panel {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 0;
+    margin: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ros-battle > .ros-hint {
+    grid-column: 2;
+    grid-row: 3;
+    max-height: 22vh;
+  }
+  /* the controls: an even two-column grid of equal buttons */
+  .ros-battle .ros-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+    overflow: visible;
+    padding: 0;
+  }
+  .ros-battle .ros-controls > .btn,
+  .ros-battle .ros-controls > .btn-run {
+    margin: 0;
+    min-width: 0;
+    min-height: 40px;
+    padding: 6px 3px; /* the column is ~230px on the smallest phones: "🎯 Objectives" needs every pixel */
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ros-battle .ros-panel > .ros-uc-slot {
+    order: -1;
+  } /* the unit strip first, the controls under it */
+  /* the board is the left column, so the strip may grow with its text (a 3-line hint, a unit's skills) */
+  .ros-battle .ros-uc-slot {
+    height: auto;
+  }
+  /* …and its stats wrap onto a second line in the narrow column rather than losing the last ones */
+  .ros-battle .ros-uc-slot .ros-uc-stats {
+    flex-wrap: wrap;
+    row-gap: 2px;
+  }
+  .ros-battle .ros-unitcard {
+    height: auto;
+    min-height: 58px;
+  }
+  .ros-battle .ros-uc-empty {
+    font-size: 0.78rem;
+  }
+  /* ⓘ details: a full-height sheet down the right side (the strip sits at the top, so it can't rise from it) */
+  .ros-battle .ros-unitcard.open {
+    position: fixed;
+    top: 6px;
+    bottom: auto;
+    right: 6px;
+    left: auto;
+    width: min(420px, 48vw);
+    max-height: calc(100vh - 12px);
+  }
+  .ros-battle .ros-deploy {
+    max-height: none;
+  }
+  .ros-battle .ros-deploy-head {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+}
+
+/* PHONE SKIRMISH top bar: the battle picker can't share the one-row phone bar, so it takes its own full-width row on
+   top; below it the HUD and the buttons share a row exactly as in a campaign battle. (The mission bar dissolves
+   with display: contents, so the picker, the HUD and the buttons wrap as items of the top bar itself.) */
+@media (max-width: 820px), (max-height: 500px) and (orientation: landscape), (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  .ros-battle > .ros-topbar.ros-topbar-skirmish {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+  .ros-battle > .ros-topbar-skirmish .ros-mission-bar {
+    display: contents;
+  }
+  .ros-battle .ros-topbar-skirmish .ros-mission-select {
+    order: -1;
+    flex: 1 1 100%;
+    min-width: 0;
+    padding: 4px 5px 0;
+  }
+  .ros-battle .ros-topbar-skirmish .ros-ms-caret {
+    display: none;
+  }
+  .ros-battle .ros-topbar-skirmish .ros-mission-select select {
+    width: 100%;
+    max-width: none;
+    font-size: 0.85rem;
+    padding: 2px 22px 2px 8px;
+  }
+  .ros-battle > .ros-topbar-skirmish .ros-hud {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .ros-battle > .ros-topbar-skirmish .ros-menu-btns-top {
+    order: 1;
+    padding: 3px 5px;
+    border-left: 1.5px solid rgba(74, 54, 32, 0.28);
+  }
+}
+/* …and in a short landscape column, as in a campaign battle there: the HUD and the buttons each take a full row. */
+@media (max-height: 500px) and (orientation: landscape), (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  .ros-battle > .ros-topbar-skirmish .ros-hud {
+    flex: 1 1 100%;
+  }
+  .ros-battle > .ros-topbar-skirmish .ros-menu-btns-top {
+    flex: 1 1 100%;
+    border-left: none;
+    border-top: 1.5px solid rgba(74, 54, 32, 0.28);
+  }
+}
+
+/* SHORT LANDSCAPE popups (a phone on its side): tighter cards, and a raid's brief in two columns — the mission facts
+   and objective on the left, the spoils and the Medal condition on the right — so it fits the height instead of
+   scrolling. */
+@media (max-height: 500px) and (orientation: landscape), (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  .ros-overlay-card {
+    padding: 14px 18px;
+  }
+  .ros-overlay-card h2 {
+    margin: 0 0 6px;
+  }
+  .ros-mission-preview:has(.ros-preview-spoils) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 22px;
+    align-items: start;
+    min-width: 0;
+    max-width: min(780px, 94vw);
+    text-align: left;
+  }
+  .ros-mission-preview:has(.ros-preview-spoils) > * {
+    grid-column: 1;
+  }
+  .ros-mission-preview .ros-preview-spoils {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    margin: 0;
+  }
+  .ros-mission-preview:has(.ros-preview-spoils) .ros-preview-btns {
+    grid-column: 2;
+    grid-row: 4;
+    align-self: end;
+    justify-content: flex-end;
+  }
+  .ros-mission-preview .ros-preview-info {
+    margin: 0 0 8px;
+    max-width: none;
+  }
+  .ros-mission-preview .ros-brief-obj {
+    margin: 0;
+  }
+  .ros-preview-medal {
+    margin-top: 6px;
+    padding: 6px 9px;
+  }
+  .ros-preview-note {
+    margin-top: 6px;
+  }
+}
+
+/* SHORT LANDSCAPE in-battle manual: straight to the tabs — the intro line about the manual goes, the title shrinks. */
+@media (max-height: 500px) and (orientation: landscape), (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  .ros-help-modal {
+    max-height: calc(100vh - 20px);
+  }
+  .ros-help-modal .ros-screen-sub {
+    display: none;
+  }
+  .ros-help-modal .ros-screen-head h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* THE NARROWEST PHONES (≤360px wide, portrait): the HUD needs ~120px beside the four top-bar buttons, so the buttons
+   tighten and "◂ Menu" shows just its arrow (the word stays as its tooltip / accessible name). */
+@media (max-width: 360px) {
+  .ros-battle > .ros-topbar .ros-menu-btn {
+    min-width: 32px;
+    padding: 4px 5px !important;
+  }
+  .ros-battle .ros-menu-word {
+    display: none;
+  }
+}
+
+/* PHONES: the site's header (name + ☰ menu) is hidden while the game is on the page — the game takes the whole
+   screen; the page's "← Games" link stays as the way back to the site (ReignShell sets body.ros-playing). */
+@media (max-width: 820px), (max-height: 500px) and (orientation: landscape), (max-height: 600px) and (orientation: landscape) and (pointer: coarse) {
+  body.ros-playing .site-header {
+    display: none;
+  }
+}
+

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reign of Swords animations atlas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --bg:#14151a; --panel:#1d1f26; --line:#33363f; --fg:#e8e6e0; --dim:#9a9b9f; --acc:#e0b451; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:13px/1.4 system-ui, sans-serif; display:grid;
+         grid-template-columns: 250px 1fr; grid-template-rows: 44px 1fr; height:100vh; }
+  header { grid-column: 1 / -1; display:flex; align-items:center; gap:14px; padding:0 14px; border-bottom:1px solid var(--line); background:var(--panel); flex-wrap:wrap; min-height:44px; }
+  header b { color:var(--acc); }
+  header label { color:var(--dim); display:flex; gap:4px; align-items:center; }
+  header a { color:var(--acc); }
+  nav { overflow:auto; border-right:1px solid var(--line); padding:8px; }
+  nav h4 { margin:10px 4px 4px; color:var(--acc); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+  nav a { display:block; padding:3px 6px; border-radius:4px; color:var(--fg); text-decoration:none; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  nav a:hover { background:#2a2d36; } nav a.sel { background:#3a3520; color:var(--acc); }
+  nav a small { color:var(--dim); }
+  main { overflow:auto; padding:12px; }
+  h2 { color:var(--acc); font-size:15px; margin:14px 0 8px; }
+  .intro { color:var(--dim); max-width:900px; margin:0 0 10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap:10px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:8px; }
+  .card.sel { border-color:var(--acc); }
+  .card canvas { image-rendering: pixelated; background:#000; display:block; margin:0 auto 6px; max-width:100%; }
+  .card .t { font-weight:600; }
+  .card .m { color:var(--dim); font-size:12px; }
+  .card .u { margin-top:4px; font-size:12px; color:#f3e7c3; }
+  .card a { color:var(--acc); font-size:11px; }
+  code { color:#c9d4ff; }
+  @media (max-width: 900px) { body { grid-template-columns: 1fr; grid-template-rows: auto minmax(80px,16vh) 1fr; } nav { border-right:0; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:2px 8px; } }
+</style>
+</head>
+<body>
+<header>
+  <b>Reign of Swords — animations atlas</b>
+  <label>Speed <input id="fps" type="range" min="2" max="24" value="10"> <span id="fpsv">10</span> fps</label>
+  <label><input id="loop" type="checkbox" checked> loop</label>
+  <span style="color:var(--dim)">Every strip of the in-battle animation list (resource 5017) of both episodes, the recreation's effect table, the unit attack and walk sheets, and every raw extracted sheet including the unused ones — playing live.</span>
+  <a href="index.html">map atlas ▸</a>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<script>
+(async function () {
+  const base = location.pathname.replace(/[^/]*$/, '');
+  const data = await fetch(base + 'anim.json').then(r => r.json());
+  const nav = document.getElementById('nav'), main = document.getElementById('main');
+  const players = [];
+  let fps = 10, loop = true;
+  document.getElementById('fps').oninput = (e) => { fps = +e.target.value; document.getElementById('fpsv').textContent = fps; };
+  document.getElementById('loop').onchange = (e) => { loop = e.target.checked; };
+
+  // One strip: frames laid out left→right (and top→bottom when the sheet has several rows); a portrait whose
+  // recorded frame size exceeds the image is one frame.
+  function card(id, title, meta, use, file, fw, fh, frames, f0, hit) {
+    const c = document.createElement('div'); c.className = 'card'; c.id = id;
+    const cv = document.createElement('canvas');
+    c.appendChild(cv);
+    c.insertAdjacentHTML('beforeend', `<div class="t">${title}</div><div class="m">${meta}</div>` + (use ? `<div class="u">${use}</div>` : '') + `<a href="${file.startsWith('games/') ? '/' + file : base + file}" target="_blank" rel="noreferrer">${file.split('/').pop()}</a>`);
+    const img = new Image();
+    img.onload = () => {
+      let w = fw, h = fh; if (w > img.width || w <= 0) w = img.width; if (h > img.height || h <= 0) h = img.height;
+      const cols = Math.max(1, Math.floor(img.width / w)), rows = Math.max(1, Math.floor(img.height / h));
+      const n = frames > 0 ? Math.min(frames, cols * rows) : cols * rows;
+      const scale = Math.max(1, Math.min(3, Math.floor(160 / Math.max(w, h))));
+      cv.width = w * scale; cv.height = h * scale; cv.style.width = cv.width + 'px';
+      const g = cv.getContext('2d'); g.imageSmoothingEnabled = false;
+      const p = { t: 0, f: 0, done: false, draw() {
+        const k = (f0 || 0) + this.f; const sx = (k % cols) * w, sy = Math.floor(k / cols) * h;
+        g.clearRect(0, 0, cv.width, cv.height); g.drawImage(img, sx, sy, w, h, 0, 0, cv.width, cv.height);
+        if (hit != null && this.f === hit) { g.fillStyle = '#e0b451'; g.fillRect(0, 0, 6, 6); }
+      }, step() { if (this.done) return; this.f++; if (this.f >= n) { if (loop) this.f = 0; else { this.f = n - 1; this.done = true; } } this.draw(); } };
+      c.onclick = () => { p.done = false; p.f = 0; p.draw(); };
+      p.draw(); players.push(p);
+      c.querySelector('.m').textContent = meta + ` · ${n} frame${n === 1 ? '' : 's'} of ${w}×${h}`;
+    };
+    img.src = file.startsWith('games/') ? '/' + file : base + file;   // engine assets live at the site root
+    return c;
+  }
+  function section(id, title, intro, cards) {
+    const h = document.createElement('h2'); h.id = id; h.textContent = title; main.appendChild(h);
+    if (intro) { const p = document.createElement('p'); p.className = 'intro'; p.innerHTML = intro; main.appendChild(p); }
+    const g = document.createElement('div'); g.className = 'grid'; cards.forEach(c => g.appendChild(c)); main.appendChild(g);
+    const a = document.createElement('a'); a.href = '#' + id; a.textContent = title; nav.appendChild(a);
+    return g;
+  }
+  const navList = (items) => { items.forEach(([hash, label, small]) => { const a = document.createElement('a'); a.href = '#' + hash; a.innerHTML = label + (small ? ` <small>${small}</small>` : ''); nav.appendChild(a); }); };
+
+  for (const ep of ['ep2', 'ep1']) {
+    const list = data.strips[ep], eff = list.filter(s => s.use !== 'dialogue portrait'), por = list.filter(s => s.use === 'dialogue portrait');
+    const label = ep === 'ep2' ? 'Episode II' : 'Episode I';
+    section(ep + '-fx', `${label} — resource 5017, effects and projectiles (${eff.length})`,
+      `Read with <code>tools/ros/anim.py</code>: <code>u16 count; count×u32 len; count×{u16 frameW, u16 frameH, png}</code>. The use of each index comes from <code>Unit::changeState</code>'s cast dispatcher (@0x6bd80) and the shoot / hit states; Episode I's indices are the Episode II ones minus 6 from #16 and minus 9 from #34.`,
+      eff.map(s => card(`${ep}-${s.idx}`, `#${s.idx}` + (ep === 'ep1' && s.ep2idx != null && s.ep2idx !== s.idx ? ` (Ep2 #${s.ep2idx})` : ''), `${s.w}×${s.h} sheet, frame ${s.fw}×${s.fh}`, s.use, s.file, s.fw, s.fh, 0, 0, null)));
+    const h4 = document.createElement('h4'); h4.textContent = label + ' strips'; nav.appendChild(h4);
+    navList(eff.map(s => [`${ep}-${s.idx}`, `#${s.idx}`, s.use.slice(0, 26)]));
+    section(ep + '-por', `${label} — resource 5017, dialogue portraits (${por.length})`, `Indices ${por[0] ? por[0].idx : ''}–${por[por.length - 1] ? por[por.length - 1].idx : ''}: the speaker busts the dialogue screens (5009) reference by frame.`,
+      por.map(s => card(`${ep}-${s.idx}`, `#${s.idx}`, `${s.w}×${s.h}`, '', s.file, 0, 0, 1, 0, null)));
+  }
+  section('fx', `The recreation's effect table (FX_TYPES, ${data.fx.length})`,
+    `What the engine actually plays, from <code>src/reign-of-swords/ros-data.js</code>: frame layout and duration as the renderer uses them; the note names the source strip (a 5017 index, an Android <code>z_NNN</code> sheet, or iOS UI art).`,
+    data.fx.map(f => card('fx-' + f.name, f.name, `${f.frames} frames · ${f.dur}s`, f.note, f.file, f.fw, f.fh, f.frames, f.f0, null)));
+  const h4 = document.createElement('h4'); h4.textContent = 'engine effects'; nav.appendChild(h4);
+  navList(data.fx.map(f => ['fx-' + f.name, f.name, '']));
+  section('units', `Unit attack strips (${data.units.length})`,
+    `The Android battle sheets the engine animates for a strike; the gold square marks the <b>hit frame</b> — the moment damage lands. Idle poses come from the roster atlas, not from these strips.`,
+    data.units.map(u => card('u-' + u.key, u.name, `${u.frames} frames · hit at ${u.hit}`, '', u.file, u.fw, u.fh, u.frames, 0, u.hit)));
+  const h5 = document.createElement('h4'); h5.textContent = 'units'; nav.appendChild(h5);
+  navList(data.units.map(u => ['u-' + u.key, u.name, '']));
+  section('walks', `Unit walk cycles (${data.walks.length})`,
+    `The Android 4-frame leg cycles (64×72) the engine plays while a unit moves (<code>sprites/walk</code>); frame 0 is also the standing pose.`,
+    data.walks.map(u => card('w-' + u.key, u.key, `${u.frames} frames`, '', u.file, u.fw, u.fh, u.frames, 0, null)));
+  const groups = [['android', 'effects', 'Android effect sheets z_000–z_030'], ['android', 'terrain', 'Android terrain animations'], ['ios-episode-1', 'terrain', 'iOS Episode I terrain animations'],
+    ['ios-episode-2', 'terrain', 'iOS Episode II terrain animations'], ['android', 'units', 'Android unit sheets'], ['ios-episode-1', 'units', 'iOS Episode I units folder'], ['ios-episode-2', 'units', 'iOS Episode II units folder']];
+  const unusedTotal = data.raw.filter(r => !r.used).length;
+  const rawHead = document.createElement('h2'); rawHead.id = 'raw-sheets'; rawHead.textContent = `Every multi-frame sheet of the raw extraction (${data.raw.length}, ${unusedTotal} unused)`; main.appendChild(rawHead);
+  main.insertAdjacentHTML('beforeend', `<p class="intro">From <code>extracted/MANIFEST.json</code>, playing with the frame width the extraction recorded. Each card says what the recreation does with the sheet; a red <b>UNUSED</b> badge marks the ones with no confirmed use in either binary — the Android-only strips (dark dome z_005, small frost ring z_008, small angel z_010) and the sheets whose purpose was never located. <label><input id="onlyUnused" type="checkbox"> show only unused</label></p>`);
+  const rawA = document.createElement('a'); rawA.href = '#raw-sheets'; rawA.textContent = 'Raw extraction sheets'; nav.appendChild(rawA);
+  for (const [game, cat, title] of groups) {
+    const rows = data.raw.filter(r => r.game === game && r.cat === cat); if (!rows.length) continue;
+    const id = 'raw-' + game + '-' + cat;
+    const g = section(id, `${title} (${rows.length}, ${rows.filter(r => !r.used).length} unused)`, '', rows.map(r => {
+      const c = card(id + '-' + r.idx, r.path.split('/').pop().replace(/_\d+x\d+\.png$/, ''), `${r.w}×${r.h} sheet, frame ${r.fw}×${r.fh}`, (r.used ? '' : '<b style="color:#e5484d">UNUSED</b> · ') + r.use, r.file, r.fw, r.fh, r.frames, 0, null);
+      if (!r.used) c.classList.add('unused');
+      return c;
+    }));
+    g.classList.add('raw');
+  }
+  document.getElementById('onlyUnused').onchange = (e) => { document.querySelectorAll('.grid.raw .card').forEach(c => { c.style.display = (e.target.checked && !c.classList.contains('unused')) ? 'none' : ''; }); };
+  const h6 = document.createElement('h4'); h6.textContent = 'unused'; nav.appendChild(h6);
+  navList(data.raw.filter(r => !r.used).map(r => ['raw-' + r.game + '-' + r.cat + '-' + r.idx, r.path.split('/').pop().replace(/_\d+x\d+\.png$/, ''), r.game.replace('ios-episode-', 'ep')]));
+
+  // A timer rather than requestAnimationFrame, so the strips keep turning while the page sits in a background pane.
+  let timer = null;
+  const arm = () => { if (timer) clearInterval(timer); timer = setInterval(() => { for (const p of players) p.step(); }, 1000 / fps); };
+  document.getElementById('fps').addEventListener('input', arm); arm();
+  nav.addEventListener('click', (e) => { const a = e.target.closest('a'); if (!a) return; nav.querySelectorAll('a.sel').forEach(x => x.classList.remove('sel')); a.classList.add('sel'); document.querySelectorAll('.card.sel').forEach(x => x.classList.remove('sel')); const el = document.getElementById(a.getAttribute('href').slice(1)); if (el && el.classList.contains('card')) el.classList.add('sel'); });
+  window.__animAtlas = { players, data };
+})();
+</script>
+</body>
+</html>

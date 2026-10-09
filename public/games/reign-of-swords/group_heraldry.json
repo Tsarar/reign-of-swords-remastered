@@ -1,0 +1,1758 @@
+{
+ "5400": {
+  "0": {
+   "name": "Rebel Army",
+   "team": 1,
+   "symbolColor": "argent",
+   "bgColor": "azure",
+   "symbol": 72,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Carrone Army",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 51,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5401": {
+  "0": {
+   "name": "Rebel Army",
+   "team": 1,
+   "symbolColor": "argent",
+   "bgColor": "azure",
+   "symbol": 72,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Carrone Army",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "gules",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 2
+  },
+  "2": {
+   "name": "Player Army",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 51,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5402": {
+  "0": {
+   "name": "Duke Pellus",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "azure",
+   "symbol": 63,
+   "bgType": 0,
+   "banner": 7
+  },
+  "1": {
+   "name": "Player Army",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 51,
+   "bgType": 0,
+   "banner": 0
+  },
+  "2": {
+   "name": "The Emperor",
+   "team": 0,
+   "symbolColor": "argent",
+   "bgColor": "purpure",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 8
+  },
+  "3": {
+   "name": "Rebel Army",
+   "team": 1,
+   "symbolColor": "argent",
+   "bgColor": "azure",
+   "symbol": 72,
+   "bgType": 0,
+   "banner": 1
+  },
+  "4": {
+   "name": "Carrone Army",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "gules",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 2
+  }
+ },
+ "5403": {
+  "0": {
+   "name": "Scouting Band",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "azure",
+   "symbol": 43,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Vanguard",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5404": {
+  "0": {
+   "name": "Bridge Guard",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "azure",
+   "symbol": 43,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Vanguard",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5405": {
+  "0": {
+   "name": "Baron Valeuve",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "azure",
+   "symbol": 43,
+   "bgType": 0,
+   "banner": 2
+  },
+  "1": {
+   "name": "Army",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5406": {
+  "0": {
+   "name": "Vanguard",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Town Militia",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "tenne",
+   "symbol": 74,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5407": {
+  "0": {
+   "name": "Vanguard",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Picket Line",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "tenne",
+   "symbol": 74,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5408": {
+  "0": {
+   "name": "Corbeau Town",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "tenne",
+   "symbol": 74,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Vanguard",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "2": {
+   "name": "Corbeau Castle",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 36,
+   "bgType": 0,
+   "banner": 2
+  }
+ },
+ "5409": {
+  "0": {
+   "name": "Vanguard",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Town Guard",
+   "team": 1,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5410": {
+  "0": {
+   "name": "Vanguard",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Valamir Vanguard",
+   "team": 1,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5411": {
+  "0": {
+   "name": "Mercenaries",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 33,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Vanguard",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "2": {
+   "name": "Valamir Army",
+   "team": 1,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 9,
+   "bgType": 0,
+   "banner": 4
+  }
+ },
+ "5412": {
+  "0": {
+   "name": "Huntsmen",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 55,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Stokeshire Escort",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5413": {
+  "0": {
+   "name": "Stokeshire Escort",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Huntsmen",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 55,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5414": {
+  "0": {
+   "name": "Stokeshire Escort",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Martin Landower",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 55,
+   "bgType": 0,
+   "banner": 4
+  },
+  "2": {
+   "name": "Duke Stokeshire",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 55,
+   "bgType": 0,
+   "banner": 6
+  }
+ },
+ "5415": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Carrone Legion",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "gules",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 2
+  },
+  "2": {
+   "name": "Aguilleon Gate",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 70,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5416": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Carrone Legion",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "gules",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 2
+  },
+  "2": {
+   "name": "Aguilleon Pass",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 70,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5417": {
+  "0": {
+   "name": "El Acclazar West",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 70,
+   "bgType": 0,
+   "banner": 2
+  },
+  "1": {
+   "name": "El Acclazar East",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 70,
+   "bgType": 0,
+   "banner": 2
+  },
+  "2": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "3": {
+   "name": "El Acclazar Main",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 70,
+   "bgType": 0,
+   "banner": 8
+  },
+  "4": {
+   "name": "Carrone Legion",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "gules",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 2
+  }
+ },
+ "5418": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Hunewold Village",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 69,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5419": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Eagleclaw Tribe",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 69,
+   "bgType": 0,
+   "banner": 0
+  },
+  "2": {
+   "name": "Staghorn Tribe",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 69,
+   "bgType": 0,
+   "banner": 0
+  },
+  "3": {
+   "name": "Wolfpaw Tribe",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 69,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5420": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Hunewold Horde",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 69,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5421": {
+  "0": {
+   "name": "Horselord Yurt",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 71,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5422": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Horselords",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 71,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5423": {
+  "0": {
+   "name": "Horselords",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 71,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "2": {
+   "name": "Viscount Anston",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "gules",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 3
+  },
+  "3": {
+   "name": "Duke Stokeshire",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 55,
+   "bgType": 0,
+   "banner": 6
+  }
+ },
+ "5600": {
+  "0": {
+   "name": "Legion Defenders",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "gules",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 2
+  },
+  "1": {
+   "name": "Legion Attackers",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "gules",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 2
+  }
+ },
+ "5603": {
+  "0": {
+   "name": "Merovin West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "azure",
+   "symbol": 72,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Merovin East",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "azure",
+   "symbol": 72,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5604": {
+  "0": {
+   "name": "Merovin Defenders",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "azure",
+   "symbol": 72,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  }
+ },
+ "5605": {
+  "0": {
+   "name": "Merovin West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "azure",
+   "symbol": 72,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Merovin East",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "azure",
+   "symbol": 72,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5606": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Marsur Supply Train",
+   "team": 1,
+   "symbolColor": "tenne",
+   "bgColor": "sable",
+   "symbol": 74,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5607": {
+  "0": {
+   "name": "Marsur West",
+   "team": 0,
+   "symbolColor": "tenne",
+   "bgColor": "sable",
+   "symbol": 74,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Marsur East",
+   "team": 1,
+   "symbolColor": "tenne",
+   "bgColor": "sable",
+   "symbol": 74,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5608": {
+  "0": {
+   "name": "Marsur Defenders",
+   "team": 1,
+   "symbolColor": "tenne",
+   "bgColor": "sable",
+   "symbol": 74,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Marsur Besiegers",
+   "team": 0,
+   "symbolColor": "tenne",
+   "bgColor": "sable",
+   "symbol": 74,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5609": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Bordavian Village",
+   "team": 1,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 73,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5610": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Bordavian Town",
+   "team": 1,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 73,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5611": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Bordavian Fort",
+   "team": 1,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 73,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5612": {
+  "0": {
+   "name": "Outlaw Camp",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 55,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Hunting Party",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  }
+ },
+ "5613": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Martin Landower",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 55,
+   "bgType": 0,
+   "banner": 4
+  },
+  "2": {
+   "name": "Duke Stokeshire",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 55,
+   "bgType": 0,
+   "banner": 6
+  },
+  "3": {
+   "name": "Baron Wellford",
+   "team": 1,
+   "symbolColor": "tenne",
+   "bgColor": "or",
+   "symbol": 59,
+   "bgType": 0,
+   "banner": 3
+  }
+ },
+ "5614": {
+  "0": {
+   "name": "Sangsoleil East",
+   "team": 1,
+   "symbolColor": "tenne",
+   "bgColor": "gules",
+   "symbol": 68,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Sangsoleil West",
+   "team": 0,
+   "symbolColor": "tenne",
+   "bgColor": "gules",
+   "symbol": 68,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5615": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Aguilleon Supply",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 70,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5616": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Aguilleon Army",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 70,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5617": {
+  "0": {
+   "name": "Aguilleon Aerie",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 70,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5618": {
+  "0": {
+   "name": "Hunewold Raiders",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 69,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Supply Train",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5619": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Hunewold Tribe",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 69,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5620": {
+  "0": {
+   "name": "Hunewold Raiders",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 69,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Carrone Fort",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "gules",
+   "symbol": 35,
+   "bgType": 0,
+   "banner": 2
+  },
+  "2": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  }
+ },
+ "5621": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Horselord Yurt",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 71,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5622": {
+  "0": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Horselords",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 71,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5623": {
+  "0": {
+   "name": "Rukiev Settlement",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 71,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Player",
+   "team": 0,
+   "symbolColor": "sable",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5204": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5205": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5206": {
+  "0": {
+   "name": "Defender",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "azure",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Attacker",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5207": {
+  "0": {
+   "name": "Merovin West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Merovin East",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5208": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "tenne",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "tenne",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5209": {
+  "0": {
+   "name": "Defender",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Attacker",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5210": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "azure",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5211": {
+  "0": {
+   "name": "Defender",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Attacker",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "or",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5212": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5213": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5214": {
+  "0": {
+   "name": "North",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "South",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5215": {
+  "0": {
+   "name": "Attacker",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  },
+  "1": {
+   "name": "Defender",
+   "team": 1,
+   "symbolColor": "azure",
+   "bgColor": "gules",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5216": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5217": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5218": {
+  "0": {
+   "name": "East Army",
+   "team": 1,
+   "symbolColor": "gules",
+   "bgColor": "tenne",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "West Army",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5219": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5220": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "azure",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5221": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "azure",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5222": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "vert",
+   "bgColor": "azure",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5223": {
+  "0": {
+   "name": "Defender",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "or",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Attacker",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5224": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5225": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5226": {
+  "0": {
+   "name": "Attacker",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Defender",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "azure",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5227": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5228": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5229": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5230": {
+  "0": {
+   "name": "Defender",
+   "team": 1,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Attacker",
+   "team": 0,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5231": {
+  "0": {
+   "name": "West",
+   "team": 0,
+   "symbolColor": "or",
+   "bgColor": "sable",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "East",
+   "team": 1,
+   "symbolColor": "purpure",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5800": {
+  "0": {
+   "name": "Sir Anston",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 51,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Enemy Units",
+   "team": 1,
+   "symbolColor": "azure",
+   "bgColor": "argent",
+   "symbol": 17,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5801": {
+  "0": {
+   "name": "Brigands",
+   "team": 1,
+   "symbolColor": "sable",
+   "bgColor": "vert",
+   "symbol": 16,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Sir Anston",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 51,
+   "bgType": 0,
+   "banner": 0
+  }
+ },
+ "5802": {
+  "0": {
+   "name": "Sir Anston",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 51,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Militia Levy",
+   "team": 0,
+   "symbolColor": "argent",
+   "bgColor": "vert",
+   "symbol": 16,
+   "bgType": 0,
+   "banner": 0
+  },
+  "2": {
+   "name": "Enemy Units",
+   "team": 1,
+   "symbolColor": "vert",
+   "bgColor": "vert",
+   "symbol": 0,
+   "bgType": 0,
+   "banner": 0,
+   "noRecolor": true
+  }
+ },
+ "5803": {
+  "0": {
+   "name": "Rebel Army",
+   "team": 1,
+   "symbolColor": "azure",
+   "bgColor": "argent",
+   "symbol": 17,
+   "bgType": 0,
+   "banner": 0
+  },
+  "1": {
+   "name": "Carrone Army",
+   "team": 0,
+   "symbolColor": "gules",
+   "bgColor": "argent",
+   "symbol": 51,
+   "bgType": 0,
+   "banner": 0
+  }
+ }
+}

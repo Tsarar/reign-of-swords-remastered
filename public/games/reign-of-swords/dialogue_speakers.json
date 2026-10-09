@@ -1,0 +1,530 @@
+{
+"1037": {
+"speakerId": 50,
+"text": "You have destroyed the opponent's army!"
+},
+"1044": {
+"speakerId": 50,
+"text": "You have captured the river fort!"
+},
+"1047": {
+"speakerId": 50,
+"text": "You have captured the town!"
+},
+"1050": {
+"speakerId": 50,
+"text": "You have taken the hill!"
+},
+"1053": {
+"speakerId": 50,
+"text": "You have captured Twinbridge Keep!"
+},
+"1059": {
+"speakerId": 50,
+"text": "You have conquered the castle!"
+},
+"1060": {
+"speakerId": 50,
+"text": "You have defended the castle!"
+},
+"1065": {
+"speakerId": 50,
+"text": "You have conquered the town!"
+},
+"1066": {
+"speakerId": 50,
+"text": "You have defended the town!"
+},
+"1070": {
+"speakerId": 50,
+"text": "Your combined army has destroyed the opponent!"
+},
+"1038": {
+"speakerId": 53,
+"text": "Your army has been destroyed!"
+},
+"1045": {
+"speakerId": 53,
+"text": "Your opponent has captured the river fort!"
+},
+"1048": {
+"speakerId": 53,
+"text": "Your opponent has captured the town!"
+},
+"1051": {
+"speakerId": 53,
+"text": "Your opponent has taken the hill!"
+},
+"1054": {
+"speakerId": 53,
+"text": "Your opponent has captured Twinbridge Keep!"
+},
+"1061": {
+"speakerId": 53,
+"text": "Your conquest of the castle has failed!"
+},
+"1062": {
+"speakerId": 53,
+"text": "You have lost the castle to your opponent!"
+},
+"1067": {
+"speakerId": 53,
+"text": "Your conquest of the town has failed!"
+},
+"1068": {
+"speakerId": 53,
+"text": "You have lost the town to your opponent!"
+},
+"1071": {
+"speakerId": 53,
+"text": "Your combined army has been destroyed!"
+},
+"790": {
+"speakerId": 42,
+"text": "Very good, PlayerName."
+},
+"796": {
+"speakerId": 42,
+"text": "Perhaps your days as a squire have not yet prepared you for war. I shall have to think on this."
+},
+"798": {
+"speakerId": 42,
+"text": "We shall reach the imperial city by tomorrow, squire. Tonight we will treat the men to meat and wine in the village ahead."
+},
+"799": {
+"speakerId": 42,
+"text": "What is this now? Looters fleeing the coming war?"
+},
+"801": {
+"speakerId": 42,
+"text": "Captain Morro. See to the wounded villagers and set our camp for the night."
+},
+"805": {
+"speakerId": 42,
+"text": "Wake up, squire. The day is upon us and the men need to be assembled."
+},
+"808": {
+"speakerId": 42,
+"text": "The men are ready then? Good."
+},
+"810": {
+"speakerId": 42,
+"text": "You have quality within you. I've always seen that. Fight well today and a knighthood shall be yours."
+},
+"811": {
+"speakerId": 42,
+"text": "Our Emperor is young, but cautious."
+},
+"814": {
+"speakerId": 42,
+"text": "We have crossbowmen and catapults well placed on the ridge. We should let the enemy come to us while we rain rock and arrow down upon their heads."
+},
+"815": {
+"speakerId": 44,
+"text": "As their army closes with ours, try to position the cavalry in line for a charge. With our foot soldiers... ATTACK AT WILL!"
+},
+"816": {
+"speakerId": 44,
+"text": "Flank and surround the enemy units to deliver more damage with each melee attack! Break holes in their line to weaken their formation defense!"
+},
+"817": {
+"speakerId": 44,
+"text": "Sweep around their position! Close in and finish them!"
+},
+"818": {
+"speakerId": 42,
+"text": "Your valor today does you credit PlayerName, as does the years of your service to my family."
+},
+"823": {
+"speakerId": 49,
+"text": "Our western division is under attack! How would you have us assemble, Sir PlayerName?"
+},
+"824": {
+"speakerId": 51,
+"text": "Sir! Should we fight through to their catapults, or flank their front line and crush them between our combined forces?"
+},
+"825": {
+"speakerId": 49,
+"text": "The western front is secure, but the enemy has struck with their reserves at the heart of our battle line. The Emperor is in danger!"
+},
+"827": {
+"speakerId": 51,
+"text": "Our eastern division has been completely shattered! Duke Pellus leads his vanguard at our Emperor! We must reach him before he is overrun!"
+},
+"828": {
+"speakerId": 54,
+"text": "Capture the boy alive if possible! Cut down the rest!"
+},
+"829": {
+"speakerId": 51,
+"text": "Duke Pellus has been defeated! Long live the Emperor!"
+},
+"831": {
+"speakerId": 52,
+"text": "The Emperor has fallen. All hope for the Empire is lost."
+},
+"832": {
+"speakerId": 50,
+"text": "The enemy is broken! We've won!"
+},
+"838": {
+"speakerId": 43,
+"text": "Greetings, PlayerStyle PlayerName. It is good to see you safe and well through the Merovin Rebellion."
+},
+"841": {
+"speakerId": 44,
+"text": "Men of Carrone! Today you will learn to fight as soldiers of the Third Legion!"
+},
+"847": {
+"speakerId": 44,
+"text": "In facing a reinforced position, such as this fortress, war engines are critical in bringing down the walls or gate!"
+},
+"844": {
+"speakerId": 44,
+"text": "In defending a reinforced position, such as this fortress, use ranged attacks from the shelter of towers or ramparts to weaken the approaching army!"
+},
+"850": {
+"speakerId": 43,
+"text": "I take pride knowing that I trained you as squire. Your skill in battle will return the Empire to its former glory!"
+},
+"851": {
+"speakerId": 43,
+"text": "You are a worthy adversary, PlayerStyle PlayerName. Any further assistance in training the Legion would be met with my deepest gratitude."
+},
+"852": {
+"speakerId": 49,
+"text": "Merovin infantry approach along the river, supported by cavalry traveling the ridgeline."
+},
+"854": {
+"speakerId": 50,
+"text": "The Baron's men are defeated and our scouts report the valley clear to the bridge keep ahead."
+},
+"856": {
+"speakerId": 49,
+"text": "The guard at the bridge keep has been reinforced, but our reserves have arrived as well."
+},
+"858": {
+"speakerId": 50,
+"text": "We have secured the bridge crossing!"
+},
+"860": {
+"speakerId": 49,
+"text": "Baron Valeuve approaches to treat with you before the battle, PlayerStyle."
+},
+"865": {
+"speakerId": 57,
+"text": "Men of Valeuve, grant no quarter! Advance and destroy the enemy of Merovin!"
+},
+"866": {
+"speakerId": 58,
+"text": "Fight on, men! Do not lose heart! Drive them back to their Emperor!"
+},
+"867": {
+"speakerId": 58,
+"text": "I am forced to deliver my surrender. Valeuve is yours, PlayerStyle."
+},
+"869": {
+"speakerId": 62,
+"text": "Gather your men, sergeant! Hold them here for as long as possible!"
+},
+"870": {
+"speakerId": 49,
+"text": "East a half day's march sits Castle Corbeau, PlayerStyle."
+},
+"872": {
+"speakerId": 49,
+"text": "Numerous though they were, they could not hope to stop us."
+},
+"874": {
+"speakerId": 49,
+"text": "PlayerStyle, the enemy has dug a picket line and brought up musketeer and cannon support from the castle."
+},
+"876": {
+"speakerId": 63,
+"text": "Militia advance! Keep them at cannon range!"
+},
+"877": {
+"speakerId": 50,
+"text": "We've broken through their line and captured their cannon!"
+},
+"879": {
+"speakerId": 49,
+"text": "The town of Corbeau is just south of the castle, PlayerStyle."
+},
+"881": {
+"speakerId": 62,
+"text": "Fools! They may have taken the barbican, but they will break themselves upon the walls of my castle!"
+},
+"882": {
+"speakerId": 64,
+"text": "Yield! I yield! Grant me safe passage from Corbeau and the castle is yours!"
+},
+"884": {
+"speakerId": 49,
+"text": "Towns such as these cover the foothills of Bordavia and provide trade into the region."
+},
+"886": {
+"speakerId": 49,
+"text": "The town guard was expecting our arrival, PlayerStyle."
+},
+"888": {
+"speakerId": 51,
+"text": "Count Valamir's vanguard approaches from the east, PlayerStyle PlayerName!"
+},
+"890": {
+"speakerId": 49,
+"text": "Their vanguard has been shattered, but our scouts report the rest of Count Valamir's host waits for some reason."
+},
+"892": {
+"speakerId": 49,
+"text": "Count Valamir's army has arrived, PlayerStyle."
+},
+"895": {
+"speakerId": 59,
+"text": "Men of Carrone. Bordavia is open to you no longer. Surrender this town and return to your own country..."
+},
+"897": {
+"speakerId": 61,
+"text": "May the gods curse each day you spend within my country."
+},
+"898": {
+"speakerId": 49,
+"text": "Their assault has broken itself upon our defenses, PlayerStyle."
+},
+"901": {
+"speakerId": 49,
+"text": "The main body of your army has yet to make their landing at Whitecliff, PlayerStyle."
+},
+"903": {
+"speakerId": 51,
+"text": "AMBUSH!"
+},
+"906": {
+"speakerId": 51,
+"text": "We're losing men! If half of our number are lost, we'll not reach Stokeshire!"
+},
+"907": {
+"speakerId": 51,
+"text": "The men are dying, PlayerStyle PlayerName! Should we lose any more, we're done for!"
+},
+"908": {
+"speakerId": 49,
+"text": "We've escaped their trap, but the enemy gathers for pursuit."
+},
+"910": {
+"speakerId": 53,
+"text": "We've lost too many men to have hope of reaching Stokeshire. We must turn back."
+},
+"911": {
+"speakerId": 50,
+"text": "We've gained the high ground! They will pay dearly if they mount an assault upon this position."
+},
+"915": {
+"speakerId": 49,
+"text": "I hope that we have not been delayed too long to aid Castle Stokeshire."
+},
+"916": {
+"speakerId": 53,
+"text": "The men are exhausted. We have no chance of reaching the castle."
+},
+"918": {
+"speakerId": 71,
+"text": "May devils take you, Martin! To think I once called you brother! Now I name you kinslayer!"
+},
+"922": {
+"speakerId": 51,
+"text": "PlayerStyle PlayerName! The castle is nearly done for!"
+},
+"924": {
+"speakerId": 66,
+"text": "Keep at it, lads! The bailey is ours and the keep is ripe to fall!"
+},
+"925": {
+"speakerId": 67,
+"text": "Where are those cursed trebuchets? That gate should be rubble by now!"
+},
+"926": {
+"speakerId": 72,
+"text": "I yield. Spare my men and the castle is yours, Martin."
+},
+"930": {
+"speakerId": 68,
+"text": "RETREAT! Through the hunting gate and into the wood! Stokeshire must wait for now."
+},
+"935": {
+"speakerId": 66,
+"text": "Brother! I have captured your imperial envoy!"
+},
+"939": {
+"speakerId": 49,
+"text": "Your army has been well provisioned by the Carrone camp and awaits your marching orders."
+},
+"947": {
+"speakerId": 42,
+"text": "Conquer the gate as quickly as possible. The longer we fight here the more of their damned griffon riders will descend upon us."
+},
+"948": {
+"speakerId": 45,
+"text": "With the losses you have suffered, we must retreat and assemble a stronger force."
+},
+"949": {
+"speakerId": 43,
+"text": "Well done, PlayerStyle PlayerName. Lead the vanguard into the pass and the legion shall follow for the siege upon El Acclazar."
+},
+"950": {
+"speakerId": 42,
+"text": "The Third Legion's war engines will take time to gain the summit of the pass."
+},
+"953": {
+"speakerId": 51,
+"text": "Griffon Riders!"
+},
+"955": {
+"speakerId": 44,
+"text": "A war engine has been lost! If we lose two more, continuing forward will be futile!"
+},
+"956": {
+"speakerId": 44,
+"text": "A second war engine destroyed! We can not afford to lose a third if we hope to siege El Acclazar!"
+},
+"957": {
+"speakerId": 52,
+"text": "Too many war engines have been destroyed. We must retreat to the Third Legion's camp."
+},
+"958": {
+"speakerId": 44,
+"text": "Legion advance!"
+},
+"961": {
+"speakerId": 42,
+"text": "The war engines of the Third Legion are in position and reserve infantry will march forward after your advance."
+},
+"964": {
+"speakerId": 44,
+"text": "Reserves advance!"
+},
+"965": {
+"speakerId": 42,
+"text": "All of the reserves are now committed to the field. Lead us to victory, PlayerStyle PlayerName."
+},
+"966": {
+"speakerId": 50,
+"text": "El Acclazar has fallen! You have conquered where all others have failed! It is an honor to serve in your army, PlayerStyle."
+},
+"968": {
+"speakerId": 45,
+"text": "PlayerStyle PlayerName, we must retreat. With our losses, we cannot hope to conquer the fortress, much less hold it against any counter attack. El Acclazar must wait for another day."
+},
+"969": {
+"speakerId": 49,
+"text": "This village is too close to our coastal shipyards and would be a natural launching point for Hunewold raids."
+},
+"972": {
+"speakerId": 51,
+"text": "Spirits of their ancestors rise up to fight alongside their shamans!"
+},
+"974": {
+"speakerId": 49,
+"text": "The men are disquieted by the forest, PlayerStyle PlayerName, but I shall oversee its clearing at once for the fortress timbers."
+},
+"976": {
+"speakerId": 49,
+"text": "Hunewold tribesmen approach from all sides, PlayerStyle PlayerName."
+},
+"979": {
+"speakerId": 49,
+"text": "PlayerStyle PlayerName. It appears that three different tribes are part of this attack."
+},
+"981": {
+"speakerId": 50,
+"text": "The tribesmen host has broken and their survivors scatter into the wood to carry the tune of their defeat."
+},
+"983": {
+"speakerId": 49,
+"text": "PlayerStyle PlayerName, I come with word just delivered from our far watch patrol."
+},
+"987": {
+"speakerId": 51,
+"text": "By the gods! The very trees sway with the stamp of their approach!"
+},
+"989": {
+"speakerId": 51,
+"text": "Victory! VICTORY! Hail PlayerName, blessed be his name!"
+},
+"992": {
+"speakerId": 51,
+"text": "AMBUSH!"
+},
+"994": {
+"speakerId": 51,
+"text": "Our first casualty! We must break through or finish the enemy before our numbers diminish!"
+},
+"995": {
+"speakerId": 51,
+"text": "We're losing too many men! If more than half of the troops are slain, the supplies are lost!"
+},
+"996": {
+"speakerId": 51,
+"text": "The supplies are in danger! Should we lose any more men, we're finished!"
+},
+"998": {
+"speakerId": 49,
+"text": "The supplies will be seen safely through to your fort, PlayerStyle PlayerName."
+},
+"997": {
+"speakerId": 53,
+"text": "The raiders have captured our supplies!"
+},
+"999": {
+"speakerId": 50,
+"text": "You have the Emperor's trust and favor, PlayerStyle PlayerName."
+},
+"1003": {
+"speakerId": 49,
+"text": "Setting fire to these huts will draw their scouts to investigate."
+},
+"1005": {
+"speakerId": 49,
+"text": "Two days since our attack upon their camp and still no counter from the Horselords."
+},
+"1007": {
+"speakerId": 51,
+"text": "PlayerStyle PlayerName! Horselords riding hard from the west!"
+},
+"1008": {
+"speakerId": 51,
+"text": "REGROUP! They seek to strike at the rear flanks of our column!"
+},
+"1009": {
+"speakerId": 49,
+"text": "The size of their force was smaller than expected. This could not have been their full strength."
+},
+"1011": {
+"speakerId": 52,
+"text": "The Horselords have arrived in strength, PlayerStyle PlayerName. Our scouts estimate they have nearly twice our number."
+},
+"1015": {
+"speakerId": 50,
+"text": "Warhorns! Warhorns from the east!"
+},
+"1016": {
+"speakerId": 44,
+"text": "By the grace of the Emperor...!"
+},
+"1017": {
+"speakerId": 71,
+"text": "And for the glory of Carrone!"
+},
+"1018": {
+"speakerId": 50,
+"text": "My Lord, your Grace, when no word arrived of your landing we feared the worst."
+},
+"1023": {
+"speakerId": 51,
+"text": "A Horselord column has ridden in from the east!"
+},
+"1024": {
+"speakerId": 51,
+"text": "A second column now, to the west!"
+}
+}

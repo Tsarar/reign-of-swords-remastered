@@ -1,0 +1,214 @@
+{
+ "note": "Field Manual — recovered verbatim from the 2008 Reign of Swords string table (5004).",
+ "manual": [
+  {
+   "title": "BATTLEFIELD",
+   "text": "Drag across the map or hold down on the edge of the screen to scroll the view. Tap the Next Unit icon in the lower right corner to go to your next available unit. Tap on a unit to select it."
+  },
+  {
+   "title": "MOVE",
+   "text": "Terrain and the unit's movement rate determine how far it can move. A move grid will display all of the valid move choices. Any objective areas will appear as a blinking green highlight. Drag away from the unit to draw a specific path or tap a square to set an optimal path. Tap the end of the path to move the unit there."
+  },
+  {
+   "title": "DEPLOYMENT",
+   "text": "Place your units into the yellow formation blocks. Tap the up/down arrow controls in the unit tray to change the displayed unit category. Units can be replaced by placing other units on top of them, and the replaced unit's point cost will be regained."
+  },
+  {
+   "title": "UNIT SELECTION",
+   "text": "Choose which units to send into battle by highlighting the desired unit type, tapping on it and then tapping in the yellow deployment areas. Note the cost of the unit, and the remaining points to spend."
+  },
+  {
+   "title": "TARGET",
+   "text": "Targets in range are highlighted in red. Tap once on a highlighted enemy to view the amount of health damage that will be done. Tap on the enemy again to deliver the attack or tap the Back arrow icon to reconsider."
+  },
+  {
+   "title": "CHARGE",
+   "text": "A Charge is a special attack that tramples multiple enemy foot units in a straight line, should each in turn be destroyed. The Charge has a minimum range of 3 to build up speed."
+  },
+  {
+   "title": "FLANKING",
+   "text": "Melee attacks benefit from allied units being adjacent to the enemy target. The more the enemy is surrounded, the greater the bonus to the attack."
+  },
+  {
+   "title": "FORMATION",
+   "text": "Several units, including Footmen, possess the Formation ability. Formation bestows a defensive bonus when Formation units are adjacent to each other."
+  },
+  {
+   "title": "FORMATION ORDER",
+   "text": "A Formation Order issues movement and attack orders to an entire deployment group. Hold down on a unit to issue a Formation Order or touch two fingers to the screen to create a selection area and issue a Formation Order to a custom group. Drag the banner to a new location or tap a new location. Tap the blinking banner to issue the Formation Order."
+  },
+  {
+   "title": "TACTICS PATH",
+   "text": "Assign a path for this deployment group to follow at the start of the battle. All units in this deployment group will follow this path. After setting the path, assign the tactic that this group should use."
+  },
+  {
+   "title": "SET TACTICS",
+   "text": "You can choose to set tactics for each different deployment group, providing a path and a specific tactic."
+  },
+  {
+   "title": "PIKEWALL",
+   "text": "The Pikemen unit has the Pikewall ability, which activates automatically if not given an attack order. The Pikewall grants them first strike upon being attacked and lasts until a non-cavalry unit delivers a melee attack upon them."
+  },
+  {
+   "title": "MORALE",
+   "text": "An army controlling a majority of a battlefield's objective areas gains a morale boost, increasing their attack strength. The icon for morale is a gold plus symbol, displayed on each unit in the army."
+  },
+  {
+   "title": "ALLIES",
+   "text": "Allied armies will share a similar unit strength color (Green, Blue, or Cyan) and fight in cooperation with you to achieve victory. Enemy teams will also share a similar unit strength color (Red, Orange, or Yellow)."
+  },
+  {
+   "title": "RANGED ATTACK UNITS",
+   "text": "Several units in your army will have ranged attack weapons, such as the crossbow. Nearly all of these units have the restriction that they may either move or shoot, but not both in the same turn."
+  },
+  {
+   "title": "HEAVY ARMOR",
+   "text": "Units with Heavy Armor, such as the Swordsmen, are useful against an enemy's ranged troops. When moving in Formation, the damage they receive is reduced enough to survive the approach to engage and attack."
+  },
+  {
+   "title": "BATTLE STANDARD",
+   "text": "The Hero unit is a powerful force on the battlefield and the Battle Standard ability it possesses increases the attack strength and courage of all allied units nearby."
+  },
+  {
+   "title": "VILLAGES AND KEEPS",
+   "text": "These structures restore 20 lost HP to any unit that begins its turn upon their square. Defending a Village or Keep square to maintain strong units can turn the tide in a close battle."
+  },
+  {
+   "title": "WAR ENGINES",
+   "text": "Drag the targeting cursor to position an attack. Be cautious, as the attacks can deviate slightly to strike friend and foe alike. War engines cannot enter villages or keeps to regain HP."
+  },
+  {
+   "title": "BATTLE MENU",
+   "text": "Tapping the menu icon will display the Battle Menu. Choose End Turn to complete your turn or tap the Back icon to return to the battlefield view."
+  },
+  {
+   "title": "VIEW MAP",
+   "text": "Before the battle begins, you have the option of surveying the battlefield to plan your strategy. Open the menu and select Deployment to position your army on the map, or select Complete to start the battle."
+  },
+  {
+   "title": "VIEW UNIT",
+   "text": "A unit's stats and upgrade choices are displayed when selecting a unit from the army list. The required collectible for upgrading a unit is listed under the Upgrades section."
+  },
+  {
+   "title": "REMOVE",
+   "text": "When Remove is turned on you can remove units or tactics flags by tapping on them. To remove multiple items at once, create a selection area by using two fingers. To exit Remove mode, tap the Remove button again, tap the back arrow, or tap another unit in the unit tray."
+  },
+  {
+   "title": "REPOSITIONING UNITS",
+   "text": "After a unit has been placed, hold down on the unit to edit it's position. Drop the unit on top of another of your units to replace it."
+  },
+  {
+   "title": "CAMP",
+   "text": "The camp is where you prepare for battle. Select War Plans to view your battlefield choices, Upgrade Army to improve your units, or Rivals for the current multiplayer rankings."
+  },
+  {
+   "title": "UPGRADE ARMY",
+   "text": "The units you have in your army are displayed here, as well as any spoils of war you have collected in battle. These collectibles can be used to upgrade your units from one type to another."
+  },
+  {
+   "title": "MERCHANT",
+   "text": "The Merchant will allow you to trade excess collectibles for a Militiamen unit or a different type of collectible. Medals may only be won from Major Victories in battle."
+  },
+  {
+   "title": "SPOILS",
+   "text": "Completing a battle rewards the victor with the spoils of war. These can take the form of new units to bolster your army or collectible gear useful for upgrading to stronger unit types."
+  },
+  {
+   "title": "WAR PLANS",
+   "text": "Your War Plans will list every battle available to you within the kingdom. You are required to fight through a series of campaign battles to secure each kingdom before sending your army into Raids or Online Battles against other players."
+  },
+  {
+   "title": "LEVIES",
+   "text": "Every kingdom you have conquered will send units weekly to bolster your army. A higher ranking within each kingdom will result in more or better units. Check the Rivals menu in each kingdom to see the current rankings. The Rivals menu in Carrone displays the combined points earned from all kingdoms."
+  },
+  {
+   "title": "HERALDRY",
+   "text": "When you have earned the title of Knight Banneret, you may choose your colors and symbol to represent you on the battlefield. As you earn greater titles of nobility, the border of your heraldry will become more impressive as well."
+  },
+  {
+   "title": "CARRONE EMPIRE",
+   "text": "The campaign begins in the capital kingdom of Carrone. As you complete the campaign missions, new kingdoms will become unlocked. For network play, each kingdom has its own battle maps to compete over to be crowned king or earn other lofty noble titles."
+  }
+ ],
+ "movement": [
+  "Units that can fly are not hindered by terrain.",
+  "Skirmish units move in loose groups, suffering less penalties from terrain.",
+  "Formation units move in organized ranks, which slows their movement through most terrain.",
+  "Cavalry units travel great distances in open terrain, but are slowed through forest terrain.",
+  "War Engine units are slow and can not move through forest or building terrain.",
+  "Wizards have learnt to Teleport themselves directly to their destination, ignoring all terrain but water."
+ ],
+ "armour": [
+  "Clothing that provides no protection against attacks.",
+  "A Shield provides little protection, but is useful against ranged attacks.",
+  "A Minor Ward creates a magical shield around the wizard, providing some small protection against ranged attacks.",
+  "Light Armor provides only minimal protection against melee and ranged attacks.",
+  "Nature's Cloak blankets the wearer in spiritual protection, providing better protection against magical attacks.",
+  "A Breastplate provides better protection than light armor against melee attacks, but is still vulnerable to ranged attacks.",
+  "Combining Light Armor with a Shield provides better defense against ranged attacks.",
+  "Airborn units suffer less damage from most melee attacks.",
+  "Heavy armor is a collection of overlapping plate pieces designed to turn spear, pike, and sword, providing great protection against melee attacks.",
+  "Holy Vestment is blessed clothing that provides protection as if the priest were garbed in light armor.",
+  "Heavy Armor and Shield provide excellent protection against ranged attacks and great protection against melee.",
+  "Nature's Shield provides some protection against weapons and the best protection against magical attacks.",
+  "War Engines do not have much in the way of defenses, and are devastated by melee attacks."
+ ],
+ "abilities": [
+  "First Strike allows this unit to attack first, even when defending.",
+  "Last Strike means this unit takes longer to swing, and will always attack last.",
+  "The impact of this attack covers a broad area.",
+  "This unit is Fearless in battle.",
+  "Formation provides a defense bonus when other units possessing Formation are adjacent.",
+  "This unit can Spot hidden enemies.",
+  "This unit can Move or Shoot each turn, but not both.",
+  "This unit can both Shoot and Move in the same turn.",
+  "Fire Arrows can be used to damage wooden structures.",
+  "This unit is Flammable and may catch on fire.",
+  "Hero units carry a Battle Standard that bolsters the attack strength and courage of nearby allies.",
+  "Ancestral spirits rise to boost the attack strength of nearby allies and weaken it in enemies.",
+  "Burst delivers fire damage to the target square as well as all surrounding squares.",
+  "This unit can cause Fear in enemies, preventing them from attacking if their courage fails.",
+  "A powerful attack delivered in a straight path, provided the charging unit has two spaces to build up speed. Against non-cavalry units, the Charge can carry into additional units provided the first is destroyed.",
+  "This unit can disappear from enemy sight in defensive terrain.",
+  "A unit set to Ambush will remain hidden until an enemy moves into weapon range, then delivering a strike before the enemy can react.",
+  "This unit can Shapeshift into a Stag.",
+  "This unit can Shapeshift into a Stag, Great Eagle, or Guardian Bear gaining new movement and combat abilities.",
+  "This unit may Heal an adajacent ally, Shield nearby allies against ranged damage, or invoke Retribution to increase the counter attack strength of nearby allies.",
+  "Siege units can damage structures, knocking holes in castle walls to provide access to your troops.",
+  "Barrage rains down a collection of rocks over a wide area.",
+  "Payload fired at a Low Arc have a slight chance of deviating from their intended target.",
+  "If this unit does not attack in a turn, they will set a Pikewall to strike first against all units with the exception of the Hero. If charged, the wall delivers more damage as the speed of the attack is turned against the enemy.",
+  "Ancestral spirits rise to boost the attack strength of nearby allies and weaken it in enemies.",
+  "Payloads thrown with an Arc have a fair chance of deviating from their intended target.",
+  "A Fireball ignores most armor and delivers good damage to the target unit and lesser damage to adjacent units.",
+  "Lighting Storm strikes an area with five random bolts of lighting, ignoring most armor and delivers decent damage to each unit struck.",
+  "Ice Field causes light damage but slows all units caught within it for one turn, as well as temporarily disabling charge abilities.",
+  "This unit may Heal up to 20 HP to an adjacent wounded ally."
+ ],
+ "online": [
+  {
+   "title": "ONLINE BATTLES",
+   "text": "Online Battles are fought against other players on the game server. You will be asked to deploy your units and give them basic tactics to follow. The game server AI will control both armies and you will receive a battle report to view the outcome."
+  },
+  {
+   "title": "RIVAL LIST",
+   "text": "You can add your friends to your Rival List to challenge them to battles and track their scores."
+  },
+  {
+   "title": "CREATE ACCOUNT",
+   "text": "Creating a player account allows you to challenge other players to Online Battles and add them to your Rivals list."
+  },
+  {
+   "title": "UPLOAD ARMY",
+   "text": "Uploading your army to the server allows your units to be available when playing Reign of Swords on other devices. Be sure to upload your army before logging into your account on another device."
+  },
+  {
+   "title": "BATTLE OPTIONS",
+   "text": "Allows you to choose the scope of your Challenge (Open to all players, just your Rivals, or a specific Rival) and, if desired, the time before a secluded challenge becomes Open to all."
+  },
+  {
+   "title": "UNITS LOST",
+   "text": "In online battles, some units in the losing army that are slain in battle are permanently lost. These lost units will be listed at the end of the battle."
+  }
+ ]
+}

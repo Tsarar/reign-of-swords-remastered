@@ -1,0 +1,191 @@
+/* ---- Medals: the raid Major-Victory tracker (HUD), objectives row, victory card and raid preview ---- */
+.ros-medal-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  padding: 1px 7px 1px 2px;
+  border-radius: 10px;
+  background: rgba(64, 45, 22, 0.1);
+  border: 1px solid rgba(107, 74, 22, 0.35);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  cursor: help;
+}
+.ros-medal-track img {
+  width: 17px;
+  height: 17px;
+  image-rendering: pixelated;
+  transition: filter 0.3s;
+}
+.ros-medal-track.low img {
+  filter: grayscale(0.85) brightness(0.9);
+}
+.ros-medal-track.ok {
+  border-color: var(--gold);
+  background: rgba(240, 214, 138, 0.35);
+  color: #6b3f12;
+}
+.ros-medal-track b {
+  font-weight: 700;
+  min-width: 2.6em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.ros-mdl-bar {
+  position: relative;
+  width: 52px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(64, 45, 22, 0.25);
+  overflow: hidden;
+}
+.ros-mdl-bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: #9a7a52;
+  transition:
+    width 0.4s ease,
+    background 0.3s;
+}
+.ros-medal-track.ok .ros-mdl-bar i {
+  background: linear-gradient(90deg, #c99a3a, #f0d68a);
+}
+.ros-mdl-bar em {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  width: 2px;
+  margin-left: -1px;
+  background: #6b3f12;
+}
+.ros-obj-medal {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.ros-obj-medal img {
+  width: 26px;
+  height: 26px;
+  image-rendering: pixelated;
+  flex: none;
+}
+.ros-obj-medal small {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+.ros-medal-won,
+.ros-medal-miss {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px auto 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-align: left;
+  max-width: 420px;
+}
+.ros-medal-won {
+  background: linear-gradient(180deg, rgba(240, 214, 138, 0.55), rgba(201, 154, 58, 0.25));
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 18px rgba(240, 196, 80, 0.35);
+}
+.ros-medal-won b {
+  display: block;
+  font-family: var(--ros-title);
+  font-size: 1.25rem;
+  color: #6b3f12;
+  text-shadow: 0 1px 0 var(--gold-lt);
+}
+.ros-medal-won span {
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+.ros-medal-big {
+  width: 52px;
+  height: 52px;
+  image-rendering: pixelated;
+  flex: none;
+  animation:
+    ros-medal-in 0.7s cubic-bezier(0.2, 1.6, 0.4, 1) both,
+    ros-medal-glow 2.4s ease-in-out 0.7s infinite;
+}
+@keyframes ros-medal-in {
+  from {
+    transform: scale(0.2) rotate(-25deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes ros-medal-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(240, 196, 80, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 7px rgba(240, 196, 80, 0.9));
+  }
+}
+.ros-medal-miss {
+  background: rgba(64, 45, 22, 0.08);
+  border: 1px dashed rgba(107, 74, 22, 0.45);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.ros-medal-miss img {
+  width: 30px;
+  height: 30px;
+  image-rendering: pixelated;
+  filter: grayscale(1) opacity(0.6);
+  flex: none;
+}
+.ros-preview-medal {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 8px 11px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(240, 214, 138, 0.4), rgba(201, 154, 58, 0.16));
+  border: 1px solid var(--gold);
+}
+.ros-preview-medal b {
+  display: block;
+  color: #6b3f12;
+}
+.ros-preview-medal span {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ros-medal-big {
+    animation: none;
+  }
+}
+.ros-notice-toast {
+  background: linear-gradient(180deg, #5a4320, #3d2c12);
+  color: #fbeac4;
+  white-space: normal;
+  max-width: min(92%, 460px);
+  text-align: center;
+  top: 104px;
+}
+.ros-medal-track .ros-mdl-any {
+  min-width: 0;
+  text-align: left;
+  font-family: var(--ros-body, inherit);
+  letter-spacing: 0.2px;
+}
+
+/* The Grapeshot glyph (005 action strip) is shown mirrored: the 3-tile row on the left, the far tile pointing right. */
+img[src$="/skill_grapeshot.png"] {
+  transform: scaleX(-1);
+}

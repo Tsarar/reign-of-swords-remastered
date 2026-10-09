@@ -1,0 +1,23 @@
+.game-loader {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; min-height: 260px; padding: 40px 20px; text-align: center;
+}
+.game-loader-emblem { position: relative; width: 58px; height: 58px; }
+.game-loader-ring {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 3px solid rgba(201, 154, 58, 0.25); border-top-color: #c99a3a;
+  animation: game-loader-spin 0.9s linear infinite;
+}
+.game-loader-swords {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: #c99a3a; animation: game-loader-pulse 1.4s ease-in-out infinite;
+}
+.game-loader-label {
+  margin: 0; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--muted, #9a8f7a); opacity: 0.9;
+}
+@keyframes game-loader-spin { to { transform: rotate(360deg); } }
+@keyframes game-loader-pulse { 0%, 100% { opacity: 0.55; transform: scale(0.92); } 50% { opacity: 1; transform: scale(1.06); } }
+@media (prefers-reduced-motion: reduce) {
+  .game-loader-ring { animation-duration: 2.4s; }
+  .game-loader-swords { animation: none; }
+}

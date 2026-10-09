@@ -1,0 +1,1031 @@
+{
+  "title": "Reign of Swords",
+  "subtitle": "Mobile Battles",
+  "prologue": [
+    {
+      "speaker": "Emperor Sebatini",
+      "text": "Much of the known world was once under the rule of the Carrone Empire, the land divided into twelve kingdoms that all paid fealty to the Emperor.",
+      "side": "you",
+      "face": "face005"
+    },
+    {
+      "speaker": "Emperor Sebatini",
+      "text": "In time these kingdoms grew powerful in their own right while the bloodline of the first Emperor thinned. The imperial rule has weakened to the point of open rebellion.",
+      "side": "you",
+      "face": "face005"
+    },
+    {
+      "speaker": "Emperor Sebatini",
+      "text": "Now, with the death of the current Emperor and the crowning of his distant nephew, the Carrone Empire lies on the edge of collapse. The twelve kings refute his claim, while the young Emperor promises to reward any who would conquer these lost kingdoms with lands and noble titles.",
+      "side": "you",
+      "face": "face005"
+    }
+  ],
+  "kingdoms": [
+    {
+      "id": "carrone",
+      "name": "Kingdom of Carrone",
+      "order": 0,
+      "emperorBrief": [
+        {
+          "speaker": "War Advisor",
+          "text": "Men of Carrone! His Grace, Duke Pellus, has gathered support from the noble houses of Merovin to rise up against our Emperor.",
+          "side": "you",
+          "face": "face003"
+        },
+        {
+          "speaker": "War Advisor",
+          "text": "His army marches even now toward Carrone and will arrive within the week!",
+          "side": "you",
+          "face": "face003"
+        },
+        {
+          "speaker": "War Advisor",
+          "text": "The Emperor has called for all those still loyal to the Empire to come to his aid!",
+          "side": "you",
+          "face": "face003"
+        },
+        {
+          "speaker": "War Advisor",
+          "text": "What say you? Do we march to the imperial city and defend our Emperor?",
+          "side": "you",
+          "face": "face003"
+        },
+        {
+          "speaker": "Sergeant",
+          "text": "Yes! YES! By the grace of the Emperor and for the glory of Carrone!",
+          "side": "you",
+          "face": "face010"
+        }
+      ],
+      "missions": [
+        {
+          "mapId": 5400,
+          "title": "Brigands in the Vale",
+          "intro": [
+            {
+              "speaker": "Sir Anston",
+              "text": "We shall reach the imperial city by tomorrow, squire. Tonight we will treat the men to meat and wine in the village ahead.",
+              "side": "you",
+              "face": "face001"
+            },
+            {
+              "speaker": "Sir Anston",
+              "text": "What is this now? Looters fleeing the coming war?",
+              "side": "you",
+              "face": "face001"
+            },
+            {
+              "speaker": "War Advisor",
+              "text": "Cut down these brigands! Show them the price of cowardice!",
+              "side": "you",
+              "face": "face003"
+            }
+          ],
+          "victory": [
+            {
+              "speaker": "Sir Anston",
+              "text": "Captain Morro. See to the wounded villagers and set our camp for the night.",
+              "side": "you",
+              "face": "face001"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "As you command, Sir.",
+              "side": "you",
+              "face": "face008"
+            },
+            {
+              "speaker": "Sir Anston",
+              "text": "Varius, rest well tonight. Eat, drink, find warm company, for tomorrow we march to war.",
+              "side": "you",
+              "face": "face001"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5401,
+          "title": "The March West",
+          "intro": [
+            {
+              "speaker": "Sir Anston",
+              "text": "Wake up, squire. The day is upon us and the men need to be assembled.",
+              "side": "you",
+              "face": "face001"
+            },
+            {
+              "speaker": "Sir Anston",
+              "text": "A levy of militia has formed from the local folk. They wish to march with us to fight for Carrone. I have agreed to their request.",
+              "side": "you",
+              "face": "face001"
+            },
+            {
+              "speaker": "Sir Anston",
+              "text": "Deploy the men in formation in the field outside the village. We march to our Emperor's call.",
+              "side": "you",
+              "face": "face001"
+            },
+            {
+              "speaker": "Sir Anston",
+              "text": "You have quality within you. I've always seen that. Fight well today and a knighthood shall be yours.",
+              "side": "you",
+              "face": "face001"
+            }
+          ],
+          "victory": [
+            {
+              "speaker": "Sir Anston",
+              "text": "We march west along the road to the imperial city.",
+              "side": "you",
+              "face": "face001"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5402,
+          "title": "Defense of the Emperor",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Sergeant",
+              "text": "Duke Pellus has been defeated! Long live the Emperor!",
+              "side": "you",
+              "face": "face010"
+            },
+            {
+              "speaker": "Enemy Lord",
+              "text": "Even as I fall, Merovin rises up against you. You will not sit long upon the throne, young Emperor.",
+              "side": "foe",
+              "face": "face014"
+            },
+            {
+              "speaker": "Imperial Lord",
+              "text": "But not without cost. Who is your battle leader, soldier?",
+              "side": "you",
+              "face": "face005"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "Your Imperial Majesty, that honor is held by Sir Varius.",
+              "side": "you",
+              "face": "face011"
+            },
+            {
+              "speaker": "Sir Anston",
+              "text": "Your valor today does you credit Varius, as does the years of your service to my family.",
+              "side": "you",
+              "face": "face001"
+            },
+            {
+              "speaker": "The Emperor",
+              "text": "Kneel, and accept the honor and duty of knighthood.",
+              "side": "you",
+              "face": "face005"
+            },
+            {
+              "speaker": "The Emperor",
+              "text": "I free you from my service and charge you to defend the Empire against all who oppose it. Arise, Sir Varius.",
+              "side": "you",
+              "face": "face005"
+            },
+            {
+              "speaker": "Imperial Lord",
+              "text": "Sir Varius. Carrone has lost much today, half of its army and much of its knighthood.",
+              "side": "you",
+              "face": "face005"
+            },
+            {
+              "speaker": "Imperial Lord",
+              "text": "We would have you accept the title of Knight Banneret, bear your own sigil, and lead your own men to conquer the rebellion within our empire.",
+              "side": "you",
+              "face": "face006"
+            },
+            {
+              "speaker": "Imperial Lord",
+              "text": "Succeed in this, and it will be our pleasure to reward you with land and title that befits your service to our cause.",
+              "side": "you",
+              "face": "face006"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Field Officer",
+              "text": "The Emperor has fallen. All hope for the Empire is lost.",
+              "side": "you",
+              "face": "face011"
+            }
+          ]
+        }
+      ],
+      "unlockAfter": []
+    },
+    {
+      "id": "bordavia",
+      "name": "Kingdom of Bordavia",
+      "order": 3,
+      "emperorBrief": [
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "The tribes driven from Old Tilicia crossed the great mountain range and after a brief period of war with the Empire, submitted to our rule and were allowed to settle. This region became the Kingdom of Bordavia and had been a stalwart ally to the Empire ever since.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "When Merovin marched in open rebellion upon Carrone, however, the king of Bordavia refused to lend support to defend our claim. He is posturing neutrality and independence, but Bordavia will be returned to imperial rule.",
+          "side": "you",
+          "face": "face005"
+        }
+      ],
+      "missions": [
+        {
+          "mapId": 5409,
+          "title": "Foothill Town",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Field Officer",
+              "text": "It is more than likely that count Valamir knows of us by now as well.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5410,
+          "title": "The Vanguard",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Field Officer",
+              "text": "Their vanguard has been shattered, but our scouts report the rest of Count Valamir's host waits for some reason.",
+              "side": "you",
+              "face": "face008"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "By your leave, I shall carry orders to fortify the town in preparation for their assault.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5411,
+          "title": "Valamir's Mercenaries",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Field Officer",
+              "text": "Their assault has broken itself upon our defenses, Commander.",
+              "side": "you",
+              "face": "face008"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "Count Valamir was not found among the wounded. It is not clear if he lives still or if his body was carried from the battlefield by the few that were able to retreat.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        }
+      ],
+      "unlockAfter": [
+        "Carrone"
+      ]
+    },
+    {
+      "id": "merovin",
+      "name": "Kingdom of Merovin",
+      "order": 1,
+      "emperorBrief": [
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "The Kingdom of Merovin is the Empire's flower of chivalry. The most powerful of the noble families trace their lineages from these lands and retain incomes from them. If we are to unite the Empire once more, this kingdom must be conquered and its nobles forced to bend the knee to their rightful ruler.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "We would have you lead your men against the Baron of Valeuve. His lands control a river valley that will provide an important path for our armies into Merovin.",
+          "side": "you",
+          "face": "face005"
+        }
+      ],
+      "missions": [
+        {
+          "mapId": 5403,
+          "title": "River Valley",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Herald",
+              "text": "The Baron's men are defeated and our scouts report the valley clear to the bridge keep ahead.",
+              "side": "you",
+              "face": "face009"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "By your leave, I will send word to advance the army.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5404,
+          "title": "The Bridge Keep",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Herald",
+              "text": "We have secured the bridge crossing!",
+              "side": "you",
+              "face": "face009"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "Our rear guard has advanced and crosses even now to join the rest of your host.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5405,
+          "title": "Baron Valeuve",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Baron Valeuve",
+              "text": "Fight on, men! Do not lose heart! Drive them back to their Emperor!",
+              "side": "foe",
+              "face": "face017"
+            },
+            {
+              "speaker": "Baron Valeuve",
+              "text": "I am forced to deliver my surrender. Valeuve is yours, Commander.",
+              "side": "foe",
+              "face": "face017"
+            },
+            {
+              "speaker": "Herald",
+              "text": "We have conquered the Barony of Valeuve! By the grace of the Emperor and for the glory of Carrone!",
+              "side": "you",
+              "face": "face009"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        }
+      ],
+      "unlockAfter": [
+        "Carrone"
+      ]
+    },
+    {
+      "id": "marsur",
+      "name": "Kingdom of Marsur",
+      "order": 2,
+      "emperorBrief": [
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "Within the Kingdom of Marsur lies the bounty of the Empire's farmland. As such, it also hosts numerous peasant levies to be called into service upon their lord's command. The Empire requires the healthy harvest Marsur can provide, as well as its people for our militia.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "Seek out one of Marsur's castles near the northern border to claim as our foothold into the kingdom. Should any lord refuse to submit to imperial rule, you have my authority to seize their castle and its peasantry for your own use.",
+          "side": "you",
+          "face": "face005"
+        }
+      ],
+      "missions": [
+        {
+          "mapId": 5406,
+          "title": "The Peasant Levy",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Field Officer",
+              "text": "Numerous though they were, they could not hope to stop us.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5407,
+          "title": "The Picket Line",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Herald",
+              "text": "We've broken through their line and captured their cannon!",
+              "side": "you",
+              "face": "face009"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5408,
+          "title": "Siege of Corbeau",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Lord of Corbeau",
+              "text": "Yield! I yield! Grant me safe passage from Corbeau and the castle is yours!",
+              "side": "foe",
+              "face": "face023"
+            },
+            {
+              "speaker": "Herald",
+              "text": "The siege is over! They surrender!",
+              "side": "you",
+              "face": "face009"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        }
+      ],
+      "unlockAfter": [
+        "Merovin"
+      ]
+    },
+    {
+      "id": "sangsoleil",
+      "name": "Kingdom of Sangsoleil",
+      "order": 4,
+      "emperorBrief": [
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "The island Kingdom of Sangsoleil had seen war long before it was made a part of the Empire. Raiders from the Hunewold long harassed Sangsoleil's shores with their longboats, then invaded in force and all but conquered the island. When our own ships landed, we found Sangsoleil divided into several regions ruled by warring tribes from both lands.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "We tasked our Merovin nobles to construct castles along the shore to gain a foothold, and once established, the rest of the island fell to our rule quickly. Over time our interest and trade with Sangsoleil diminished to the point where the land has once again become a collection of warring peoples.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "There are nobles loyal to the Empire upon Sangsoleil still, and we would ask that you land your men and assist them in returning the island to imperial rule.",
+          "side": "you",
+          "face": "face005"
+        }
+      ],
+      "missions": [
+        {
+          "mapId": 5412,
+          "title": "The Ambush",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Field Officer",
+              "text": "We've escaped their trap, but the enemy gathers for pursuit.",
+              "side": "you",
+              "face": "face008"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "There is a ridge line ahead that should provide us with a better position to make a stand.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Herald",
+              "text": "We've lost too many men to have hope of reaching Stokeshire. We must turn back.",
+              "side": "you",
+              "face": "face012"
+            }
+          ]
+        },
+        {
+          "mapId": 5413,
+          "title": "The High Ground",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Field Officer",
+              "text": "I hope that we have not been delayed too long to aid Castle Stokeshire.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Herald",
+              "text": "The men are exhausted. We have no chance of reaching the castle.",
+              "side": "you",
+              "face": "face012"
+            }
+          ]
+        },
+        {
+          "mapId": 5414,
+          "title": "Defense of Stokeshire",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Enemy Lord",
+              "text": "RETREAT! Through the hunting gate and into the wood! Stokeshire must wait for now.",
+              "side": "foe",
+              "face": "face027"
+            },
+            {
+              "speaker": "Herald",
+              "text": "The attackers flee the castle! You have routed them, Commander!",
+              "side": "you",
+              "face": "face009"
+            },
+            {
+              "speaker": "Ally Lord",
+              "text": "Indeed. The situation was dire until your timely arrival. My thanks to you, Sir Varius.",
+              "side": "you",
+              "face": "face029"
+            },
+            {
+              "speaker": "Imperial Lord",
+              "text": "It did not sit well with my brother Martin when our father's lands passed to me, nor my continued support of the Empire.",
+              "side": "you",
+              "face": "face028"
+            },
+            {
+              "speaker": "Imperial Lord",
+              "text": "His army is broken, but his will is not. Martin will continue to rally support for the rebellion and strike where he is able.",
+              "side": "you",
+              "face": "face028"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Loyal Lord",
+              "text": "I yield. Spare my men and the castle is yours, Martin.",
+              "side": "you",
+              "face": "face031"
+            },
+            {
+              "speaker": "Rebel Captain",
+              "text": "Very good, brother. Now order your men to lay down their arms and surrender.",
+              "side": "foe",
+              "face": "face025"
+            },
+            {
+              "speaker": "Loyal Lord",
+              "text": "Men of Stokeshire! I have yielded the castle. Surrender and you will be spared.",
+              "side": "you",
+              "face": "face030"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "The Duke's men have surrendered. Your army is lost.",
+              "side": "you",
+              "face": "face011"
+            }
+          ]
+        }
+      ],
+      "unlockAfter": [
+        "Merovin"
+      ]
+    },
+    {
+      "id": "aguilleon",
+      "name": "Kingdom of Aguilleon",
+      "order": 5,
+      "emperorBrief": [
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "The southern kingdom of Aguilleon was the first of those to declare independence from our Empire. Their king knows the high mountain pass into his lands is easily defended against our knights and foot soldiers, while his army employs their prized griffon riders for which the mountains give every advantage.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "It is these griffons that we must have if we are to win back the eastern shore across Mare Nostra. The aeries of the Aguilleon mountain range must be captured, and in doing so force the rest of the kingdom into submission.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "I have dispatched a Carrone legion to secure the foothills of southern Marsur and secure supply lines for the campaign. It would please us to have you lead the vanguard into the high pass and conquer El Acclazar, the legendary fortress aerie that is the key to unlocking Aguilleon.",
+          "side": "you",
+          "face": "face005"
+        }
+      ],
+      "missions": [
+        {
+          "mapId": 5415,
+          "title": "The Lower Gate",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "The Emperor",
+              "text": "Well done, Sir Varius. Lead the vanguard into the pass and the legion shall follow for the siege upon El Acclazar.",
+              "side": "you",
+              "face": "face005"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "War Advisor",
+              "text": "With the losses you have suffered, we must retreat and assemble a stronger force.",
+              "side": "you",
+              "face": "face004"
+            }
+          ]
+        },
+        {
+          "mapId": 5416,
+          "title": "The High Pass",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "War Advisor",
+              "text": "Legion advance!",
+              "side": "you",
+              "face": "face003"
+            },
+            {
+              "speaker": "Herald",
+              "text": "We have cleared the Aguilleon Pass!",
+              "side": "you",
+              "face": "face009"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Field Officer",
+              "text": "Too many war engines have been destroyed. We must retreat to the Third Legion's camp.",
+              "side": "you",
+              "face": "face011"
+            }
+          ]
+        },
+        {
+          "mapId": 5417,
+          "title": "Conquest of El Acclazar",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Herald",
+              "text": "El Acclazar has fallen! You have conquered where all others have failed! It is an honor to serve in your army, Commander.",
+              "side": "you",
+              "face": "face009"
+            },
+            {
+              "speaker": "The Emperor",
+              "text": "The Carrone Empire owes you a great debt, Sir Varius. I shall see to it personally that the Emperor knows of your courage and prowess this day.",
+              "side": "you",
+              "face": "face005"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "War Advisor",
+              "text": "Sir Varius, we must retreat. With our losses, we cannot hope to conquer the fortress, much less hold it against any counter attack. El Acclazar must wait for another day.",
+              "side": "you",
+              "face": "face004"
+            }
+          ]
+        }
+      ],
+      "unlockAfter": [
+        "Marsur"
+      ]
+    },
+    {
+      "id": "hunewold",
+      "name": "Kingdom of Hunewold",
+      "order": 6,
+      "emperorBrief": [
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "The Hunewold is an untamed land. Though our armies defeated those tribes that rose up against us during its conquest, the Hunewold people never submitted to our rule. They remained hidden in their forests of giant trees and paid homage only to their ancestors and shaman leaders. Few lords could be enticed to settle there, thus it was a kingdom of the empire in name only.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "With Sangsoleil once again under imperial control, our eyes look to the Hunewold for its wealth of rich timber. The imperial fleet has diminished under the command of my lineage. We would have it returned to its former place as the power of Mare Nostra.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "We ask you to lead your army into the Hunewold and construct a fortress able to protect our coastline shipyards from attack by its tribal people. You have our permission to clear and claim as much land as you are wont and able to rule.",
+          "side": "you",
+          "face": "face005"
+        }
+      ],
+      "missions": [
+        {
+          "mapId": 5418,
+          "title": "The Fortress Site",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Field Officer",
+              "text": "The men are disquieted by the forest, Sir Varius, but I shall oversee its clearing at once for the fortress timbers.",
+              "side": "you",
+              "face": "face008"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "By the Emperor's favor, we should have towers and ramparts raised before any reprisal can be mounted, if any is to come.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5419,
+          "title": "Three Tribes",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Herald",
+              "text": "The tribesmen host has broken and their survivors scatter into the wood to carry the tune of their defeat.",
+              "side": "you",
+              "face": "face009"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "Your fortress is strong, Commander. Within the week, when the moat is complete and inner ring of towers raised, this position of strength will safeguard our coastal settlements from any harm.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5420,
+          "title": "The Horde of Armagni",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Sergeant",
+              "text": "Victory! VICTORY! Hail Varius, blessed be his name!",
+              "side": "you",
+              "face": "face010"
+            },
+            {
+              "speaker": "Herald",
+              "text": "Sir Varius will be recorded in imperial history as the general that stood against the combined might of the Hunewold and tore it asunder.",
+              "side": "you",
+              "face": "face009"
+            },
+            {
+              "speaker": "Herald",
+              "text": "This is a shining day for you and the Empire.",
+              "side": "you",
+              "face": "face009"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        }
+      ],
+      "unlockAfter": [
+        "Sangsoleil"
+      ]
+    },
+    {
+      "id": "rukiev",
+      "name": "Kingdom of Rukiev",
+      "order": 7,
+      "emperorBrief": [
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "A cold and harsh plains land, the first conquest into the Rukiev began with the founding of a settlement along the northern shore of the Mirror Sea. Plentiful fishing and hunting with no apparent resistance from any of its peoples encouraged further expansion, but that error would be paid at a high cost.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "When the Horselords arrived, there was little warning. They descended from the steppe and swept over the land in but a single month, destroying all imperial encampments and enslaving its citizens for their chattel. Those few that escaped abandoned the Mirror Sea settlement by ship and never returned.",
+          "side": "you",
+          "face": "face005"
+        },
+        {
+          "speaker": "Emperor Sebatini",
+          "text": "We do not intend on attempting the previous folly of trying to settle the region, for it is worth little to us and impossible to hold. However, with Hunewold in our possession and the eastern conquest soon to begin, we cannot afford a known threat to our border left unchecked. The Horselords must be dealt a severe blow, warning them that to war with Carrone is to embrace their own destruction.",
+          "side": "you",
+          "face": "face005"
+        }
+      ],
+      "missions": [
+        {
+          "mapId": 5421,
+          "title": "The Spark",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Field Officer",
+              "text": "Word will spread among their tribes that Carrone has returned to the Rukiev. We should expect the Horselords' reprisal to be swift and fierce.",
+              "side": "you",
+              "face": "face008"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5422,
+          "title": "Reprisal",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Field Officer",
+              "text": "The size of their force was smaller than expected. This could not have been their full strength.",
+              "side": "you",
+              "face": "face008"
+            },
+            {
+              "speaker": "Field Officer",
+              "text": "Let us hope this was only a feint to test us. If their main host is not upon the plain when our fleet lands, our allies will be lost.",
+              "side": "you",
+              "face": "face011"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        },
+        {
+          "mapId": 5423,
+          "title": "For the Glory of Carrone",
+          "intro": [],
+          "victory": [
+            {
+              "speaker": "Herald",
+              "text": "My Lord, your Grace, when no word arrived of your landing we feared the worst.",
+              "side": "you",
+              "face": "face009"
+            },
+            {
+              "speaker": "Sir Anston",
+              "text": "Our apologies to you, Sir Varius. Your attacks were successful in luring the Horselord host away from the Mirror Sea, but we were delayed in crossing Mare Nostra.",
+              "side": "you",
+              "face": "face001"
+            },
+            {
+              "speaker": "Imperial Lord",
+              "text": "Aye, strange storm winds from the east nearly closed the narrows to us. Only a third of the fleet actually made the landing, we do not yet know the full extent of our losses.",
+              "side": "you",
+              "face": "face028"
+            },
+            {
+              "speaker": "Sir Anston",
+              "text": "There will be a time to mourn the dead. For now, let us celebrate the living.",
+              "side": "you",
+              "face": "face001"
+            },
+            {
+              "speaker": "The Emperor",
+              "text": "Come, friends. Let us find a skin of wine to share while Sir Varius tells us of his campaign across the Rukiev!",
+              "side": "you",
+              "face": "face005"
+            }
+          ],
+          "defeat": [
+            {
+              "speaker": "Narrator",
+              "text": "Defeat. All is lost...",
+              "side": "you",
+              "face": ""
+            }
+          ]
+        }
+      ],
+      "unlockAfter": [
+        "Hunewold"
+      ]
+    }
+  ],
+  "help": {
+    "online": "Online Battles are fought against other players on the game server."
+  }
+}

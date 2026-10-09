@@ -1,0 +1,661 @@
+/* ---- Story & Assets (codex) — collapsible panel atop the page ---- */
+.ros-codex-panel {
+  border: 2px solid var(--wood);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  background: linear-gradient(180deg, #f6e8c6, #eeddb4);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.ros-codex-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  border: none;
+  background: none;
+  padding: 10px 14px;
+  color: var(--ink);
+  font-family: var(--ros-body);
+}
+.ros-codex-bar:hover {
+  filter: brightness(1.03);
+}
+.ros-codex-ic {
+  font-size: 1.15rem;
+}
+.ros-codex-bar b {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  font-size: 1.05rem;
+}
+.ros-codex-teaser {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+}
+.ros-codex-caret {
+  margin-left: auto;
+  color: #6b3f12;
+  font-size: 0.9rem;
+}
+.ros-codex-inner {
+  padding: 6px 14px 16px;
+  border-top: 1px dashed rgba(107, 74, 22, 0.4);
+}
+.ros-up-chapter {
+  color: #8a5a1a !important;
+  font-family: var(--mono) !important;
+  font-size: 0.72rem !important;
+  opacity: 1 !important;
+  line-height: 1.2;
+}
+@media (max-width: 620px) {
+  .ros-codex-teaser {
+    display: none;
+  }
+}
+.ros-dl-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 18px;
+}
+.ros-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--ros-body);
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: var(--ink);
+  background: linear-gradient(180deg, #f3e2ba, #e2caa0);
+  border: 2px solid var(--wood);
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: filter 0.12s;
+}
+.ros-dl-btn:hover:not(:disabled) {
+  filter: brightness(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.ros-dl-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.ros-dl-zip {
+  background: linear-gradient(180deg, #e7c98a, #cfa557);
+}
+.ros-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Mechanics & decompilation reference (MECHANICS.md rendered inline in Story & Assets) */
+.ros-mt {
+  padding: 0 12px 14px;
+  display: grid;
+  gap: 14px;
+}
+.ros-mt-load {
+  padding: 8px 14px;
+}
+.ros-mt-kd h4 {
+  margin: 6px 0 6px;
+  font-family: var(--ros-title, serif);
+  font-size: 1rem;
+  color: #4a2f10;
+  border-bottom: 1px solid rgba(107, 74, 22, 0.35);
+  padding-bottom: 3px;
+}
+.ros-mt-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1.1fr) 1.4fr 1.2fr 1.1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255, 250, 236, 0.7);
+  border: 1px solid rgba(107, 74, 22, 0.18);
+  margin-bottom: 6px;
+}
+.ros-mt-row.raid {
+  background: rgba(236, 214, 170, 0.55);
+}
+.ros-mt-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #3b2710;
+}
+.ros-mt-name b {
+  font-size: 0.92rem;
+}
+.ros-mt-name small {
+  color: var(--ink-soft, #6b5a3e);
+  font-size: 0.72rem;
+}
+.ros-mt-tag {
+  align-self: flex-start;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: #e9d6a8;
+  color: #5a3b12;
+}
+.ros-mt-tag.raid {
+  background: #c98f45;
+  color: #fff8e8;
+}
+.ros-mt-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.ros-mt-cell > i {
+  font-style: normal;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft, #6b5a3e);
+}
+.ros-mt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.ros-mt-chips .ros-mt-chips {
+  display: contents;
+} /* reward: unit chips and spoil chips flow in one row */
+.ros-mt-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  background: rgba(107, 74, 22, 0.1);
+  border: 1px solid rgba(107, 74, 22, 0.22);
+  overflow: hidden;
+}
+.ros-mt-chip.spoil {
+  align-items: center;
+}
+.ros-mt-chip b {
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: #fff;
+  text-shadow:
+    0 0 2px #000,
+    0 0 2px #000;
+  font-variant-numeric: tabular-nums;
+}
+.ros-mt-none {
+  color: var(--ink-soft, #6b5a3e);
+}
+@media (max-width: 720px) {
+  .ros-mt-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ros-mt-name {
+    grid-column: 1 / -1;
+  }
+}
+.ros-mech-wrap {
+  margin: 4px 0 16px;
+  border: 1px solid rgba(107, 74, 22, 0.35);
+  border-radius: 8px;
+  background: rgba(255, 248, 230, 0.55);
+}
+.ros-mech-sum {
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  color: #4a2f10;
+}
+.ros-mech-sum span {
+  font-size: 0.86rem;
+  color: var(--ink-soft, #6b5a3e);
+}
+.ros-mech {
+  padding: 0 12px 12px;
+}
+.ros-mech-body h4 {
+  margin: 10px 0 4px;
+  color: #6b3f12;
+  font-size: 0.95rem;
+}
+.ros-mech-body ul,
+.ros-mech-body ol {
+  margin: 4px 0 8px;
+  padding-left: 20px;
+}
+.ros-mech-body li {
+  margin: 0 0 7px;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  color: #3a2a12;
+}
+.ros-mech-body p {
+  margin: 4px 0 8px;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  color: #3a2a12;
+}
+.ros-mech-body code {
+  font-size: 0.82em;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0 4px;
+  border-radius: 4px;
+}
+.ros-mech-flowtitle {
+  margin: 6px 0 8px;
+  color: #4a2f10;
+}
+.ros-flow-kingdom {
+  border: 2px solid var(--wood);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 246, 214, 0.4);
+}
+.ros-flow-khead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  padding: 11px 14px;
+  border: none;
+  background: linear-gradient(180deg, #f3e2ba, #e6cfa4);
+  color: var(--ink);
+  font-family: var(--ros-body);
+}
+.ros-flow-khead:hover {
+  filter: brightness(1.03);
+}
+.ros-flow-knum {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--wood);
+  color: var(--gold-lt);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-family: var(--mono);
+}
+.ros-flow-khead b {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  font-size: 1.1rem;
+}
+.ros-flow-khead i {
+  color: var(--ink-soft);
+  font-style: normal;
+  font-size: 0.76rem;
+  font-family: var(--mono);
+}
+.ros-flow-caret {
+  margin-left: auto;
+  color: #6b3f12;
+  font-size: 0.9rem;
+}
+.ros-flow-body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px dashed rgba(107, 74, 22, 0.4);
+}
+.ros-flow-mission {
+  border-left: 3px solid rgba(107, 74, 22, 0.4);
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+/* raids: an optional side-battle, marked apart from the story missions (dashed rule, dark-red tag) */
+.ros-flow-raid {
+  border-left-style: dashed;
+  border-left-color: rgba(122, 32, 24, 0.45);
+}
+.ros-flow-raid .ros-flow-mnum {
+  background: #7a2018;
+}
+.ros-flow-nolines {
+  margin: 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.ros-flow-mh {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.ros-flow-mnum {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--gold-lt);
+  background: var(--wood);
+  border-radius: 10px;
+  padding: 1px 8px;
+  font-size: 0.72rem;
+}
+.ros-flow-mh b {
+  color: #6b3f12;
+  font-size: 0.98rem;
+}
+.ros-flow-mh code {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+}
+.ros-flow-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ros-flow-th {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ros-flow-th i {
+  font-style: normal;
+  background: rgba(107, 74, 22, 0.16);
+  border-radius: 8px;
+  padding: 0 6px;
+}
+.ros-flow-line {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+}
+.ros-flow-face {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 6px;
+  border: 1px solid var(--wood);
+  object-fit: cover;
+  object-position: top;
+  image-rendering: pixelated;
+  background: rgba(107, 74, 22, 0.12);
+}
+.ros-flow-say {
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+.ros-flow-say b {
+  color: #6b3f12;
+  margin-right: 7px;
+}
+.ros-flow-say span {
+  color: var(--ink);
+}
+/* In-battle dialogue thread: a faint war-room tint + a turn tag; enemy barks lean crimson */
+.ros-flow-thread.battle {
+  border-left: 2px solid rgba(107, 74, 22, 0.28);
+  padding-left: 8px;
+}
+.ros-flow-line.foe .ros-flow-say b {
+  color: #9a2f2a;
+}
+.ros-flow-line.foe .ros-flow-face {
+  border-color: #9a2f2a;
+}
+.ros-flow-rnd {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: rgba(107, 74, 22, 0.12);
+  border-radius: 7px;
+  padding: 0 6px;
+  margin-left: 2px;
+  vertical-align: middle;
+}
+.ros-flow-narr {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--ink-soft);
+}
+
+/* 🧪 Battle Lab (Story & Assets) — ui/shell/BattleLab.jsx */
+.ros-lab {
+  display: grid;
+  gap: 12px;
+  padding: 4px 12px 14px;
+  color: #3b2710;
+}
+.ros-lab-intro,
+.ros-lab-obj,
+.ros-lab-note {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+.ros-lab-note.over,
+.ros-lab-armyhead .over {
+  color: #a3341c;
+}
+.ros-lab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: end;
+}
+.ros-lab-row label {
+  display: grid;
+  gap: 3px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b5a3e;
+}
+.ros-lab-row select,
+.ros-lab-row input {
+  font: inherit;
+  font-size: 0.88rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #2a1a08;
+  background: #fffaf0;
+  border: 1px solid rgba(107, 74, 22, 0.4);
+  border-radius: 6px;
+  padding: 5px 7px;
+  max-width: 100%;
+}
+.ros-lab-row label:first-child {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.ros-lab-row input {
+  width: 6em;
+}
+.ros-lab-armyhead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+}
+.ros-lab-units {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+.ros-lab-unit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 7px;
+  background: rgba(255, 250, 236, 0.6);
+  border: 1px solid rgba(107, 74, 22, 0.15);
+}
+.ros-lab-unit.has {
+  background: rgba(236, 214, 170, 0.75);
+  border-color: rgba(107, 74, 22, 0.4);
+}
+.ros-lab-uname {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+}
+.ros-lab-uname small {
+  color: #6b5a3e;
+  font-size: 0.68rem;
+}
+.ros-lab-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.ros-lab-count b {
+  min-width: 1.4em;
+  text-align: center;
+}
+.ros-lab-count button {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(107, 74, 22, 0.45);
+  background: #f1e2c0;
+  color: #3b2710;
+  cursor: pointer;
+  line-height: 1;
+}
+.ros-lab-count button:focus-visible,
+.ros-lab-res:focus-visible {
+  outline: 2px solid #c99a3a;
+  outline-offset: 1px;
+}
+.ros-lab-strats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 6px 12px;
+}
+.ros-lab-strats label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 6px;
+  align-items: baseline;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.ros-lab-strats small {
+  grid-column: 2;
+  color: #6b5a3e;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+.ros-lab-run {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+}
+.ros-lab-results {
+  display: grid;
+  gap: 4px;
+  overflow-x: auto;
+}
+.ros-lab-res {
+  display: grid;
+  grid-template-columns: minmax(170px, 1.6fr) 1.2fr 0.7fr 0.7fr 0.7fr;
+  gap: 8px;
+  align-items: center;
+  min-width: 560px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  color: #3b2710;
+  background: rgba(255, 250, 236, 0.7);
+  border: 1px solid rgba(107, 74, 22, 0.18);
+  border-radius: 8px;
+  font-variant-numeric: tabular-nums;
+}
+button.ros-lab-res {
+  cursor: pointer;
+  width: 100%;
+}
+.ros-lab-reshead {
+  background: none;
+  border-color: transparent;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b5a3e;
+}
+.ros-lab-group {
+  display: grid;
+  gap: 3px;
+}
+.ros-lab-runrow {
+  display: grid;
+  grid-template-columns: 5em 11em 1fr auto;
+  gap: 2px 10px;
+  align-items: center;
+  min-width: 560px;
+  margin-left: 18px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border-left: 2px solid rgba(107, 74, 22, 0.3);
+  font-variant-numeric: tabular-nums;
+}
+.ros-lab-runrow .btn-run {
+  grid-row: 1 / span 2;
+  grid-column: 4;
+}
+.ros-lab-dmg,
+.ros-lab-timeline {
+  grid-column: 1 / span 3;
+  color: #6b5a3e;
+  font-size: 0.74rem;
+}
+.ros-lab-timeline {
+  font-family: var(--mono, monospace);
+  overflow-wrap: anywhere;
+}
+.ros-lab .win {
+  color: #2f6b1f;
+  font-weight: 600;
+}
+.ros-lab .loss {
+  color: #a3341c;
+}

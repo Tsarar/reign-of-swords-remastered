@@ -1,0 +1,237 @@
+/* ===== Deployment tray ===== */
+.ros-deploy {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 2px solid var(--wood);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 154, 58, 0.55),
+    inset 0 2px 3px rgba(255, 246, 214, 0.6),
+    0 3px 8px rgba(0, 0, 0, 0.4);
+}
+.ros-deploy-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.ros-deploy-title {
+  font-family: var(--ros-title);
+  font-size: 1.15rem;
+  color: #6b3f12;
+  text-shadow: 0 1px 0 var(--gold-lt);
+}
+.ros-deploy-points {
+  font-family: var(--ros-body);
+  font-weight: 700;
+  color: var(--ink);
+}
+.ros-deploy-points b {
+  color: #235c2a;
+  font-size: 1.1rem;
+}
+.ros-deploy-points i {
+  color: var(--ink-soft);
+  font-style: normal;
+}
+.ros-deploy-medals {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--ros-body);
+  font-weight: 700;
+  color: var(--ink);
+}
+.ros-deploy-medals .ros-deploy-medal-ico {
+  width: 19px;
+  height: 19px;
+  image-rendering: pixelated;
+}
+.ros-deploy-medals b {
+  color: #7a4a12;
+  font-size: 1.1rem;
+}
+.ros-deploy-medals i {
+  color: var(--ink-soft);
+  font-style: normal;
+}
+.ros-deploy-btns {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+.ros-roster {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ros-rost-group {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.ros-rost-cat {
+  flex: 0 0 58px;
+  text-align: right;
+  font-family: var(--ros-head, var(--ros-body));
+  font-size: 0.66rem; /* ≥10.5px — the smallest a phone reads comfortably */
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7a4a12;
+  opacity: 0.7;
+  padding-top: 5px;
+}
+.ros-rost-cards {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.ros-rost {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-family: var(--ros-body);
+  color: var(--ink);
+  font-weight: 700;
+  background: none;
+  border: 6px solid transparent;
+  border-image: url("/games/reign-of-swords/ui/button0.png") 10 fill / 6px 8px / 0 stretch;
+  padding: 0 6px;
+  text-shadow: 0 1px 0 rgba(255, 244, 214, 0.6);
+}
+.ros-rost:hover {
+  filter: brightness(1.05);
+}
+.ros-rost.sel {
+  border-image-source: url("/games/reign-of-swords/ui/button1.png");
+  box-shadow: 0 0 0 2px #c99a3a;
+}
+.ros-rost.off {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ros-rost-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex: 0 0 auto;
+} /* the unit's own standing art, not an emoji */
+.ros-rost-name {
+  font-size: 0.76rem;
+}
+.ros-rost-elite {
+  width: 15px;
+  height: 15px;
+  vertical-align: -3px;
+  margin: 0 1px 0 5px;
+} /* Medal spoils-of-war icon = an elite/limited unit (replaces the ✦ star); nudged right of the name */
+.ros-rost-cost {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #6b3f0c;
+  background: rgba(122, 74, 18, 0.16);
+  border-radius: 9px;
+  padding: 0 7px;
+}
+
+/* ===== Mission dropdown (top bar) ===== */
+.ros-mission-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+.ros-ms-caret {
+  color: #6b3f12;
+  font-size: 0.9rem;
+}
+.ros-mission-select select {
+  font-family: var(--ros-body); /* plain text: the decorative title face garbles "For the Glory of Carrone · 23×23" */
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #6b3f12;
+  line-height: 1.1;
+  background: none;
+  border: 8px solid transparent;
+  border-image: url("/games/reign-of-swords/ui/button0.png") 10 fill / 8px 12px / 0 stretch;
+  padding: 3px 28px 3px 12px;
+  cursor: pointer;
+  max-width: 340px;
+  -webkit-appearance: none;
+  appearance: none;
+  text-shadow: 0 1px 0 var(--gold-lt);
+}
+.ros-mission-select select:hover {
+  border-image-source: url("/games/reign-of-swords/ui/button1.png");
+}
+.ros-mission-select select:focus {
+  outline: none;
+}
+.ros-mission-select::after {
+  content: "▾";
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #6b3f12;
+  font-size: 0.8rem;
+}
+.ros-mission-select select option {
+  font-family: var(--font);
+  color: #2a2013;
+  background: #e7d3a6;
+}
+.ros-over-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ros-unitinfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-left: auto;
+}
+.ros-unitinfo.dim {
+  color: var(--text-mute);
+  font-family: var(--mono);
+}
+.ros-unitinfo b {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+.ros-unitinfo span {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--text-mute);
+}
+.ros-unitinfo i {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 700;
+  margin-left: 3px;
+}
+@media (max-width: 640px) {
+  .ros-unitinfo {
+    width: 100%;
+    margin-left: 0;
+  }
+}

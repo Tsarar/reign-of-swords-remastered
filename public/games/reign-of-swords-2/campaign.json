@@ -1,0 +1,1135 @@
+{
+ "title": "Reign of Swords",
+ "subtitle": "Episode II",
+ "prologue": [
+  {
+   "speaker": "Emperor Sebatini",
+   "text": "Much of the known world was once under the rule of the Carrone Empire, the land divided into twelve kingdoms that all paid fealty to the Emperor.",
+   "side": "you",
+   "face": "face056"
+  },
+  {
+   "speaker": "Emperor Sebatini",
+   "text": "In time these kingdoms grew powerful in their own right while the bloodline of the first Emperor thinned. The imperial rule has weakened to the point of open rebellion.",
+   "side": "you",
+   "face": "face056"
+  },
+  {
+   "speaker": "Emperor Sebatini",
+   "text": "Now, with the death of the current Emperor and the crowning of his distant nephew, the Carrone Empire lies on the edge of collapse. The twelve kings refute his claim, while the young Emperor promises to reward any who would conquer these lost kingdoms with lands and noble titles.",
+   "side": "you",
+   "face": "face056"
+  }
+ ],
+ "episodePrologue": [
+  {
+   "speaker": "Emperor Sebatini",
+   "text": "The power and grandeur of the once mighty Carrone Empire is slowly returning. The young Emperor Julien Sebatini has succeeded in routing those that would openly challenge his rule from the kingdoms near the capital.",
+   "side": "you",
+   "face": "face056"
+  },
+  {
+   "speaker": "Emperor Sebatini",
+   "text": "However, pockets of rebellion still exist - kingdoms on the outskirts of the Empire are still troubled by violence and unrest.",
+   "side": "you",
+   "face": "face056"
+  },
+  {
+   "speaker": "Emperor Sebatini",
+   "text": "Your loyalty and honor are without question Varius. Continue your service to the Empire by leading your army into the Eastern Kingdoms, seeking out new allies, and restoring order and peace. For the glory of Carrone!",
+   "side": "you",
+   "face": "face056"
+  }
+ ],
+ "kingdoms": [
+  {
+   "id": "carrone",
+   "name": "Kingdom of Carrone",
+   "order": 0,
+   "emperorBrief": [],
+   "legacy": true,
+   "missions": [
+    {
+     "mapId": 5803,
+     "title": "Brigands in the Vale",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Your valor today does you credit Varius, as does the years of your service to my family."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face053",
+       "text": "Kneel, and accept the honor and duty of knighthood."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face053",
+       "text": "I free you from my service and charge you to defend the Empire against all who oppose it. Arise, Sir Varius."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "My orders are to guard this vale, but I believe the worst has passed."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Take what men you can gather and go to support our main force, by the grace of the Emperor."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5401,
+     "title": "The March West",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "The western front is secure, but the enemy has struck with their reserves at the heart of our battle line. The Emperor is in danger!"
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5402,
+     "title": "Defense of the Emperor",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "The enemy is broken! We've won!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face056",
+       "text": "But not without cost. Who is your battle leader, soldier?"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face062",
+       "text": "Your Imperial Majesty, that honor is held by Sir Varius."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face056",
+       "text": "Sir Varius. Carrone has lost much today, half of its army and much of its knighthood."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face057",
+       "text": "We would have you accept the title of Knight Banneret, bear your own sigil, and lead your own men to conquer the rebellion within our empire."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face057",
+       "text": "Succeed in this, and it will be our pleasure to reward you with land and title that befits your service to our cause."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face062",
+       "text": "The Emperor has fallen. All hope for the Empire is lost."
+      }
+     ]
+    }
+   ],
+   "unlockAfter": []
+  },
+  {
+   "id": "merovin",
+   "name": "Kingdom of Merovin",
+   "order": 1,
+   "emperorBrief": [],
+   "legacy": true,
+   "missions": [
+    {
+     "mapId": 5403,
+     "title": "River Valley",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "The Baron's men are defeated and our scouts report the valley clear to the bridge keep ahead."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "By your leave, I will send word to advance the army."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5404,
+     "title": "The Bridge Keep",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "We have secured the bridge crossing!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Our rear guard has advanced and crosses even now to join the rest of your host."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5405,
+     "title": "Baron Valeuve",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Enemy Commander",
+       "side": "foe",
+       "face": "face068",
+       "text": "I am forced to deliver my surrender. Valeuve is yours, Commander."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "We have conquered the Barony of Valeuve! By the grace of the Emperor and for the glory of Carrone!"
+      }
+     ],
+     "defeat": []
+    }
+   ],
+   "unlockAfter": [
+    "Carrone"
+   ]
+  },
+  {
+   "id": "marsur",
+   "name": "Kingdom of Marsur",
+   "order": 2,
+   "emperorBrief": [],
+   "legacy": true,
+   "missions": [
+    {
+     "mapId": 5406,
+     "title": "The Peasant Levy",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Numerous though they were, they could not hope to stop us."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "We'll collect provisions from the village while our infantry advances, Commander."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5407,
+     "title": "The Picket Line",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "We've broken through their line and captured their cannon!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "Castle Corbeau sits just up the road, Commander."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5408,
+     "title": "Siege of Corbeau",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Enemy Commander",
+       "side": "foe",
+       "face": "face074",
+       "text": "Yield! I yield! Grant me safe passage from Corbeau and the castle is yours!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "The siege is over! They surrender!"
+      }
+     ],
+     "defeat": []
+    }
+   ],
+   "unlockAfter": [
+    "Merovin"
+   ]
+  },
+  {
+   "id": "bordavia",
+   "name": "Kingdom of Bordavia",
+   "order": 3,
+   "emperorBrief": [],
+   "legacy": true,
+   "missions": [
+    {
+     "mapId": 5409,
+     "title": "Foothill Town",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "The town guard was expecting our arrival, Commander."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "It is more than likely that count Valamir knows of us by now as well."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5410,
+     "title": "The Vanguard",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Their vanguard has been shattered, but our scouts report the rest of Count Valamir's host waits for some reason."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "By your leave, I shall carry orders to fortify the town in preparation for their assault."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5411,
+     "title": "Valamir's Mercenaries",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Their assault has broken itself upon our defenses, Commander."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Count Valamir was not found among the wounded. It is not clear if he lives still or if his body was carried from the battlefield by the few that were able to retreat."
+      }
+     ],
+     "defeat": []
+    }
+   ],
+   "unlockAfter": [
+    "Carrone"
+   ]
+  },
+  {
+   "id": "sangsoleil",
+   "name": "Kingdom of Sangsoleil",
+   "order": 4,
+   "emperorBrief": [],
+   "legacy": true,
+   "missions": [
+    {
+     "mapId": 5412,
+     "title": "The Ambush",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "We've escaped their trap, but the enemy gathers for pursuit."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "There is a ridge line ahead that should provide us with a better position to make a stand."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "We've escaped their trap, but the enemy gathers for pursuit."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "There is a ridge line ahead that should provide us with a better position to make a stand."
+      }
+     ]
+    },
+    {
+     "mapId": 5413,
+     "title": "The High Ground",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "I hope that we have not been delayed too long to aid Castle Stokeshire."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face063",
+       "text": "The men are exhausted. We have no chance of reaching the castle."
+      }
+     ]
+    },
+    {
+     "mapId": 5414,
+     "title": "Defense of Stokeshire",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Enemy Commander",
+       "side": "foe",
+       "face": "face027",
+       "text": "RETREAT! Through the hunting gate and into the wood! Stokeshire must wait for now."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "The attackers flee the castle! You have routed them, Commander!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face080",
+       "text": "Indeed. The situation was dire until your timely arrival. My thanks to you, Sir Varius."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face079",
+       "text": "It did not sit well with my brother Martin when our father's lands passed to me, nor my continued support of the Empire."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face079",
+       "text": "His army is broken, but his will is not. Martin will continue to rally support for the rebellion and strike where he is able."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Enemy Commander",
+       "side": "foe",
+       "face": "face076",
+       "text": "Brother! I have captured your imperial envoy!"
+      },
+      {
+       "speaker": "Enemy Commander",
+       "side": "foe",
+       "face": "face076",
+       "text": "Open your gates and surrender, and I pledge both of you safe passage from Whitecliff to your beloved Empire."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face082",
+       "text": "Very well, Martin. Stay your blade and I shall open the gates to your men."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face063",
+       "text": "We have failed His Grace and the Emperor."
+      }
+     ]
+    }
+   ],
+   "unlockAfter": [
+    "Merovin"
+   ]
+  },
+  {
+   "id": "aguilleon",
+   "name": "Kingdom of Aguilleon",
+   "order": 5,
+   "emperorBrief": [],
+   "legacy": true,
+   "missions": [
+    {
+     "mapId": 5415,
+     "title": "The Lower Gate",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face053",
+       "text": "Well done, Sir Varius. Lead the vanguard into the pass and the legion shall follow for the siege upon El Acclazar."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face004",
+       "text": "With the losses you have suffered, we must retreat and assemble a stronger force."
+      }
+     ]
+    },
+    {
+     "mapId": 5416,
+     "title": "The High Pass",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face003",
+       "text": "Legion advance!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "We have cleared the Aguilleon Pass!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "What lies ahead will be your greatest challenge, Sir Varius. The conquest of El Acclazar."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5417,
+     "title": "Conquest of El Acclazar",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "El Acclazar has fallen! You have conquered where all others have failed! It is an honor to serve in your army, Commander."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face053",
+       "text": "The Carrone Empire owes you a great debt, Sir Varius. I shall see to it personally that the Emperor knows of your courage and prowess this day."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face004",
+       "text": "Sir Varius, we must retreat. With our losses, we cannot hope to conquer the fortress, much less hold it against any counter attack. El Acclazar must wait for another day."
+      }
+     ]
+    }
+   ],
+   "unlockAfter": [
+    "Marsur"
+   ]
+  },
+  {
+   "id": "hunewold",
+   "name": "Kingdom of Hunewold",
+   "order": 6,
+   "emperorBrief": [],
+   "legacy": true,
+   "missions": [
+    {
+     "mapId": 5418,
+     "title": "The Fortress Site",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "The men are disquieted by the forest, Sir Varius, but I shall oversee its clearing at once for the fortress timbers."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "By the Emperor's favor, we should have towers and ramparts raised before any reprisal can be mounted, if any is to come."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5419,
+     "title": "Three Tribes",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "The tribesmen host has broken and their survivors scatter into the wood to carry the tune of their defeat."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Your fortress is strong, Commander. Within the week, when the moat is complete and inner ring of towers raised, this position of strength will safeguard our coastal settlements from any harm."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5420,
+     "title": "The Horde of Armagni",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face061",
+       "text": "Victory! VICTORY! Hail Varius, blessed be his name!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "Sir Varius will be recorded in imperial history as the general that stood against the combined might of the Hunewold and tore it asunder."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "This is a shining day for you and the Empire."
+      }
+     ],
+     "defeat": []
+    }
+   ],
+   "unlockAfter": [
+    "Sangsoleil"
+   ]
+  },
+  {
+   "id": "rukiev",
+   "name": "Kingdom of Rukiev",
+   "order": 7,
+   "emperorBrief": [],
+   "legacy": true,
+   "missions": [
+    {
+     "mapId": 5421,
+     "title": "The Spark",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Setting fire to these huts will draw their scouts to investigate."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Word will spread among their tribes that Carrone has returned to the Rukiev. We should expect the Horselords' reprisal to be swift and fierce."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5422,
+     "title": "Reprisal",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "The size of their force was smaller than expected. This could not have been their full strength."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face062",
+       "text": "Let us hope this was only a feint to test us. If their main host is not upon the plain when our fleet lands, our allies will be lost."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5423,
+     "title": "For the Glory of Carrone",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face060",
+       "text": "My Lord, your Grace, when no word arrived of your landing we feared the worst."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Our apologies to you, Sir Varius. Your attacks were successful in luring the Horselord host away from the Mirror Sea, but we were delayed in crossing Mare Nostra."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face079",
+       "text": "Aye, strange storm winds from the east nearly closed the narrows to us. Only a third of the fleet actually made the landing, we do not yet know the full extent of our losses."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "There will be a time to mourn the dead. For now, let us celebrate the living."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face053",
+       "text": "Come, friends. Let us find a skin of wine to share while Sir Varius tells us of his campaign across the Rukiev!"
+      }
+     ],
+     "defeat": []
+    }
+   ],
+   "unlockAfter": [
+    "Hunewold"
+   ]
+  },
+  {
+   "id": "zayandi",
+   "name": "Kingdom of Zayandi",
+   "order": 8,
+   "emperorBrief": [],
+   "legacy": false,
+   "missions": [
+    {
+     "mapId": 5424,
+     "title": "Zayandi Shores",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Sir Varius, the road ahead is cleared."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face061",
+       "text": "We should make haste to the Wizard's Palace."
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5425,
+     "title": "Valley of the Mystics",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Excellent work Sir Varius, we've made it safely inside the Wizard's Palace!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Travelling by warp portal always leaves me with a queasy feeling. But it beats getting impaled!"
+      }
+     ],
+     "defeat": []
+    },
+    {
+     "mapId": 5426,
+     "title": "The Wizard's Palace",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Dark Sorcerer",
+       "side": "foe",
+       "face": "face083",
+       "text": "Varius, it has been an honor to witness your prowess as a battle commander."
+      },
+      {
+       "speaker": "Dark Sorcerer",
+       "side": "foe",
+       "face": "face083",
+       "text": "We are indebted to you and the Empire for your help this day!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "I don't understand it Commander, why would anyone be trying to attack the Wizard's Palace?"
+      },
+      {
+       "speaker": "Dark Sorcerer",
+       "side": "foe",
+       "face": "face083",
+       "text": "That's partially the reason you are here. Not only has the Wizard's Palace been coming under regular assaults as of late..."
+      },
+      {
+       "speaker": "Dark Sorcerer",
+       "side": "foe",
+       "face": "face083",
+       "text": "...we have received reports of violence and warfare from all corners of the eastern kingdoms."
+      },
+      {
+       "speaker": "Dark Sorcerer",
+       "side": "foe",
+       "face": "face083",
+       "text": "Varius, we need your aid in discovering who or what is behind this chaos."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face063",
+       "text": "The Wizard's Palace has been protected for hundreds of years. How could we have failed to defend it?"
+      }
+     ]
+    }
+   ],
+   "unlockAfter": []
+  },
+  {
+   "id": "sabbi-amar",
+   "name": "Kingdom of Sabbi Amar",
+   "order": 9,
+   "emperorBrief": [],
+   "legacy": false,
+   "missions": [
+    {
+     "mapId": 5427,
+     "title": "A Timely Rescue",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "The villagers are safe for now. Their Craftsmen shouldn't have trouble repairing the damage caused by the bandits."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Sir Anston, take a look at this! One of the bandits was carrying a message..."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "...it reads as a directive for these bandits to join an attack on some city known as Caladrin."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Hmm... Caladrin is a large city not far from here."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Sir Varius, there's no way for us to know how long ago this message was sent..."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "We must hurry north and warn the good people of Caladrin before it's too late!"
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face063",
+       "text": "We've failed to protect these poor Innocent Villagers."
+      }
+     ]
+    },
+    {
+     "mapId": 5428,
+     "title": "Warning Caladrin",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Sir Varius, the Craftsmen have made it safely inside the city walls."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face063",
+       "text": "Our escort has failed. The city of Caladrin will have to defend itself."
+      }
+     ]
+    },
+    {
+     "mapId": 5429,
+     "title": "Caladrin Defense",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "We must inform the Emperor and the Wizard's Palace that Martin Landower remains a threat!"
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "...I wonder what he hoped to gain by attacking this peaceful city?"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Commander, I have just learned from the city elders that Caladrin is the resting place of a secret treasure."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "It appears to be some type of ancient scroll. I wonder what it says."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Varius, I shall send a messenger to the Wizard's Palace at once. I'd bet my last gold piece they can decipher this scroll's meaning."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face063",
+       "text": "Caladrin has fallen... Landower has humiliated the Empire."
+      }
+     ]
+    }
+   ],
+   "unlockAfter": [
+    "Zayandi"
+   ]
+  },
+  {
+   "id": "abbisin",
+   "name": "Kingdom of Abbisin",
+   "order": 10,
+   "emperorBrief": [],
+   "legacy": false,
+   "missions": [
+    {
+     "mapId": 5430,
+     "title": "Dune with a View",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "...that was a bloody battle."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Those Blood Gorgers are nasty creatures. We should train some to fight on our side."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Sir Anston, do my eyes deceive me or is that a lake off in the distance there? Do you see it?"
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Ah yes, that must be the only water source for leagues in any direction."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "...at least we'll be able to refill our canteens. Let's head to that oasis men!"
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face063",
+       "text": "Having my blood drained by a giant leech is not what I had in mind when I woke up this morning."
+      }
+     ]
+    },
+    {
+     "mapId": 5431,
+     "title": "Secrets in the Sands",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Dark Sorcerer",
+       "side": "foe",
+       "face": "face084",
+       "text": "Please grant reprieve. Knowledge to distribute. Landower's stronghold proximate."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face061",
+       "text": "One of the Conjurers has surrendered!"
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Varius, the Conjurer has revealed the location of Landower's base of operations."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "He's at the oasis to the northeast. Be ready for war men!"
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face063",
+       "text": "Our lives have been... claimed by the desert."
+      }
+     ]
+    },
+    {
+     "mapId": 5432,
+     "title": "Oasis Standoff",
+     "intro": [],
+     "victory": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Commander, Martin Landower and his forces have been defeated."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "Hmm...I'm concerned about the meaning of Landower's dying words. It almost sounded as if he was part of some larger group."
+      },
+      {
+       "speaker": "War Advisor",
+       "side": "you",
+       "face": "face001",
+       "text": "We must send word to the Emperor right away!"
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "Varius, one of Landower's messengers was slain during the battle."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "He was found to be carrying some letters that indicate Landower was working with others in the Kingdoms of Tilicia and Isoluccia."
+      },
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face059",
+       "text": "There are references in these letters to the \"Battlemage\" phenomenon the Archwizard mentioned..."
+      }
+     ],
+     "defeat": [
+      {
+       "speaker": "Field Officer",
+       "side": "you",
+       "face": "face063",
+       "text": "Martin Landower has gotten the better of us."
+      }
+     ]
+    }
+   ],
+   "unlockAfter": [
+    "Sabbi Amar"
+   ]
+  }
+ ]
+}

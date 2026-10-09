@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reign of Swords map atlas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --bg:#14151a; --panel:#1d1f26; --line:#33363f; --fg:#e8e6e0; --dim:#9a9b9f; --acc:#e0b451;
+          --player:#2fbf6b; --ally:#3fa9f5; --enemy:#e5484d; --wave:#f0a030; --cond:#c86bfa; --side1:#888; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:13px/1.4 system-ui, sans-serif; display:grid;
+         grid-template-columns: 260px 1fr 380px; grid-template-rows: 44px 1fr; height:100vh; }
+  header { grid-column: 1 / -1; display:flex; align-items:center; gap:14px; padding:0 14px; border-bottom:1px solid var(--line); background:var(--panel); }
+  header b { color:var(--acc); }
+  header label { color:var(--dim); display:flex; gap:4px; align-items:center; }
+  nav { overflow:auto; border-right:1px solid var(--line); padding:8px; }
+  nav h4 { margin:10px 4px 4px; color:var(--acc); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+  nav .k { color:var(--dim); font-size:11px; margin:6px 4px 2px; }
+  nav a { display:block; padding:3px 6px; border-radius:4px; color:var(--fg); text-decoration:none; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  nav a:hover { background:#2a2d36; } nav a.sel { background:#3a3520; color:var(--acc); }
+  nav a small { color:var(--dim); }
+  main { overflow:auto; position:relative; padding:12px; }
+  canvas { image-rendering: pixelated; background:#000; display:block; }
+  #tip { position:fixed; pointer-events:none; background:#000c; border:1px solid var(--line); padding:4px 6px; border-radius:4px; font-size:12px; display:none; z-index:9; }
+  aside { overflow:auto; border-left:1px solid var(--line); padding:10px 12px; }
+  aside h3 { margin:6px 0 4px; font-size:14px; color:var(--acc); }
+  aside table { border-collapse:collapse; width:100%; font-size:12px; margin-bottom:8px; }
+  aside td, aside th { border-bottom:1px solid var(--line); padding:2px 4px; text-align:left; vertical-align:top; }
+  .sw { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:4px; vertical-align:-1px; }
+  .script div { padding:2px 0 2px 6px; border-left:2px solid var(--line); margin:1px 0; }
+  .script .init { border-color:var(--player); } .script .wave { border-color:var(--wave); } .script .cond { border-color:var(--cond); }
+  .script .idx { color:var(--dim); font-family:monospace; margin-right:6px; }
+  .line { color:#f3e7c3; margin-left:12px; } .line.foe { color:#f4a6a6; }
+  .muted { color:var(--dim); }
+  .legend span { margin-right:10px; white-space:nowrap; }
+  code { color:#c9d4ff; }
+  header { flex-wrap: wrap; row-gap: 2px; min-height: 44px; }
+  @media (max-width: 1100px) {
+    body { grid-template-columns: 1fr; grid-template-rows: auto minmax(90px, 18vh) 1fr minmax(120px, 34vh); height: 100vh; }
+    nav { border-right: 0; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 2px 8px; align-content: flex-start; }
+    nav h4, nav .k { width: 100%; margin: 4px 0 0; }
+    aside { border-left: 0; border-top: 1px solid var(--line); }
+  }
+</style>
+</head>
+<body>
+<header>
+  <b>Reign of Swords — map atlas</b>
+  <label>Episode <select id="ep"><option value="1">I (2008)</option><option value="2" selected>II Hexhammer (2009)</option></select></label>
+  <label><input type="checkbox" id="oDeploy" checked> deploy tiles</label>
+  <label><input type="checkbox" id="oAreas" checked> objective areas</label>
+  <label><input type="checkbox" id="oSpawn" checked> spawns</label>
+  <label><input type="checkbox" id="oWave" checked> waves</label>
+  <label><input type="checkbox" id="oCond" checked> conditional</label>
+  <label><input type="checkbox" id="oSide1"> side-1 (raid defence) spawns</label>
+  <label><input type="checkbox" id="oLabels"> unit labels</label>
+  <label>zoom <input type="range" id="zoom" min="0.5" max="2" step="0.25" value="1"></label>
+  <span class="legend muted"><span><i class="sw" style="background:var(--player)"></i>player</span><span><i class="sw" style="background:var(--ally)"></i>ally</span><span><i class="sw" style="background:var(--enemy)"></i>enemy</span><span><i class="sw" style="background:var(--wave)"></i>wave</span><span><i class="sw" style="background:var(--cond)"></i>conditional</span></span>
+</header>
+<nav id="nav"></nav>
+<main><canvas id="cv"></canvas><div id="tip"></div></main>
+<aside id="side"></aside>
+<script>
+const $ = (s) => document.querySelector(s);
+const state = { ep: 2, data: null, tiles: null, map: null };
+const SIDE_COLOR = { player: '#2fbf6b', ally: '#3fa9f5', enemy: '#e5484d' };
+const TEAM_TINT = ['#2fbf6b', '#e5484d', '#3fa9f5', '#f0a030', '#c86bfa', '#40d0d0', '#f5f560', '#ff80c0'];
+
+async function loadEpisode(ep) {
+  state.ep = ep;
+  state.data = await (await fetch(`./ep${ep}.json`)).json();
+  state.tiles = new Image();
+  state.tiles.src = `../games/${state.data.dir}/tileset.png`;
+  await new Promise((r) => { state.tiles.onload = r; state.tiles.onerror = r; });
+  buildNav();
+  const hash = location.hash.replace('#', '');
+  const first = state.data.maps.find((m) => String(m.mapId) === hash) || state.data.maps.find((m) => m.kind === 'story');
+  select(first.mapId);
+}
+
+function buildNav() {
+  const d = state.data, nav = $('#nav');
+  const byId = Object.fromEntries(d.maps.map((m) => [m.mapId, m]));
+  let h = '';
+  const link = (m) => m ? `<a data-id="${m.mapId}" title="${m.mapId}">${m.name} <small>${m.mapId} · ${m.W}×${m.H}</small></a>` : '';
+  for (const k of d.kingdoms) {
+    if (!k.built) continue;
+    h += `<h4>${k.name}${k.prereq != null ? ` <small class="muted">← ${d.kingdoms[k.prereq].name}</small>` : ''}</h4>`;
+    for (const [kind, label] of [['story', 'Story'], ['raids', 'Raids'], ['skirmish', 'Skirmish']]) {
+      const ms = k[kind].filter((x) => x.inDat);
+      if (!ms.length) continue;
+      h += `<div class="k">${label}</div>` + ms.map((x) => link(byId[x.mapId])).join('');
+    }
+  }
+  h += '<h4>Tutorials</h4>' + d.tutorials.map((t) => link(byId[t.mapId])).join('');
+  nav.innerHTML = h;
+  nav.querySelectorAll('a').forEach((a) => a.onclick = () => select(+a.dataset.id));
+}
+
+function select(mapId) {
+  state.map = state.data.maps.find((m) => m.mapId === mapId);
+  location.hash = mapId;
+  document.querySelectorAll('nav a').forEach((a) => a.classList.toggle('sel', +a.dataset.id === mapId));
+  draw(); sidebar();
+}
+
+function teamSide(m, t) { return (m.teams[t] || {}).side || 'enemy'; }
+
+function draw() {
+  const m = state.map, z = +$('#zoom').value, T = 40 * z, cv = $('#cv'), g = cv.getContext('2d');
+  cv.width = m.W * T; cv.height = m.H * T;
+  const cellH = state.data.cellH, img = state.tiles;
+  g.imageSmoothingEnabled = false;
+  for (let y = 0; y < m.H; y++) for (let x = 0; x < m.W; x++) {
+    const t = m.tiles[y * m.W + x];
+    if (img && img.width) g.drawImage(img, t * 40, 0, 40, cellH, x * T, y * T - (cellH - 40) * z, T, cellH * z);
+  }
+  if ($('#oDeploy').checked) for (const c of m.deploy) {
+    g.fillStyle = TEAM_TINT[c.team % TEAM_TINT.length] + '55'; g.fillRect(c.x * T, c.y * T, T, T);
+    g.strokeStyle = TEAM_TINT[c.team % TEAM_TINT.length]; g.lineWidth = 1; g.strokeRect(c.x * T + 1, c.y * T + 1, T - 2, T - 2);
+  }
+  if ($('#oAreas').checked) m.areas.forEach((ar, i) => {
+    g.fillStyle = 'rgba(224,180,81,.35)';
+    for (const [x, y] of ar.tiles) g.fillRect(x * T, y * T, T, T);
+    if (ar.tiles.length) { const [x, y] = ar.tiles[0]; g.fillStyle = '#e0b451'; g.font = `${10 * z}px monospace`; g.fillText(ar.points + 'pt', x * T + 2, y * T + 10 * z); }
+  });
+  for (const p of m.portals) {
+    const [sx, sy] = p.src, [dx, dy] = p.dst;
+    g.strokeStyle = '#c86bfa'; g.lineWidth = 2 * z; g.beginPath(); g.arc(sx * T + T / 2, sy * T + T / 2, T * .4, 0, 7); g.stroke();
+    g.beginPath(); g.moveTo(sx * T + T / 2, sy * T + T / 2); g.lineTo(dx * T + T / 2, dy * T + T / 2); g.setLineDash([4, 4]); g.stroke(); g.setLineDash([]);
+  }
+  if (m.escort) for (const mk of m.escort.markers) { g.strokeStyle = '#fff'; g.lineWidth = 2; g.strokeRect(mk.x * T + 4, mk.y * T + 4, T - 8, T - 8); }
+  const show = { initial: $('#oSpawn').checked, wave: $('#oWave').checked, cond: $('#oCond').checked, side1: $('#oSide1').checked };
+  for (const s of m.spawns) {
+    if (!show[s.cls]) continue;
+    const side = teamSide(m, s.team);
+    const col = s.cls === 'wave' ? '#f0a030' : s.cls === 'cond' ? '#c86bfa' : s.cls === 'side1' ? '#888' : SIDE_COLOR[side];
+    const cx = s.x * T + T / 2, cy = s.y * T + T / 2;
+    g.fillStyle = col; g.strokeStyle = SIDE_COLOR[side]; g.lineWidth = 2 * z;
+    g.beginPath();
+    if (s.type === 8) { g.moveTo(cx, cy - T * .38); g.lineTo(cx + T * .34, cy + T * .3); g.lineTo(cx - T * .34, cy + T * .3); g.closePath(); }
+    else g.arc(cx, cy, T * .3, 0, 7);
+    g.fill(); g.stroke();
+    if (s.cls === 'wave') { g.fillStyle = '#000'; g.font = `bold ${10 * z}px monospace`; g.fillText('r' + s.round, cx - 6 * z, cy + 4 * z); }
+    if ($('#oLabels').checked) { g.fillStyle = '#fff'; g.font = `${9 * z}px sans-serif`; g.fillText(s.unit.slice(0, 9), s.x * T + 1, y2(s.y, T) ); }
+  }
+  function y2(y, T) { return y * T + T - 2; }
+}
+
+function esc(s) { return String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])); }
+
+function sidebar() {
+  const m = state.map, d = state.data;
+  const kingdom = m.kingdom ? `${m.kingdom} · ` : '';
+  let h = `<h3>${esc(m.name)} <span class="muted">#${m.mapId}</span></h3><div class="muted">${kingdom}${m.kind} · ${m.W}×${m.H} · turn limit ${m.turnLimit}</div>`;
+  h += '<h3>Factions</h3><table><tr><th>#</th><th>name</th><th>gold</th><th>own team</th><th>objective</th></tr>';
+  m.factions.forEach((f, i) => { h += `<tr><td>${i}${i === 0 ? ' (you)' : ''}</td><td>${esc(f.name)}</td><td>${f.gold}</td><td>${f.team}</td><td>${esc(f.objective)}</td></tr>`; });
+  h += '</table><h3>Teams (turn order)</h3><table><tr><th>#</th><th>name</th><th>faction</th><th>side</th><th>heraldry</th><th>fixed</th><th>deploy</th></tr>';
+  m.teams.forEach((t, i) => {
+    const fixed = m.spawns.filter((s) => s.team === i && s.cls === 'initial').length, dep = m.deploy.filter((c) => c.team === i).length;
+    h += `<tr><td><i class="sw" style="background:${TEAM_TINT[i % 8]}"></i>${i}</td><td>${esc(t.name)}</td><td>${t.faction}</td><td style="color:${SIDE_COLOR[t.side]}">${t.side}</td><td><code>${t.heraldry.join(',')}</code></td><td>${fixed}</td><td>${dep}</td></tr>`;
+  });
+  h += '</table>';
+  const waves = {}; m.spawns.filter((s) => s.cls === 'wave').forEach((s) => { (waves[s.round] = waves[s.round] || []).push(s); });
+  if (Object.keys(waves).length) h += '<h3>Reinforcement waves</h3>' + Object.entries(waves).map(([r, u]) => `<div>round ${r}: ${u.length} units (${[...new Set(u.map((x) => m.teams[x.team].name))].join(', ')})</div>`).join('');
+  const cond = m.spawns.filter((s) => s.cls === 'cond').length;
+  if (cond) h += `<div style="color:var(--cond)">${cond} spawns are gated by tile / kill / counter triggers (see script)</div>`;
+  if (m.areas.length) h += '<h3>Objective areas</h3>' + m.areas.map((a) => `<div>${a.points} points · ${a.tiles.length} tiles</div>`).join('');
+  if (m.portals.length) h += '<h3>Portals</h3>' + m.portals.map((p) => `<div>(${p.src}) → (${p.dst}) flag ${p.flag} mask [${p.mask}]</div>`).join('');
+  if (m.escort) h += `<h3>Escort</h3><div>${m.escort.markers.length} markers, units ${m.escort.units.join(', ')}</div>`;
+  h += `<h3>Triggers (side 0)</h3>` + m.triggers[0].map((t) => `<div><code>${t.name}</code> ${t.args.join(', ')}</div>`).join('');
+  h += '<h3>Script (side 0)</h3><div class="script">' + m.actions[0].map((a, i) => actionHtml(m, a, i)).join('') + '</div>';
+  if (m.actions[1].length) h += `<details><summary class="muted">Script side 1 (${m.actions[1].length} actions, raid defence perspective)</summary><div class="script">${m.actions[1].map((a, i) => actionHtml(m, a, i)).join('')}</div></details>`;
+  h += `<details><summary class="muted">Header</summary><code>${esc(JSON.stringify(m.header))}</code></details>`;
+  $('#side').innerHTML = h;
+}
+
+function actionHtml(m, a, i) {
+  const sp = m.spawns.find((s) => s.side === 0 && s.idx === i);
+  const cls = sp ? (sp.cls === 'initial' ? 'init' : sp.cls) : '';
+  let body = `<b>${a.op}</b> `;
+  if (a.op === 'SPAWN') body += `${esc(a.unit)} <span class="muted">[${esc((m.teams[a.team] || {}).name || a.team)}]</span> at (${a.args[0]},${a.args[1]})${sp && sp.round != null ? ` <span style="color:var(--wave)">round ${sp.round}</span>` : ''}`;
+  else if (a.op === 'SCREEN') body += `#${a.args[0]}` + (a.lines.length ? a.lines.map((l) => `<div class="line ${l.side ? 'foe' : ''}">${l.side ? '⚔ ' : ''}<span class="muted">${l.spk}</span> ${esc(l.text)}</div>`).join('') : ' <span class="muted">(system screen)</span>');
+  else body += `${a.args.join(', ')}` + (a.unitTile ? ` <span class="muted">unit at (${a.unitTile})</span>` : '');
+  return `<div class="${cls}"><span class="idx">[${i}]</span>${body} <span class="muted">→ ${a.next}</span></div>`;
+}
+
+$('#cv').addEventListener('mousemove', (e) => {
+  const m = state.map; if (!m) return;
+  const z = +$('#zoom').value, T = 40 * z, r = e.target.getBoundingClientRect();
+  const x = Math.floor((e.clientX - r.left) / T), y = Math.floor((e.clientY - r.top) / T);
+  const here = m.spawns.filter((s) => s.x === x && s.y === y && (s.side === 0 || $('#oSide1').checked));
+  const dep = m.deploy.filter((c) => c.x === x && c.y === y);
+  const tip = $('#tip');
+  if (!here.length && !dep.length) { tip.style.display = 'none'; return; }
+  tip.style.display = 'block'; tip.style.left = e.clientX + 12 + 'px'; tip.style.top = e.clientY + 12 + 'px';
+  tip.innerHTML = `(${x},${y}) tile ${m.tiles[y * m.W + x]}` + here.map((s) => `<br>${esc(s.unit)} · ${esc(m.teams[s.team].name)} · ${s.cls}${s.round != null ? ' r' + s.round : ''}`).join('') +
+    dep.map((c) => `<br>deploy tile · team ${c.team} (${esc(m.teams[c.team] ? m.teams[c.team].name : '?')}) · formation ${c.form}`).join('');
+});
+document.querySelectorAll('header input').forEach((i) => i.addEventListener('input', draw));
+$('#ep').addEventListener('change', (e) => loadEpisode(+e.target.value));
+loadEpisode(+$('#ep').value);
+</script>
+</body>
+</html>

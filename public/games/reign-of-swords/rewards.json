@@ -1,0 +1,692 @@
+{
+ "5400": {
+  "units": {
+   "knights": 1,
+   "cavalry": 1,
+   "crossbowmen": 1,
+   "catapult": 1,
+   "pikemen": 2,
+   "footmen": 2
+  },
+  "spoils": {}
+ },
+ "5401": {
+  "units": {
+   "footmen": 2
+  },
+  "spoils": {
+   "Weapons": 2,
+   "Armor": 2
+  }
+ },
+ "5402": {
+  "units": {
+   "militiamen": 3,
+   "king": 1
+  },
+  "spoils": {}
+ },
+ "5403": {
+  "units": {},
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1
+  }
+ },
+ "5404": {
+  "units": {},
+  "spoils": {
+   "Beasts": 1,
+   "Lore": 1
+  }
+ },
+ "5405": {
+  "units": {
+   "militiamen": 2,
+   "footmen": 2
+  },
+  "spoils": {}
+ },
+ "5406": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {}
+ },
+ "5407": {
+  "units": {
+   "cannon": 2
+  },
+  "spoils": {}
+ },
+ "5408": {
+  "units": {
+   "musketeers": 2
+  },
+  "spoils": {
+   "Lore": 1
+  }
+ },
+ "5409": {
+  "units": {},
+  "spoils": {
+   "Weapons": 1,
+   "Lore": 1
+  }
+ },
+ "5410": {
+  "units": {},
+  "spoils": {
+   "Armor": 1,
+   "Beasts": 1
+  }
+ },
+ "5411": {
+  "units": {},
+  "spoils": {
+   "Weapons": 2,
+   "Armor": 1,
+   "Lore": 1
+  }
+ },
+ "5412": {
+  "units": {},
+  "spoils": {
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5413": {
+  "units": {},
+  "spoils": {
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5414": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Weapons": 1,
+   "Armor": 1
+  }
+ },
+ "5415": {
+  "units": {},
+  "spoils": {
+   "Weapons": 2,
+   "Lore": 1
+  }
+ },
+ "5416": {
+  "units": {
+   "trebuchet": 1
+  },
+  "spoils": {
+   "Beasts": 1,
+   "Spirit": 1
+  }
+ },
+ "5417": {
+  "units": {
+   "griffon": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Spirit": 1,
+   "Lore": 1
+  }
+ },
+ "5418": {
+  "units": {},
+  "spoils": {
+   "Weapons": 2,
+   "Spirit": 1
+  }
+ },
+ "5419": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5420": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Beasts": 1,
+   "Spirit": 1
+  }
+ },
+ "5421": {
+  "units": {},
+  "spoils": {
+   "Weapons": 1,
+   "Beasts": 2
+  }
+ },
+ "5422": {
+  "units": {},
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 2,
+   "Beasts": 2
+  }
+ },
+ "5423": {
+  "units": {
+   "horsebowmen": 2
+  },
+  "spoils": {
+   "Weapons": 1,
+   "Beasts": 2
+  }
+ },
+ "5600": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Armor": 1
+  }
+ },
+ "5603": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Beasts": 1
+  }
+ },
+ "5604": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1
+  }
+ },
+ "5605": {
+  "units": {
+   "militiamen": 3
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Beasts": 1
+  }
+ },
+ "5606": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1
+  }
+ },
+ "5607": {
+  "units": {
+   "militiamen": 3
+  },
+  "spoils": {
+   "Weapons": 2,
+   "Lore": 1
+  }
+ },
+ "5608": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Lore": 2
+  }
+ },
+ "5609": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Weapons": 2
+  }
+ },
+ "5610": {
+  "units": {
+   "militiamen": 1,
+   "pikemen": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Lore": 1
+  }
+ },
+ "5611": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Spirit": 1,
+   "Lore": 1
+  }
+ },
+ "5612": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5613": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Armor": 2,
+   "Beasts": 1
+  }
+ },
+ "5614": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Weapons": 1,
+   "Spirit": 2
+  }
+ },
+ "5615": {
+  "units": {},
+  "spoils": {
+   "Armor": 2,
+   "Beasts": 2
+  }
+ },
+ "5616": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Beasts": 2,
+   "Lore": 1
+  }
+ },
+ "5617": {
+  "units": {
+   "griffon": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Spirit": 1,
+   "Lore": 1
+  }
+ },
+ "5618": {
+  "units": {},
+  "spoils": {
+   "Weapons": 2,
+   "Spirit": 2
+  }
+ },
+ "5619": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Weapons": 1,
+   "Beasts": 1,
+   "Spirit": 1
+  }
+ },
+ "5620": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5621": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Weapons": 1,
+   "Beasts": 1
+  }
+ },
+ "5622": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Beasts": 2,
+   "Spirit": 1
+  }
+ },
+ "5623": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 2,
+   "Beasts": 1
+  }
+ },
+ "5204": {
+  "units": {
+   "cavalry": 1
+  },
+  "spoils": {
+   "Armor": 2,
+   "Weapons": 1
+  }
+ },
+ "5205": {
+  "units": {
+   "militiamen": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Beasts": 1,
+   "Lore": 1
+  }
+ },
+ "5206": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 2,
+   "Weapons": 1,
+   "Lore": 1
+  }
+ },
+ "5207": {
+  "units": {
+   "militiamen": 1,
+   "cavalry": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 2,
+   "Spirit": 1
+  }
+ },
+ "5208": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1
+  }
+ },
+ "5209": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Lore": 1
+  }
+ },
+ "5210": {
+  "units": {
+   "militiamen": 1,
+   "musketeers": 1
+  },
+  "spoils": {
+   "Weapons": 2,
+   "Lore": 1
+  }
+ },
+ "5211": {
+  "units": {
+   "militiamen": 1,
+   "cannon": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Beasts": 1,
+   "Lore": 1
+  }
+ },
+ "5212": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Lore": 1
+  }
+ },
+ "5213": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Lore": 1
+  }
+ },
+ "5214": {
+  "units": {},
+  "spoils": {
+   "Armor": 2,
+   "Weapons": 2,
+   "Lore": 2
+  }
+ },
+ "5215": {
+  "units": {
+   "militiamen": 1,
+   "catapult": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Spirit": 1,
+   "Lore": 1
+  }
+ },
+ "5216": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5217": {
+  "units": {
+   "militiamen": 1,
+   "rangers": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5218": {
+  "units": {
+   "militiamen": 1,
+   "archers": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Spirit": 1,
+   "Lore": 1
+  }
+ },
+ "5219": {
+  "units": {
+   "militiamen": 1,
+   "archers": 1,
+   "knights": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5220": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Beasts": 2
+  }
+ },
+ "5221": {
+  "units": {
+   "militiamen": 1,
+   "cavalry": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Beasts": 1,
+   "Spirit": 1
+  }
+ },
+ "5222": {
+  "units": {
+   "militiamen": 1,
+   "musketeers": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Lore": 2
+  }
+ },
+ "5223": {
+  "units": {
+   "militiamen": 1,
+   "griffon": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 2,
+   "Lore": 1
+  }
+ },
+ "5224": {
+  "units": {
+   "militiamen": 1,
+   "archers": 1
+  },
+  "spoils": {
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5225": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Weapons": 1,
+   "Beasts": 1,
+   "Spirit": 1,
+   "Lore": 1
+  }
+ },
+ "5226": {
+  "units": {
+   "militiamen": 2
+  },
+  "spoils": {
+   "Armor": 1,
+   "Beasts": 2,
+   "Spirit": 1
+  }
+ },
+ "5227": {
+  "units": {},
+  "spoils": {
+   "Beasts": 2,
+   "Spirit": 2,
+   "Lore": 2
+  }
+ },
+ "5228": {
+  "units": {
+   "militiamen": 1,
+   "raiders": 1
+  },
+  "spoils": {
+   "Armor": 1,
+   "Weapons": 1,
+   "Beasts": 1
+  }
+ },
+ "5229": {
+  "units": {
+   "raiders": 2
+  },
+  "spoils": {
+   "Armor": 2,
+   "Weapons": 1,
+   "Spirit": 1
+  }
+ },
+ "5230": {
+  "units": {
+   "militiamen": 1,
+   "cavalry": 1
+  },
+  "spoils": {
+   "Weapons": 2,
+   "Beasts": 1,
+   "Spirit": 1
+  }
+ },
+ "5231": {
+  "units": {
+   "militiamen": 2,
+   "raiders": 1,
+   "cavalry": 1
+  },
+  "spoils": {
+   "Weapons": 2
+  }
+ },
+ "5801": {
+  "units": {},
+  "spoils": {
+   "Weapons": 1
+  }
+ }
+}

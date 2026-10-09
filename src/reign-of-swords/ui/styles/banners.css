@@ -1,0 +1,403 @@
+/* Reinforcement-wave banner (real triggered columns from waves.json) */
+.ros-wave-toast {
+  position: absolute;
+  left: 50%;
+  top: 58px;
+  transform: translateX(-50%);
+  z-index: 40;
+  padding: 9px 18px;
+  border-radius: 8px;
+  pointer-events: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  animation:
+    ros-wave-in 0.35s ease-out,
+    ros-wave-out 0.5s ease-in 2.7s forwards;
+}
+.ros-wave-toast.red {
+  background: linear-gradient(180deg, #7a1616, #5a0f0f);
+  color: #ffe2d6;
+}
+.ros-wave-toast.blue {
+  background: linear-gradient(180deg, #1c5a2a, #123f1e);
+  color: #ddf6df;
+}
+@keyframes ros-wave-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+@keyframes ros-wave-out {
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+}
+
+/* Whose-turn announcement: a crested plate that sweeps across the battlefield centre and fades. */
+.ros-turn-banner {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  transform: translate(-50%, -50%);
+  z-index: 42;
+  pointer-events: none;
+  text-align: center;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 14px 34px;
+  border-radius: 12px;
+  white-space: nowrap;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 10px 34px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  animation:
+    ros-turn-in 0.4s cubic-bezier(0.2, 1.1, 0.3, 1),
+    ros-turn-out 0.45s ease-in 1.25s forwards;
+}
+.ros-turn-banner.fast {
+  animation:
+    ros-turn-in 0.1s cubic-bezier(0.2, 1.1, 0.3, 1),
+    ros-turn-out 0.11s ease-in 0.31s forwards;
+} /* fast-forward: the same beat at 4× (the battle's hold shrinks with it) */
+.ros-turn-banner.super {
+  animation:
+    ros-turn-in 0.035s cubic-bezier(0.2, 1.1, 0.3, 1),
+    ros-turn-out 0.04s ease-in 0.1s forwards;
+} /* super fast: 12× */
+.ros-turn-banner.you {
+  background: linear-gradient(180deg, #22633a, #123f22);
+  color: #e4f8e6;
+}
+.ros-turn-banner.foe {
+  background: linear-gradient(180deg, #7c1a1a, #4f0e0e);
+  color: #ffe3d8;
+}
+.ros-turn-banner.ally {
+  background: linear-gradient(180deg, #2b5a86, #173a56);
+  color: #e6f1fb;
+} /* fallback; an ally usually gets its faction colour inline */
+.ros-turn-crest {
+  font-size: 1.7rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+.ros-turn-crest-img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  border-radius: 8px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55));
+}
+/* Group crest rendered as a real shield: coloured field (masked to the shield shape) + metal frame + the
+   faction symbol on top — so it reads as a heraldic shield, not a floating badge. Frame canvas is 87×123; the
+   field opening sits at (9,9) size 69×105 -> 10.3%/7.3% offset, 79.3%/85.4% size. */
+.ros-turn-crest-shield {
+  position: relative;
+  width: 84px;
+  aspect-ratio: 87 / 123;
+  flex: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55));
+}
+.ros-turn-crest-shield .ros-tcs-field {
+  position: absolute;
+  left: 10.3%;
+  top: 7.3%;
+  width: 79.3%;
+  height: 85.4%;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+.ros-turn-crest-shield .ros-tcs-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+.ros-turn-crest-shield .ros-tcs-sym {
+  position: absolute;
+  left: 12%;
+  top: 12%;
+  width: 76%;
+  height: 74%;
+  object-fit: contain;
+}
+.ros-turn-label {
+  font-family: var(--ros-title, "ROS Title"), Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.ros-turn-sub {
+  font-size: 0.82rem;
+  font-weight: 600;
+  opacity: 0.9;
+  letter-spacing: 0.3px;
+}
+@keyframes ros-turn-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes ros-turn-out {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+}
+
+/* --- Mid-battle dialogue — presented like the pre-mission intro (big portrait + name plate + line) --- */
+.ros-event-cut {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 42;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 14px 16px 18px;
+  cursor: pointer;
+  background: linear-gradient(0deg, rgba(20, 13, 6, 0.78) 30%, rgba(20, 13, 6, 0));
+  animation: ros-event-in 0.35s ease-out;
+}
+.ros-event-cut .ros-cut-stage {
+  max-width: 660px;
+}
+.ros-event-cut .ros-cut-portrait {
+  width: 118px;
+  height: 188px;
+}
+.ros-event-cut .ros-cut-box {
+  min-height: 0;
+}
+.ros-cut-name.foe {
+  color: #8a1a1a;
+  -webkit-text-fill-color: #8a1a1a;
+}
+@keyframes ros-event-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 560px) {
+  .ros-event-cut {
+    padding: 10px 8px 10px;
+  }
+  .ros-event-cut .ros-cut-portrait {
+    width: 74px;
+    height: 128px;
+  }
+  .ros-cutscene {
+    padding: 12px 8px;
+    /* a steady stage on a phone: the Emperor's intro needs 253-359px a line at 412px wide, so the frame holds still
+       from line to line instead of growing with each (a longer line still fits — the box grows inside it) */
+    min-height: 420px;
+  }
+}
+/* a phone on its side: no taller than the screen */
+@media (max-height: 500px) and (orientation: landscape) {
+  .ros-cutscene {
+    min-height: min(460px, calc(100svh - 20px));
+  }
+}
+
+/* Heraldic crests — the REAL coats of arms the game shows for each speaker (not a face) */
+.ros-flow-face.ros-crest {
+  width: 32px;
+  height: 48px;
+  border-radius: 4px;
+  border: none;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
+}
+.ros-cut-portrait.ros-crest {
+  width: 122px;
+  height: 212px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.55));
+}
+
+/* Hot-seat: "pass the device" card, edged in the colour of the army about to play */
+.ros-handover-card.blue {
+  border-top: 5px solid #5aa0ff;
+}
+.ros-handover-card.red {
+  border-top: 5px solid #ff5a4a;
+}
+
+/* Hot-seat setup: the map and its goal, then two player cards edged in each army's colour (name, and with a
+   Custom budget their own points and Medals), the first move and the buttons. Landscape phones: two columns. */
+.ros-hs-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ros-hs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.ros-hs-col > p,
+.ros-hs-col > h2 {
+  margin: 0;
+}
+.ros-hs-players {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.ros-hs-player {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(255, 246, 214, 0.5);
+  border-left: 5px solid #5aa0ff;
+  text-align: left;
+  min-width: 0;
+}
+.ros-hs-player.red {
+  border-left-color: #ff5a4a;
+}
+.ros-hs-name,
+.ros-hs-own label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.ros-hs-own {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 6px;
+}
+.ros-hs-side,
+.ros-hs-own span {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b4a16;
+}
+.ros-hs-player input,
+.ros-hs-row select {
+  font: inherit;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 1px solid #8a6a32;
+  border-radius: 5px;
+  background: #fff8e4;
+  color: #2a1c08;
+}
+.ros-hs-row select {
+  width: auto;
+  max-width: 62%;
+}
+.ros-hs-own label.bad input {
+  border-color: #b03a2e;
+  box-shadow: 0 0 0 1px #b03a2e;
+}
+.ros-hs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+}
+.ros-hs-row > span {
+  font-weight: 700;
+}
+.ros-hs-note,
+.ros-hs-left {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #5a4418;
+}
+.ros-hs-warn {
+  color: #9b2c22;
+}
+.ros-hs-coin {
+  margin: 0;
+  font-weight: 700;
+}
+.ros-hs-setup .ros-over-btns {
+  margin-top: 2px;
+}
+@media (max-width: 420px) {
+  .ros-hs-players {
+    grid-template-columns: 1fr;
+  }
+}
+/* the backdrop scrolls (not the card, whose corner studs overhang it) when a screen is too short for the card */
+.ros-hs-overlay {
+  overflow-y: auto;
+  align-items: safe center;
+  padding: 12px 0;
+}
+/* landscape phones: map + goal on the left, the players and settings on the right, all on one screen */
+@media (max-height: 600px) and (orientation: landscape) {
+  .ros-hs-setup {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    column-gap: 18px;
+    align-items: start;
+    width: min(920px, calc(100vw - 24px));
+    max-width: none;
+    padding: 10px 16px;
+    box-sizing: border-box;
+  }
+  .ros-hs-setup h2 {
+    font-size: 1.35rem;
+  }
+  .ros-hs-setup .ros-brief-kingdom {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ros-hs-setup .ros-hs-note {
+    font-size: 0.76rem;
+  }
+  .ros-hs-col {
+    gap: 8px;
+  }
+  .ros-hs-players {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ros-hs-setup .ros-over-btns {
+    justify-content: flex-end;
+  }
+}

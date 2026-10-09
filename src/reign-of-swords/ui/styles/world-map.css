@@ -1,0 +1,634 @@
+/* ============================================================
+   WORLD-MAP CAMPAIGN · DEV BAR · SPRITE UPGRADE LIST
+   ============================================================ */
+/* Dev / admin bar */
+.ros-admin {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin: 0 auto 10px;
+  padding: 5px 10px;
+  max-width: 1040px;
+  background: #14100a;
+  border: 1px solid #3a2c18;
+  border-radius: 8px;
+}
+/* The two selects flex to fill the row, so on a normal-width screen everything sits on ONE row with no
+   horizontal scrollbar; on a very narrow screen it simply wraps (no scrollbar). */
+.ros-admin-tag {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: #c99a3a;
+  letter-spacing: 0.08em;
+}
+/* collapsed dev bar: just a small pill to bring the tools back */
+.ros-admin-collapsed {
+  max-width: 960px;
+  margin: 0 auto 10px;
+  display: flex;
+}
+.ros-dev-show {
+  font-size: 0.72rem;
+  padding: 4px 11px;
+  opacity: 0.6;
+}
+.ros-dev-show:hover {
+  opacity: 1;
+}
+.ros-dev-hide {
+  font-size: 0.82rem;
+  line-height: 1;
+  padding: 4px 9px;
+  opacity: 1;
+}
+.ros-admin-collapsed .ros-dev-hide {
+  margin-left: auto;
+} /* keep the collapsed pill's ✕ right-aligned */
+.ros-admin-sel {
+  flex: 1 1 120px;
+  min-width: 92px;
+  background: #241a0e;
+  color: #e7d3a6;
+  border: 1px solid #5a4426;
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 0.72rem;
+  font-family: var(--ros-body);
+}
+.ros-admin-reset {
+  font-size: 0.68rem;
+  padding: 4px 7px;
+  white-space: nowrap;
+}
+.ros-admin .btn-run {
+  font-size: 0.68rem;
+  padding: 4px 7px;
+  white-space: nowrap;
+}
+/* toggle buttons carry a fixed min-width sized to their widest label so the text swap ("God army" ↔
+   "God army ON", "Music" ↔ "Music off") never resizes the button or nudges its neighbours. Kept compact so the
+   whole dev bar stays on ONE row. */
+.ros-admin-god {
+  font-size: 0.68rem;
+  padding: 4px 7px;
+  min-width: 104px;
+  text-align: center;
+}
+.ros-admin-god.on {
+  background: #7a4a12;
+  border-color: #c99a3a;
+  color: #ffe6ac;
+  box-shadow: 0 0 0 1px rgba(201, 154, 58, 0.4) inset;
+}
+.ros-sound-btn {
+  min-width: 72px;
+  font-size: 0.68rem;
+  padding: 4px 7px;
+  text-align: center;
+}
+
+/* World map campaign */
+.ros-worldwrap {
+  max-width: 960px;
+  margin: 0 auto;
+}
+/* give the map header a parchment bar so the title + Main Menu button don't float on the dark page */
+.ros-world-head {
+  margin-bottom: 12px;
+  padding: 8px 16px;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 2px solid var(--wood);
+  border-radius: 10px;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 154, 58, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.ros-worldmap {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  aspect-ratio: 1260 / 1411;
+  background-size: cover;
+  background-position: center;
+  border: 4px solid var(--wood);
+  border-radius: 10px;
+  box-shadow:
+    inset 0 0 0 3px var(--wood-lt),
+    inset 0 0 60px rgba(20, 12, 4, 0.55),
+    0 8px 26px rgba(0, 0, 0, 0.5);
+}
+.ros-kmark {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: transform 0.1s;
+}
+.ros-kmark:hover:not(:disabled) {
+  transform: translate(-50%, -54%);
+}
+.ros-kmark.locked {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+.ros-kmark-dot {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 40% 35%, #f0d68a, #c99a3a 70%, #6b4a16);
+  border: 2px solid #3a2708;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  color: #3a2708;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+.ros-kmark.locked .ros-kmark-dot {
+  background: radial-gradient(circle at 40% 35%, #b8b0a0, #6d665a 70%, #3a352c);
+}
+.ros-kmark.complete .ros-kmark-dot {
+  background: radial-gradient(circle at 40% 35%, #a6e08a, #4f9a34 70%, #245216);
+  color: #163a0c;
+}
+.ros-kmark-label {
+  font-family: var(--ros-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #2a1c08;
+  white-space: nowrap;
+  background: rgba(231, 211, 166, 0.9);
+  border: 1px solid #6b4a16;
+  border-radius: 4px;
+  padding: 0 5px;
+  text-shadow: 0 1px 0 rgba(255, 246, 214, 0.6);
+}
+.ros-kmark-label i {
+  color: #6b4a16;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+}
+
+/* raid pips under a kingdom's name: hollow = not yet won, filled = won, gold = won with a Medal */
+.ros-kmark-raids {
+  display: flex;
+  gap: 3px;
+  padding: 1px 3px;
+  border-radius: 4px;
+  background: rgba(42, 28, 8, 0.55);
+}
+.ros-kmark-raids i {
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  border: 1px solid #e7d3a6;
+  background: transparent;
+}
+.ros-kmark-raids i.won {
+  background: #e7d3a6;
+}
+.ros-kmark-raids i.medal {
+  background: radial-gradient(circle at 35% 35%, #fff2b0, #e0b23a 60%, #8a5f12);
+  border-color: #fff2b0;
+  box-shadow: 0 0 4px rgba(255, 214, 90, 0.8);
+}
+
+/* Kingdom war-plans panel over the map */
+.ros-kpanel-back {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 7, 3, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.ros-kpanel {
+  width: min(320px, 88%);
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 3px solid var(--wood);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 154, 58, 0.6),
+    0 8px 22px rgba(0, 0, 0, 0.6);
+}
+.ros-kpanel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ros-kpanel-head b {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  font-size: 1.15rem;
+}
+.ros-kpanel-x {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 1rem;
+  min-width: 36px; /* a finger-sized tap area around the small ✕ */
+  min-height: 36px;
+  margin: -6px -8px -6px 0;
+}
+.ros-kpanel-sub {
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+  margin: 2px 0 10px;
+}
+.ros-kmission {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 7px;
+  border: 2px solid var(--wood);
+  border-radius: 7px;
+  padding: 8px 11px;
+  color: var(--ink);
+  background: linear-gradient(180deg, #f3e2ba, #e2caa0);
+  font-family: var(--ros-body);
+}
+.ros-kmission:hover:not(:disabled) {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.ros-kmission.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ros-kmission.done {
+  border-color: #2f7a34;
+}
+.ros-kmission.ros-kraid {
+  border-style: dashed;
+  border-color: #9a6a2e;
+}
+.ros-kmission.ros-kraid .ros-km-badge {
+  background: #9a6a2e;
+  color: #fff;
+}
+.ros-kmission.ros-kraid.done {
+  border-color: #2f7a34;
+  border-style: solid;
+}
+.ros-km-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--wood);
+  color: var(--gold-lt);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1;
+  flex: none;
+}
+.ros-km-badge .ros-svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+.ros-kmission.done .ros-km-badge {
+  background: #2f7a34;
+  color: #fff;
+}
+.ros-km-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+/* Optional training battles at the top of the first kingdom's War Plans */
+.ros-ktut {
+  background: linear-gradient(180deg, #ece0c4, #dccaa2);
+  border-style: dashed;
+  border-color: var(--wood-lt);
+}
+.ros-ktut .ros-km-badge {
+  background: #3a5a2a;
+  color: #eaf6d6;
+}
+.ros-ktut .ros-km-title {
+  font-style: italic;
+  color: #5a4418;
+}
+.ros-ktut.done {
+  border-style: solid;
+}
+.ros-km-medal {
+  margin-left: auto;
+  flex: none;
+  display: inline-flex;
+  line-height: 0;
+}
+.ros-km-done {
+  margin-left: auto;
+  color: #2f7a34;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+  flex: none;
+}
+
+/* Sprite-based Upgrade list */
+.ros-army-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ros-army-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 2px solid var(--wood);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 246, 214, 0.4);
+}
+.ros-unit-sprite {
+  display: inline-block;
+  flex: none;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
+}
+.ros-army-body {
+  flex: 1;
+  min-width: 0;
+}
+.ros-army-line1 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ros-army-line1 b {
+  color: #6b3f12;
+  font-size: 1rem;
+}
+.ros-army-role {
+  font-family: var(--ros-body);
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+.ros-army-cost {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--gold-lt);
+  background: var(--wood);
+  padding: 1px 8px;
+  border-radius: 10px;
+}
+.ros-army-kit {
+  font-size: 0.78rem;
+  color: var(--ink);
+  margin: 3px 0;
+}
+.ros-army-kit b {
+  color: #6b3f12;
+}
+.ros-army-note {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .ros-worldmap {
+    max-width: 100%;
+  }
+  .ros-kmark-label {
+    font-size: 0.64rem;
+  }
+}
+/* Narrow phones: the central kingdoms (Carrone, Bordavia, Merovin, Marsur) sit close together on a ~320px map, so
+   the markers shrink — a smaller dot, and the name without its n/3 count (the dot already says it: ♛ done, ⚔ under
+   way, ⚑ not started) — and the board gives the map a little more of the width. */
+@media (max-width: 480px) {
+  .ros-worldwrap.ros-campaign {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .ros-kmark-dot {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+  .ros-kmark-label i {
+    display: none;
+  }
+  .ros-kmark-label {
+    padding: 0 3px;
+  }
+  /* the label goes ABOVE the dot where the space below is taken: Carrone sits just over Bordavia, Sangsoleil
+     over Merovin, Merovin over Marsur, Abbisin (Episode II) over Sabbi Amar */
+  .ros-kmark[data-k="carrone"],
+  .ros-kmark[data-k="sangsoleil"],
+  .ros-kmark[data-k="merovin"],
+  .ros-kmark[data-k="abbisin"] {
+    flex-direction: column-reverse;
+  }
+}
+
+/* ===== Campaign hub: title + world map + camp/army panel as ONE parchment board ===== */
+/* The board carries the single parchment plate; the header, map and panel live INSIDE it and drop their own
+   floating cards — each is set off by a simple rule instead, so the three read as one object. */
+.ros-campaign {
+  max-width: 1140px;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  border: 3px solid var(--wood);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 154, 58, 0.5),
+    0 6px 20px rgba(0, 0, 0, 0.45);
+}
+.ros-campaign .ros-world-head {
+  margin: 0 0 12px;
+  padding: 2px 2px 11px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 2px solid rgba(107, 74, 22, 0.32);
+}
+.ros-campaign-cols {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.ros-worldmap-col {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+}
+.ros-campaign .ros-worldmap {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.ros-camp-panel {
+  flex: 0 0 388px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 0 0 18px;
+  border-left: 2px solid rgba(107, 74, 22, 0.28);
+}
+.ros-camp-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  margin-bottom: 10px;
+}
+.ros-camp-panel-head h3 {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  -webkit-text-fill-color: #6b3f12;
+  margin: 0;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 0 var(--gold-lt);
+}
+.ros-camp-panel-hint {
+  font-family: var(--ros-body);
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+}
+/* tighten the resbar so all 6 collectibles + crest fit the narrower side panel */
+.ros-camp-panel .ros-resbar {
+  gap: 4px;
+  padding: 6px 8px;
+  margin-bottom: 12px;
+}
+.ros-camp-panel .ros-res {
+  width: 44px;
+  height: 44px;
+}
+.ros-camp-panel .ros-res-img {
+  width: 42px;
+  height: 42px;
+}
+.ros-camp-panel .ros-res-count {
+  right: -2px;
+  bottom: -4px;
+}
+/* The crest is the focal "your coat of arms" button — render it at least as large as the collectible icons
+   (a shield is taller than wide, so 50px tall reads as level with the 42px square icons, not shrunken). */
+.ros-camp-panel .ros-res-crest {
+  width: 50px;
+  height: 52px;
+}
+.ros-camp-panel .ros-res-crest .ros-shield {
+  height: 50px;
+}
+.ros-camp-panel .ros-res-crest img {
+  max-width: 42px;
+  max-height: 42px;
+}
+.ros-camp-panel .ros-army-grid {
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  margin-bottom: 12px;
+}
+.ros-camp-panel-foot {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+.ros-camp-panel-foot .btn-run {
+  flex: 1;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .ros-campaign-cols {
+    flex-direction: column;
+  }
+  .ros-worldmap-col {
+    width: 100%;
+  }
+  /* stacked: the map/panel divider moves from the left edge to the top */
+  .ros-camp-panel {
+    flex: none;
+    width: 100%;
+    padding: 14px 0 0;
+    border-left: none;
+    border-top: 2px solid rgba(107, 74, 22, 0.28);
+    margin-top: 4px;
+  }
+  .ros-campaign .ros-worldmap {
+    max-width: 560px;
+  }
+}
+
+/* ---- Sound toggles (Music / Effects, in the dev bar) — flow inline; the ✕ hide button carries the auto margin ---- */
+.ros-sound-btn {
+  font-size: 0.74rem;
+  padding: 5px 9px;
+}
+
+/* ---- Spoils-of-war economy + framed unit sprites ---- */
+.ros-spoils {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 8px 10px;
+  background: rgba(20, 12, 4, 0.14);
+  border: 2px solid var(--wood-lt);
+  border-radius: 8px;
+}
+.ros-spoils-label {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  font-size: 0.92rem;
+  margin-right: 6px;
+}
+.ros-spoil {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  background: rgba(255, 246, 214, 0.5);
+  border: 1px solid var(--wood-lt);
+  border-radius: 12px;
+  padding: 2px 9px;
+  opacity: 0.55;
+}
+.ros-spoil.has {
+  opacity: 1;
+  color: var(--ink);
+  border-color: var(--gold);
+}
+.ros-spoil b {
+  font-size: 0.95rem;
+}
+.ros-spoil i {
+  font-style: normal;
+  font-family: var(--mono);
+  color: var(--gold);
+  font-size: 0.72rem;
+}

@@ -1,0 +1,827 @@
+/* ===== Camp / Army panel (grid, like the game) ===== */
+.ros-resbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 8px 12px;
+  background: linear-gradient(180deg, rgba(74, 54, 32, 0.22), rgba(20, 12, 4, 0.16));
+  border: 2px solid var(--wood);
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 2px rgba(201, 154, 58, 0.4);
+}
+/* The collectible icons (from ros.dat res 5032) already carry the game's own wood frame,
+   so the cell adds no border of its own — locked ones are greyed, owned ones full colour. */
+.ros-res {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  filter: grayscale(0.85) brightness(0.92);
+}
+.ros-res.has {
+  opacity: 1;
+  filter: none;
+}
+.ros-res-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+.ros-res-emoji {
+  font-size: 1.5rem;
+}
+.ros-res-count {
+  position: absolute;
+  right: -4px;
+  bottom: -6px;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffe08a;
+  background: #2a1d0c;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 0 4px;
+}
+.ros-res-crest {
+  margin-left: auto;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  background: rgba(20, 12, 4, 0.35);
+}
+.ros-res-crest img {
+  max-width: 40px;
+  max-height: 40px;
+}
+.ros-res-crest span {
+  font-size: 1.6rem;
+  color: var(--gold-lt);
+}
+/* the crest doubles as the Heraldry entry point (as in the original camp panel) */
+.ros-res-crest .ros-shield {
+  display: block;
+  width: auto;
+  height: 38px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+.ros-res-crest-btn {
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s;
+}
+.ros-res-crest-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 2px var(--gold),
+    0 3px 8px rgba(0, 0, 0, 0.45);
+}
+.ros-res-crest-btn::after {
+  content: "⚜";
+  position: absolute;
+  right: -5px;
+  top: -6px;
+  font-size: 0.62rem;
+  line-height: 1;
+  background: var(--wood);
+  color: var(--gold-lt);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  padding: 2px 3px;
+}
+.ros-camp-panel .ros-res-crest {
+  position: relative;
+}
+
+.ros-army-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.ros-army-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border: 2px solid var(--wood);
+  border-radius: 8px;
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #3a5a2a, #2c4720);
+} /* owned = green */
+.ros-army-tile.none {
+  background: linear-gradient(180deg, #4a4a4a, #333333);
+  filter: grayscale(1) brightness(0.8);
+} /* not owned = grey */
+.ros-army-tile.sel {
+  border-color: #ffdf9c;
+  box-shadow: 0 0 0 2px rgba(255, 206, 84, 0.7);
+}
+/* the unit's frame shrinks with the tile (a narrow camp column) instead of being cut by its edges */
+.ros-army-tile .ros-unit-frame {
+  flex: 0 1 auto;
+  width: 100%;
+  height: 100%;
+  max-width: 66px;
+  max-height: 66px;
+}
+.ros-army-tile .ros-unit-sprite,
+.ros-army-tile canvas,
+.ros-army-tile img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.ros-tile-count {
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow:
+    0 1px 2px #000,
+    0 0 3px #000;
+}
+/* Special (reference-only) units: Hero + Druid shapeshift forms — a distinct slate look, not owned/locked */
+.ros-army-special-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 8px;
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  -webkit-text-fill-color: #6b3f12;
+  font-size: 0.92rem;
+}
+.ros-army-special-head .ros-svg {
+  color: var(--gold);
+}
+.ros-army-special-head i {
+  font-family: var(--ros-body);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+/* Field Manual — Upgrades tab (branching tree) */
+.ros-tree-wrap {
+  grid-column: 1 / -1;
+  text-align: left;
+}
+.ros-tree-intro {
+  color: #3a2a12;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+.ros-tree-intro b {
+  color: #6b3f12;
+}
+.ros-tree-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+}
+.ros-tree-leg {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.ros-tree-leg i {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  display: inline-block;
+}
+.ros-tree-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.ros-tree-card {
+  fill: #efdcb8;
+  stroke: rgba(122, 74, 18, 0.4);
+  stroke-width: 1.5;
+}
+.ros-tree-card.root {
+  fill: #f6e6c0;
+  stroke: #c99a3a;
+  stroke-width: 2.5;
+}
+.ros-tree-card.leaf {
+  fill: #e7d3ae;
+}
+/* The unit art is low-res (~48–72px pixel sprites); rendered SMALLER in the tree, a pixelated downscale aliases
+   badly. Smooth downscaling + a soft shadow reads far cleaner ("higher quality") at these sizes. */
+.ros-tree-img {
+  image-rendering: auto;
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.45));
+}
+.ros-tree-nm {
+  font-family: var(--ros-body);
+  font-weight: 700;
+  font-size: 11px;
+  fill: #2e2010;
+}
+.ros-tree-rl {
+  font-family: var(--mono);
+  font-size: 8px;
+  fill: #7a5a34;
+}
+.ros-tree-special {
+  margin-top: 16px;
+}
+.ros-tree-special-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+.ros-tree-sp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--ink);
+}
+.ros-tree-sp i {
+  font-style: normal;
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+}
+.ros-army-tile.ros-special {
+  background: linear-gradient(180deg, #46566a, #2f3a48);
+  filter: none;
+}
+.ros-army-tile.ros-special.sel {
+  border-color: #ffdf9c;
+}
+.ros-army-tile.ros-unfielded {
+  background: linear-gradient(180deg, #5a4a38, #3a2f22);
+}
+.ros-cost-ref {
+  margin-left: auto;
+  font-family: var(--ros-body);
+  font-size: 0.68rem;
+  color: #dfe4ee;
+  background: #4a5568;
+  padding: 1px 8px;
+  border-radius: 10px;
+}
+.ros-army-detail {
+  border: 2px solid var(--wood);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, var(--parch), var(--parch-dk));
+  box-shadow: inset 0 0 0 2px rgba(201, 154, 58, 0.4);
+}
+.ros-up-row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.ros-unit-frame {
+  flex: none;
+  width: 66px;
+  height: 66px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 30%, #efe0bd, #cbb083 78%, #a98f5e);
+  border: 2px solid var(--wood);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 154, 58, 0.5),
+    inset 0 -6px 10px rgba(90, 60, 20, 0.25);
+}
+.ros-unit-sprite {
+  display: block;
+  flex: none;
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35));
+}
+/* Smooth (not hard-pixelated): these DOM stand sprites are shown at a fractional size, so nearest-neighbour left
+   harsh, jagged edges — the battlefield canvas already draws units smoothed, so this matches it. */
+.ros-unit-stand {
+  display: block;
+  align-self: flex-end;
+  image-rendering: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35));
+}
+/* bare (unframed) sprite for small inline uses — scales with the size prop, no roster tile */
+.ros-unit-bare {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+}
+
+.ros-army-row.none {
+  opacity: 0.62;
+}
+.ros-army-count {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.ros-army-count.has {
+  color: #2f7a34;
+}
+/* Unit stat block on the upgrade card — spaced parchment chips, matching the battle unit card */
+.ros-stats {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 5px 0 5px;
+}
+.ros-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  background: rgba(107, 74, 22, 0.1);
+  border: 1px solid rgba(107, 74, 22, 0.3);
+  border-radius: 5px;
+  padding: 3px 8px;
+  line-height: 1;
+}
+.ros-stat-tx {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.ros-stat i {
+  font-style: normal;
+  color: var(--ink-soft);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+}
+.ros-stat b {
+  color: #6b3f12;
+  font-size: 0.84rem;
+}
+.ros-army-src {
+  display: inline-block;
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: #8a5a1a;
+  background: rgba(138, 90, 26, 0.12);
+  border: 1px solid rgba(138, 90, 26, 0.28);
+  border-radius: 5px;
+  padding: 1px 8px;
+}
+/* Real game HUD badges (android units/004 class emblems + 005 action/range badges) shown on the unit card */
+.ros-hud-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 2px 0 5px;
+  flex-wrap: wrap;
+}
+.ros-hud-badge {
+  width: 34px;
+  height: 34px;
+  image-rendering: pixelated;
+  border-radius: 5px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+}
+/* Battle-toolbar action icons (android units/000: undo · next · confirm) */
+.ros-tool-ico {
+  width: 17px;
+  height: 17px;
+  image-rendering: pixelated;
+  vertical-align: -0.24em;
+  margin-right: 1px;
+}
+/* In-battle unit-card SKILL icons — larger than the toolbar glyphs so each ability reads clearly, with its range. */
+.ros-charge .ros-tool-ico,
+.ros-shift > span:first-child .ros-tool-ico,
+.ros-prayer .ros-skill-item .ros-tool-ico {
+  width: 28px;
+  height: 28px;
+  vertical-align: -0.6em;
+  margin-right: 6px;
+}
+.ros-army-ability {
+  font-size: 0.78rem;
+  color: #6b3f12;
+  font-weight: 600;
+  margin: 2px 0 3px;
+  line-height: 1.4;
+}
+.ros-army-ability::first-letter {
+  font-size: 1em;
+}
+/* All-skills pills */
+.ros-army-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 5px 0 4px;
+}
+.ros-skill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--ros-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #6b3f12;
+  background: rgba(201, 154, 58, 0.16);
+  border: 1px solid rgba(201, 154, 58, 0.5);
+  border-radius: 20px;
+  padding: 2px 9px 2px 7px;
+  cursor: help;
+}
+.ros-skill .ros-svg {
+  color: var(--gold);
+  font-size: 0.78rem;
+}
+/* Iconified ability pill: the game's own icon instead of the word, name+desc on hover */
+.ros-skill-ic {
+  padding: 2px;
+  gap: 0;
+  border-radius: 8px;
+}
+/* The icons are 52px art shrunk to a chip — smooth (high-quality) downscaling keeps them crisp; nearest-neighbor
+   (pixelated) dropped pixels unevenly at this non-integer scale and looked degraded. */
+.ros-skill-img {
+  width: 34px;
+  height: 34px;
+  image-rendering: auto;
+  display: block;
+}
+/* Combined chip row: unit-type emblem + attack type + abilities, icons and words aligned together */
+.ros-chips {
+  align-items: center;
+  gap: 6px;
+}
+/* melee tag (no range number) */
+.ros-stat-tag i {
+  font-style: normal;
+  color: #6b3f12;
+  font-weight: 700;
+  font-size: 0.72rem;
+}
+.ros-stat-tag .ros-svg {
+  color: #6b3f12;
+  font-size: 0.9rem;
+}
+.ros-up-badge {
+  flex: none;
+  align-self: center;
+  width: 132px;
+  text-align: center;
+  font-family: var(--ros-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
+.ros-up-col {
+  flex: none;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ros .ros-up-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  border: 2px solid var(--wood);
+  border-radius: 9px;
+  padding: 5px 9px;
+  min-height: 50px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #f3e2ba, #e2caa0);
+  color: var(--ink);
+  font-family: var(--ros-body);
+  transition:
+    transform 0.08s,
+    box-shadow 0.08s,
+    border-color 0.08s;
+}
+.ros .ros-up-btn:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.28);
+  border-color: var(--gold);
+}
+.ros-up-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.ros-up-sprite {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ros-up-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.ros .ros-up-name {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #5a3a12;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+.ros-up-role {
+  font-family: var(--ros-body);
+  font-size: 0.64rem;
+  color: var(--ink-soft);
+}
+.ros .ros-up-cost {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  background: rgba(20, 12, 4, 0.1);
+  border: 1px solid rgba(107, 74, 22, 0.3);
+}
+.ros .ros-up-cost.short {
+  filter: grayscale(0.85);
+  opacity: 0.55;
+}
+.ros-rost-left {
+  color: #235c2a;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+} /* remaining count — dark green, bold, so it reads against the parchment */
+
+/* ---- The Merchant ---- */
+.ros-mch {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ros-mch-col {
+  flex: 1 1 200px;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.ros-mch-h {
+  font-family: var(--ros-title);
+  color: #6b3f12;
+  font-size: 1.05rem;
+}
+.ros-mch-h i {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  font-style: normal;
+}
+.ros-mch-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  border: 2px solid var(--wood);
+  border-radius: 8px;
+  padding: 8px 11px;
+  color: var(--ink);
+  background: linear-gradient(180deg, #f3e2ba, #e2caa0);
+  font-family: var(--ros-body);
+  font-size: 0.9rem;
+}
+.ros-mch-chip.sel {
+  box-shadow: inset 0 0 0 2px var(--gold);
+  border-color: var(--gold);
+}
+.ros-mch-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ros-mch-chip i {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  font-style: normal;
+}
+.ros-mch-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 6px;
+}
+.ros-mch-arrow {
+  font-size: 1.8rem;
+  color: #6b3f12;
+}
+.ros-mch-name {
+  flex: none;
+}
+.ros-mch-unit {
+  flex: none;
+  display: inline-flex;
+}
+.ros-mch-cost {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  text-align: center;
+  max-width: 150px;
+}
+.ros-mch-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+/* the number to upgrade or buy (the original's Upgrade / Confirm Purchase popups) */
+.ros-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.ros-count-btn {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 7px;
+  border: 2px solid var(--wood);
+  border-radius: 6px;
+  background: linear-gradient(180deg, #f3e2ba, #e2caa0);
+  color: var(--ink);
+  font-weight: 700;
+  cursor: pointer;
+}
+.ros-count-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ros-count-n {
+  min-width: 2.2em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: #6b3f12;
+}
+
+/* ---- Shared icon primitives (inline SVG + native collectible PNGs) ---- */
+.ros-svg {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.14em;
+  flex: none;
+}
+.ros-svg-img {
+  object-fit: contain;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.2em;
+}
+.ros-ico {
+  image-rendering: pixelated;
+  vertical-align: -0.28em;
+  flex: none;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+.ros-ico-emoji {
+  font-style: normal;
+}
+.ros-elite-img {
+  width: 19px;
+  height: 19px;
+  align-self: center;
+  flex: none;
+} /* Medal spoils-of-war icon = elite/budget-limited, matches the deploy roster */
+.ros-ability-star {
+  color: var(--gold);
+}
+
+/* ---- Unit preview header in the detail panel ---- */
+.ros-army-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.ros-army-portrait {
+  flex: none;
+  width: 66px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #efe0bd, #dcc79c);
+  border: 2px solid var(--wood);
+  border-radius: 9px;
+  box-shadow: inset 0 0 0 2px rgba(201, 154, 58, 0.35);
+}
+.ros-army-id {
+  flex: 1;
+  min-width: 0;
+}
+.ros-army-preview .ros-army-line1 {
+  gap: 8px;
+}
+.ros-army-preview .ros-army-cost {
+  margin-left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+.ros-stat .ros-svg {
+  color: #6b3f12;
+  font-size: 0.9rem;
+}
+.ros-army-kit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: center;
+}
+.ros-army-weapon {
+  margin: 2px 0 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  opacity: 0.85;
+}
+.ros-kit-part {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.ros-kit-part .ros-svg {
+  color: #6b3f12;
+  font-size: 0.95rem;
+}
+.ros-army-ability {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+.ros-army-ability .ros-svg {
+  margin-top: 2px;
+}
+.ros-reward-unit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ros-reward-head .ros-svg {
+  color: var(--gold);
+}
+.ros-camp-panel-head h3 .ros-svg,
+.ros-merchant-btn .ros-svg {
+  color: #6b3f12;
+}

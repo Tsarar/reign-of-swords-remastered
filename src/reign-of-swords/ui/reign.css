@@ -1,0 +1,17 @@
+/* ============================================================
+   Reign of Swords — all of the game's styles, one file per area (ui/styles/).
+   ORDER MATTERS: later files override earlier ones (the parchment skin restyles the base battle UI, and the
+   phone layouts at the end restyle everything), so add a rule to the file of its area and keep this order.
+   ============================================================ */
+@import "./styles/battle.css"; /* base battle UI: HUD, board, result, controls, briefing, fonts, bottom panel */
+@import "./styles/battle-skin.css"; /* the parchment / wood skin: frame, buttons, unit card, statuses, hints */
+@import "./styles/heraldry.css"; /* heraldry / banner editor */
+@import "./styles/deploy.css"; /* deployment tray + the skirmish battle picker */
+@import "./styles/shell.css"; /* main menu, generic screens, Field Manual, cutscenes, spoils, upgrade, Online */
+@import "./styles/world-map.css"; /* dev bar, world map, kingdom war plans, campaign hub */
+@import "./styles/army.css"; /* camp / army panel, upgrade tree, skill chips, Merchant, icons */
+@import "./styles/codex.css"; /* Story & Assets codex, mechanics reference, dialogue threads */
+@import "./styles/banners.css"; /* wave + turn banners, group crests, mid-battle dialogue */
+@import "./styles/mobile.css"; /* phones and short landscape screens: the full-screen battle */
+@import "./styles/medals.css"; /* raid Major-Victory tracker, medal rows and cards */
+@import "./styles/phone.css"; /* phone battle polish, phone menus, phone landscape */

@@ -1,0 +1,41 @@
+{
+  "name": "reign-of-swords-remastered",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "An unofficial fan remaster of Punch Entertainment's Reign of Swords Episode I & II (iPhone, 2008/2009), rebuilt from the original game data to play in the browser.",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "start": "vite --open",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --open",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint src/reign-of-swords",
+    "format": "prettier --write \"src/reign-of-swords/**/*.{js,jsx}\"",
+    "e2e:maps": "node tools/ros/e2e-maps.mjs"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@vitejs/plugin-react": "^6.0.5",
+    "@vitest/coverage-v8": "^5.0.3",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.13.0",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.9",
+    "vite": "^8.2.1",
+    "vitest": "^5.0.3"
+  }
+}
