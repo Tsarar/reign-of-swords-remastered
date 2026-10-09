@@ -2,6 +2,7 @@ import { tr } from "../../i18n/i18n.js";
 import { base } from "../battle-ui.jsx";
 import { HelpScreen } from "../shell/FieldManual.jsx";
 import { subName } from "../../data/shell-data.js";
+import { ReportBugLinks } from "../shell/ReportBug.jsx";
 
 // The battle's popovers. Each is a card over the battlefield; clicking outside a dismissable one closes it.
 
@@ -109,8 +110,9 @@ export function DebugCard({ text, copied, onCopy, onClose }) {
       <h2>🐞 {tr("Debug snapshot")}</h2>
       <p>
         {copied
-          ? tr("Copied to the clipboard — paste it into the chat with a few words about what looks wrong.")
-          : tr("Copy this text and paste it into the chat with a few words about what looks wrong.")}
+          ? tr("Copied to the clipboard — paste it into a bug report with a few words about what looks wrong:")
+          : tr("Copy this text and paste it into a bug report with a few words about what looks wrong:")}{" "}
+        <ReportBugLinks />
       </p>
       <textarea className="ros-dbg-text" readOnly value={text} onFocus={(e) => e.target.select()} />
       <div className="ros-over-btns">

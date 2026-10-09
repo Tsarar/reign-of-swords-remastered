@@ -137,7 +137,12 @@ describe("debug snapshot (🐞)", () => {
     expect(ctrl.debugDump).toHaveBeenCalled();
     const d = container.querySelector(".ros-dbg-card");
     expect(d.querySelector("textarea").value).toBe('{"turn":3,"units":7}');
-    expect(d.textContent).toContain("Copy this text and paste it");
+    expect(d.textContent).toContain("Copy this text and paste it into a bug report");
+    // …and where to send it
+    expect([...d.querySelectorAll("a")].map((a) => a.getAttribute("href"))).toEqual([
+      "https://github.com/Tsarar/reign-of-swords-remastered/issues",
+      "https://bit.ly/dmytro-linkedin",
+    ]);
     fireEvent.focus(d.querySelector("textarea"));
     fireEvent.click(btn("Copy")); // no clipboard → silently nothing
     expect(d.textContent).toContain("Copy this text");

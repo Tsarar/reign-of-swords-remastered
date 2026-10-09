@@ -530,11 +530,20 @@ export default {
   Mission: "Миссия",
   "pays the first win": "награда только за первую победу",
   "Loading…": "Загрузка…",
+  "GitHub Issues": "GitHub Issues",
+  "Report a bug": "Сообщить об ошибке",
+  "Found something wrong? Report it here:": "Нашли ошибку? Сообщите о ней:",
+  "the 🐞 snapshot — in a battle, press 🐞 in the top bar; it copies the battle's units, turn, recent AI moves and dice rolls":
+    "снимок 🐞 — в бою нажмите 🐞 на верхней панели: он скопирует отряды, ход, последние действия ИИ и броски кубиков",
+  screenshots: "скриншоты",
+  "what you did, what happened and what you expected": "что вы делали, что произошло и чего вы ожидали",
+  "if it is about faithfulness to the original game: what you remember of it, a video, or a reference to the code":
+    "если дело в верности оригиналу — что вы помните об оригинальной игре, видео или ссылку на код",
+  "Copied to the clipboard — paste it into a bug report with a few words about what looks wrong:":
+    "Скопировано в буфер обмена — вставьте в сообщение об ошибке и добавьте пару слов о том, что не так:",
+  "Copy this text and paste it into a bug report with a few words about what looks wrong:":
+    "Скопируйте этот текст и вставьте в сообщение об ошибке, добавив пару слов о том, что не так:",
   "Debug snapshot": "Отладочный снимок",
-  "Copied to the clipboard — paste it into the chat with a few words about what looks wrong.":
-    "Скопировано в буфер обмена — вставьте в чат и опишите в двух словах, что не так.",
-  "Copy this text and paste it into the chat with a few words about what looks wrong.":
-    "Скопируйте этот текст и вставьте в чат, описав в двух словах, что не так.",
   Copy: "Копировать",
   Debug: "Отладка",
   "Copy a snapshot of this battle (units, turn, recent AI moves) to send with a bug report":

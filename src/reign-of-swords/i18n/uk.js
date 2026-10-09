@@ -530,11 +530,20 @@ export default {
   Mission: "Місія",
   "pays the first win": "нагорода лише за першу перемогу",
   "Loading…": "Завантаження…",
+  "GitHub Issues": "GitHub Issues",
+  "Report a bug": "Повідомити про помилку",
+  "Found something wrong? Report it here:": "Знайшли помилку? Повідомте про неї:",
+  "the 🐞 snapshot — in a battle, press 🐞 in the top bar; it copies the battle's units, turn, recent AI moves and dice rolls":
+    "знімок 🐞 — у бою натисніть 🐞 на верхній панелі: він скопіює загони, хід, останні дії ШІ та кидки кубиків",
+  screenshots: "скриншоти",
+  "what you did, what happened and what you expected": "що ви робили, що сталося і чого ви очікували",
+  "if it is about faithfulness to the original game: what you remember of it, a video, or a reference to the code":
+    "якщо йдеться про вірність оригіналу — що ви пам'ятаєте про оригінальну гру, відео або посилання на код",
+  "Copied to the clipboard — paste it into a bug report with a few words about what looks wrong:":
+    "Скопійовано в буфер обміну — вставте в повідомлення про помилку й додайте кілька слів про те, що не так:",
+  "Copy this text and paste it into a bug report with a few words about what looks wrong:":
+    "Скопіюйте цей текст і вставте в повідомлення про помилку, додавши кілька слів про те, що не так:",
   "Debug snapshot": "Налагоджувальний знімок",
-  "Copied to the clipboard — paste it into the chat with a few words about what looks wrong.":
-    "Скопійовано в буфер обміну — вставте в чат і опишіть кількома словами, що не так.",
-  "Copy this text and paste it into the chat with a few words about what looks wrong.":
-    "Скопіюйте цей текст і вставте в чат, описавши кількома словами, що не так.",
   Copy: "Копіювати",
   Debug: "Налагодження",
   "Copy a snapshot of this battle (units, turn, recent AI moves) to send with a bug report":

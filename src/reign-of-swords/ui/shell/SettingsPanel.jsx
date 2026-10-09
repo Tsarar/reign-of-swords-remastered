@@ -3,6 +3,7 @@ import { useVolume, setVolume } from "../../util/volume.js";
 import { useGameOptions, setGameOption } from "../../util/options.js";
 import { TRANSFER_LIMITS } from "../../data/save-transfer.js";
 import { useState } from "react";
+import { ReportBugGroup } from "./ReportBug.jsx";
 
 // ARMY TRANSFER (ours — the originals are separate apps): export this episode's army and collectibles to a file, import
 // the other episode's within data/save-transfer.js's limits. `transfer` = { ep2, onExport, onImport }.
@@ -161,6 +162,7 @@ export function SettingsPanel({ onClose, musicMuted, sfxMuted, onToggleMusic, on
             </p>
           </div>
           {transfer && <ArmyTransfer transfer={transfer} />}
+          <ReportBugGroup />
         </div>
         <div className="ros-over-btns">
           <button className="btn btn-primary" onClick={onClose}>

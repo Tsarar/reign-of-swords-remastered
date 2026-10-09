@@ -926,6 +926,17 @@ describe("Settings panel", () => {
     click.mockRestore();
   });
 
+  it("Report a bug: where (GitHub Issues, LinkedIn) and what to attach — in the menu and in a battle", () => {
+    render(<SettingsPanel onClose={() => {}} musicMuted={false} sfxMuted={false} />);
+    expect(screen.getByText("Report a bug")).toBeTruthy();
+    const gh = screen.getByRole("link", { name: "GitHub Issues" });
+    expect(gh.getAttribute("href")).toBe("https://github.com/Tsarar/reign-of-swords-remastered/issues");
+    expect(gh.getAttribute("target")).toBe("_blank");
+    expect(screen.getByRole("link", { name: "LinkedIn" }).getAttribute("href")).toBe("https://bit.ly/dmytro-linkedin");
+    expect(screen.getByText(/the 🐞 snapshot/)).toBeTruthy();
+    expect(screen.getByText(/faithfulness to the original game/)).toBeTruthy();
+  });
+
   it("no Army transfer inside a battle (no transfer handlers)", () => {
     render(<SettingsPanel onClose={() => {}} musicMuted={false} sfxMuted={false} />);
     expect(screen.queryByText("Army transfer")).toBeNull();

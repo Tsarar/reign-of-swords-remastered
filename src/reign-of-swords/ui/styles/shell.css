@@ -980,3 +980,14 @@
   font-size: 0.85rem;
   font-weight: 600;
 }
+
+/* Report a bug (Settings, the 🐞 dialog): links in the parchment's ink */
+.ros-bug-links a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.ros-overlay .ros-settings-card .ros-bug-list {
+  margin: 4px 0 0;
+  padding-left: 18px;
+}
