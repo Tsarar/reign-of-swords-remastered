@@ -261,6 +261,9 @@ export default {
   "Password for this battle:": "Пароль цієї битви:",
   "Sign in (top of the page) to battle other players online — every move is shown live, with a clock for each turn.":
     "Увійдіть (угорі сторінки), щоб битися з іншими гравцями онлайн — кожен хід видно наживо, на хід дається час.",
+  "Online battles are not available on this build — play them on the website, in your browser:":
+    "У цій збірці онлайн-битви недоступні — грайте в них на сайті, просто в браузері:",
+  "Play online on the website": "Грати онлайн на сайті",
   "Online battles are not available on this build.": "Онлайн-битви недоступні в цій збірці.",
   "waiting for an opponent": "чекає на суперника",
   deploying: "розстановка",

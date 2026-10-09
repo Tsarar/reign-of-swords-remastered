@@ -981,6 +981,12 @@
   font-weight: 600;
 }
 
+/* Online Battles on a build without accounts: the way to the website */
+.ros-online-web {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
 /* Report a bug (Settings, the 🐞 dialog): links in the parchment's ink */
 .ros-bug-links a {
   color: inherit;

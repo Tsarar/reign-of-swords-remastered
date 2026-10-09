@@ -8,6 +8,11 @@ import * as net from "../../online/net.js";
 // Signed out (or a build without Supabase): how to get in, and the hot-seat mode instead.
 // The new battle's gold, Medals and first move offer the hot-seat setup's choices (ui/battle/HotseatSetup.jsx).
 const TURN_TIMES = [60, 120, 180, 300];
+// Where online battles are played when this build has no accounts (a copy of the game outside the website).
+export const ONLINE_ON_WEB = {
+  1: "https://dmytro-portfolio-website.vercel.app/games/reign-of-swords",
+  2: "https://dmytro-portfolio-website.vercel.app/games/reign-of-swords-2",
+};
 const BUDGETS = [1000, 1500, 2000, 2500, 3000, 4000, 5000, 7500, 10000];
 const MIN_BUDGET = 100,
   MAX_BUDGET = 50000,
@@ -138,11 +143,23 @@ export default function OnlineLobby({ episode, levels, onPlay, onHotseat, onBack
           </button>
         </div>
         <p className="ros-online-note">
-          {auth && auth.enabled
-            ? tr(
-                "Sign in (top of the page) to battle other players online — every move is shown live, with a clock for each turn.",
-              )
-            : tr("Online battles are not available on this build.")}
+          {auth && auth.enabled ? (
+            tr(
+              "Sign in (top of the page) to battle other players online — every move is shown live, with a clock for each turn.",
+            )
+          ) : (
+            <>
+              {tr("Online battles are not available on this build — play them on the website, in your browser:")}{" "}
+              <a
+                className="ros-online-web"
+                href={ONLINE_ON_WEB[episode === 2 ? 2 : 1]}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {tr("Play online on the website")}
+              </a>
+            </>
+          )}
         </p>
         <button className="btn btn-primary" onClick={onHotseat}>
           ⚔ {tr("Hot-seat — 2 players")}
