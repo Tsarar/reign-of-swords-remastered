@@ -175,6 +175,40 @@ Please include what you can:
   it, a video, or a reference to the code or data (for example a section of
   [`MECHANICS.md`](public/games/reign-of-swords/MECHANICS.md)).
 
+## Original game credits
+
+Reign of Swords and Reign of Swords Episode II were made at Punch Entertainment by these people, as the games'
+own About screens list them (also in the game: Main Menu → About).
+
+**Episode I** (© 2008 Punch Entertainment)
+
+- Creative Director: Steve Nix
+- Designers: Steve Nix, Nick Harrison
+- Assistant Designer: Kevin Messer
+- Lead Engineers: Kyle Poole, Thuy Pham
+- Engineers: Duong Nguyen, Quang Nguyen, Minh Dinh, Naoki Ogishi
+- Lead Artist: Forrest Schehl
+- Artists: Scott Watanabe, Durwin Au, Kevin Messer, Van Anh Le
+- QA: Edwin Chu, Minh Le, Thuy Au, Thuy Nguyen, Thu Cam, Nga Nguyen, Frank Kim, Andrew Banegas
+- Game Audio: Clean Cuts Music and Sound Design
+- Special Thanks: Tobin Lent, Martin Geiger, Mike Williams, Son Bui, Spencer Chi, Darin Roland
+
+**Episode II** (© 2009 Punch Entertainment)
+
+- Original Game Design: Steve Nix
+- Game Designers: Nick Harrison, Kevin Messer
+- Art Director: Forrest Schehl
+- Lead Artist: Durwin Au
+- Artists: Kevin Messer, Ha Cam, Nick Harrison
+- Engineering Manager: Quang Nguyen
+- Lead Engineer: Thuy Pham
+- Engineers: Christopher Dabney, Cuong Tran, Duong Nguyen, Hung Chu, Thanh Tran
+- QA Manager: Edwin Chu
+- QA Leads: Chien Tran, Andrew Banegas, Frank Kim
+- QA: Thuy Nguyen, Nga Nguyen, Luyen Bui, Trang Tran, Huyen Nguyen
+- Game Audio: Clean Cuts Music and Sound Design
+- Special Thanks: Tobin Lent, Martin Geiger, Hung Lai, Brian Tan
+
 ## Disclaimer
 
 This is a non-commercial fan project. It is not affiliated with, endorsed by or connected to Punch Entertainment.

@@ -713,6 +713,16 @@
 .ros-settings-group {
   margin: 12px 0;
 }
+/* About: the original game's credits (ui/shell/Credits.jsx) */
+.ros-credits-game {
+  margin: 0 0 6px;
+}
+.ros-credits-sec {
+  margin: 10px 0;
+}
+.ros-credits-sec .ros-settings-label {
+  margin-bottom: 2px;
+}
 .ros-settings-label {
   font-family: var(--ros-title);
   font-size: 0.95rem;

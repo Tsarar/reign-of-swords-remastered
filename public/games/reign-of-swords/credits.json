@@ -1,0 +1,87 @@
+{
+ "game": "Mobile Battles: Reign of Swords",
+ "version": "v1.0.48",
+ "copyright": "(c) 2008 Punch Entertainment.",
+ "sections": [
+  {
+   "title": "Creative Director",
+   "names": [
+    "Steve Nix"
+   ]
+  },
+  {
+   "title": "Designers",
+   "names": [
+    "Steve Nix",
+    "Nick Harrison"
+   ]
+  },
+  {
+   "title": "Assistant Designer",
+   "names": [
+    "Kevin Messer"
+   ]
+  },
+  {
+   "title": "Lead Engineers",
+   "names": [
+    "Kyle Poole",
+    "Thuy Pham"
+   ]
+  },
+  {
+   "title": "Engineers",
+   "names": [
+    "Duong Nguyen",
+    "Quang Nguyen",
+    "Minh Dinh",
+    "Naoki Ogishi"
+   ]
+  },
+  {
+   "title": "Lead Artist",
+   "names": [
+    "Forrest Schehl"
+   ]
+  },
+  {
+   "title": "Artists",
+   "names": [
+    "Scott Watanabe",
+    "Durwin Au",
+    "Kevin Messer",
+    "Van Anh Le"
+   ]
+  },
+  {
+   "title": "QA",
+   "names": [
+    "Edwin Chu",
+    "Minh Le",
+    "Thuy Au",
+    "Thuy Nguyen",
+    "Thu Cam",
+    "Nga Nguyen",
+    "Frank Kim",
+    "Andrew Banegas"
+   ]
+  },
+  {
+   "title": "Game Audio",
+   "names": [
+    "Clean Cuts Music and Sound Design"
+   ]
+  },
+  {
+   "title": "Special Thanks",
+   "names": [
+    "Tobin Lent",
+    "Martin Geiger",
+    "Mike Williams",
+    "Son Bui",
+    "Spencer Chi",
+    "Darin Roland"
+   ]
+  }
+ ]
+}

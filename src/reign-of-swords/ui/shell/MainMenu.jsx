@@ -1,7 +1,17 @@
 import { tr } from "../../i18n/i18n.js";
 
-// The title screen: the episode's logo over its splash art, and the five main entries.
-export default function MainMenu({ isEp2, dataBase, menuBg, onCampaign, onSkirmish, onHelp, onOnline, onSettings }) {
+// The title screen: the episode's logo over its splash art, and the main entries (About = the original's credits).
+export default function MainMenu({
+  isEp2,
+  dataBase,
+  menuBg,
+  onCampaign,
+  onSkirmish,
+  onHelp,
+  onOnline,
+  onSettings,
+  onAbout,
+}) {
   return (
     <div
       className={"ros-menu ros-menu-art" + (isEp2 ? " ros-menu-ep2" : "")}
@@ -28,6 +38,9 @@ export default function MainMenu({ isEp2, dataBase, menuBg, onCampaign, onSkirmi
         </button>
         <button className="btn" onClick={onSettings}>
           ⚙ {tr("Settings")}
+        </button>
+        <button className="btn" onClick={onAbout}>
+          {tr("About")}
         </button>
       </div>
       <p className="ros-menu-foot">

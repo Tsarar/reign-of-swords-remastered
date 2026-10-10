@@ -27,6 +27,7 @@ import { Heraldry } from "./shell/Heraldry.jsx";
 import { SettingsPanel } from "./shell/SettingsPanel.jsx";
 import DevBar from "./shell/DevBar.jsx";
 import MainMenu from "./shell/MainMenu.jsx";
+import Credits from "./shell/Credits.jsx";
 import WorldMap from "./shell/WorldMap.jsx";
 import { MissionPreview, RaidPreview } from "./shell/Briefings.jsx";
 import OnlineLobby from "./online/OnlineLobby.jsx";
@@ -86,6 +87,7 @@ export default function ReignShell({ assetBase = null }) {
   );
   const [screen, setScreen] = useState("menu");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false); // About: the original game's credits
   const [onlineMatch, setOnlineMatch] = useState(null); // the online battle open (its match id)
   const auth = useAuth();
   const [battleSel, setSel] = useState({ ki: 0, mi: 0 }); // the story mission being fought (kingdom, mission index)
@@ -333,8 +335,10 @@ export default function ReignShell({ assetBase = null }) {
           onHelp={() => setScreen("help")}
           onOnline={() => setScreen("online")}
           onSettings={() => setSettingsOpen(true)}
+          onAbout={() => setAboutOpen(true)}
         />
       )}
+      {aboutOpen && <Credits dataBase={dataBase} onClose={() => setAboutOpen(false)} />}
 
       {screen === "campaign" && (
         <div className="ros-worldwrap ros-campaign">

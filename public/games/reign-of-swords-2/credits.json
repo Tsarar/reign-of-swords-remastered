@@ -1,0 +1,101 @@
+{
+ "game": "Mobile Battles: Reign of Swords — Episode II",
+ "version": "v1.0.11",
+ "copyright": "(c) 2009 Punch Entertainment.",
+ "sections": [
+  {
+   "title": "Original Game Design",
+   "names": [
+    "Steve Nix"
+   ]
+  },
+  {
+   "title": "Game Designers",
+   "names": [
+    "Nick Harrison",
+    "Kevin Messer"
+   ]
+  },
+  {
+   "title": "Art Director",
+   "names": [
+    "Forrest Schehl"
+   ]
+  },
+  {
+   "title": "Lead Artist",
+   "names": [
+    "Durwin Au"
+   ]
+  },
+  {
+   "title": "Artists",
+   "names": [
+    "Kevin Messer",
+    "Ha Cam",
+    "Nick Harrison"
+   ]
+  },
+  {
+   "title": "Engineering Manager",
+   "names": [
+    "Quang Nguyen"
+   ]
+  },
+  {
+   "title": "Lead Engineer",
+   "names": [
+    "Thuy Pham"
+   ]
+  },
+  {
+   "title": "Engineers",
+   "names": [
+    "Christopher Dabney",
+    "Cuong Tran",
+    "Duong Nguyen",
+    "Hung Chu",
+    "Thanh Tran"
+   ]
+  },
+  {
+   "title": "QA Manager",
+   "names": [
+    "Edwin Chu"
+   ]
+  },
+  {
+   "title": "QA Leads",
+   "names": [
+    "Chien Tran",
+    "Andrew Banegas",
+    "Frank Kim"
+   ]
+  },
+  {
+   "title": "QA",
+   "names": [
+    "Thuy Nguyen",
+    "Nga Nguyen",
+    "Luyen Bui",
+    "Trang Tran",
+    "Huyen Nguyen"
+   ]
+  },
+  {
+   "title": "Game Audio",
+   "names": [
+    "Clean Cuts Music and Sound Design"
+   ]
+  },
+  {
+   "title": "Special Thanks",
+   "names": [
+    "Tobin Lent",
+    "Martin Geiger",
+    "Hung Lai",
+    "Brian Tan"
+   ]
+  }
+ ]
+}
