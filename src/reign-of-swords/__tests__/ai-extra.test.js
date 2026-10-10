@@ -622,3 +622,15 @@ describe("the shooter leash and ⚙ Realistic siege (Unit::isValidFormationTarge
     expect(g.ai._glValidTarget(melee, melee, farFrom(g, mPoint))).toBe(false);
   });
 });
+
+describe("after the move (createSortedTargetList once moved)", () => {
+  it("a moved melee unit strikes an adjacent foe; a moved Move-or-Shoot archer has nothing left to shoot", () => {
+    const g = blank(5410);
+    const a = openArea(g, 6, 3);
+    const foot = spawn(g, "footmen", "red", a.x, a.y);
+    const archer = spawn(g, "archers", "red", a.x + 3, a.y + 2);
+    const foe = spawn(g, "militiamen", "blue", a.x + 1, a.y);
+    expect(g.ai._aiTargetAfterMove(foot)).toBe(foe);
+    expect(g.ai._aiTargetAfterMove(archer)).toBe(null); // in bow range, but the bow is Move or Shoot
+  });
+});

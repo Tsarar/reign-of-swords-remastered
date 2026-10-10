@@ -193,3 +193,15 @@ g.doAttack(u, foe); settle(g);              // act, then run frames until it all
   `public/games/reign-of-swords/MECHANICS.md` for them.
 - Saves are in `localStorage` under `ros-*` keys: `ros-campaign-v1` (+ `-ep2`), `ros-army-v3`, `ros-spoils-v3`,
   `ros-heraldry-v1`, `ros-name-v1`, plus settings. Bump the version suffix if a save format changes.
+
+## Disclaimer
+
+This is a non-commercial fan project. It is not affiliated with, endorsed by or connected to Punch Entertainment.
+Reign of Swords, its names, characters, art, music and sounds belong to their respective owners.
+
+If you hold rights to Reign of Swords and want any of this material removed, open an
+[issue](https://github.com/Tsarar/reign-of-swords-remastered/issues) or message me on
+[LinkedIn](https://bit.ly/dmytro-linkedin), and it will be taken down.
+
+Built with AI: the code, the decoding of the original games' data and binaries, and the documentation were written
+together with Claude, Anthropic's AI model.

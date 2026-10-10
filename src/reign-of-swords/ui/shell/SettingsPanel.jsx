@@ -160,6 +160,20 @@ export function SettingsPanel({ onClose, musicMuted, sfxMuted, onToggleMusic, on
                 "Off — the original: an AI army's archers, musketeers and war engines only shoot at foes near the point their group is marching to. On: they shoot anything in range, so garrisons fire from their walls. Applies from the next battle.",
               )}
             </p>
+            <div className="ros-settings-row">
+              <button
+                className={"btn-run ros-settings-opt" + (options.autoCharge !== false ? " on" : "")}
+                aria-pressed={options.autoCharge !== false}
+                onClick={() => setGameOption({ autoCharge: options.autoCharge === false })}
+              >
+                {"⚡ " + tr(options.autoCharge !== false ? "Auto-charge: on" : "Auto-charge: off")}
+              </button>
+            </div>
+            <p className="ros-settings-note">
+              {tr(
+                "On: your riders charge whenever they gallop 2+ tiles in a straight line and then strike the foe ahead. Off — the original: they charge only when you tap the foe at the end of the lane, and the gallop and the strike are one action. The AI always charges as in the original. Online battles keep it on. Applies at once.",
+              )}
+            </p>
           </div>
           {transfer && <ArmyTransfer transfer={transfer} />}
           <ReportBugGroup />

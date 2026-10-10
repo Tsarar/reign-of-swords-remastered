@@ -282,7 +282,7 @@ export const ScriptMethods = {
         { tx, ty },
       ];
     this.game.centerOn(u.tx, u.ty, true);
-    this.game.moveUnit(u, path, () => this.exec(next, opts), true);
+    this.game.moveUnit(u, path, () => this.exec(next, opts), true, false); // a scripted move never charges
     return true;
   },
   // The React overlay dismissed a scripted line: continue a paused staging chain.

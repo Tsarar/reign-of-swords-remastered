@@ -228,9 +228,13 @@ function SelectedUnit({ u, state, ctrl }) {
                   "No charge — the gallop used up the movement: the whole lane, the foe's tile included, must fit within its {n} movement. A strike now is an ordinary blow.",
                   { n: u.chargeMove },
                 )
-              : tr(
-                  "Charge: gallop 2+ tiles in a straight line, then strike the next tile — the lane, the foe's tile included, must fit within its movement.",
-                )}
+              : u.autoCharge === false
+                ? tr(
+                    "Charge: press ⚡ Charge, then tap a highlighted foe — the rider gallops 2+ tiles in a straight line and strikes at once. A tap on a foe without it, or a gallop you make by hand, is an ordinary blow.",
+                  )
+                : tr(
+                    "Charge: gallop 2+ tiles in a straight line, then strike the next tile — the lane, the foe's tile included, must fit within its movement.",
+                  )}
         </div>
       ) : u.ability && !u.retribution ? (
         <div className="ros-charge">
@@ -239,6 +243,20 @@ function SelectedUnit({ u, state, ctrl }) {
       ) : descFor(u) ? (
         <div className="ros-charge">{tr(descFor(u))}</div>
       ) : null}
+      {u.autoCharge === false && (u.chargeOffer || u.chargeMode) && (
+        <div className="ros-shift">
+          <button
+            className={"btn-run ros-shift-btn" + (u.chargeMode ? " on" : "")}
+            aria-pressed={!!u.chargeMode}
+            onClick={() => ctrl && ctrl.toggleCharge()}
+          >
+            <SkIco n="skill_charge" /> <b>{tr("⚡ Charge")}</b> —{" "}
+            {u.chargeMode
+              ? tr("tap a highlighted foe; press again to cancel")
+              : tr("gallop at a foe and strike: +30, no counter-attack")}
+          </button>
+        </div>
+      )}
       {u.shapeshift && (
         <div className="ros-shift">
           <span>

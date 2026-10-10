@@ -517,6 +517,13 @@ export default {
   "Effects volume": "Громкость эффектов",
   "Music volume": "Громкость музыки",
   Gameplay: "Игровой процесс",
+  "Auto-charge: on": "Авторазгон: вкл",
+  "Auto-charge: off": "Авторазгон: выкл",
+  "On: your riders charge whenever they gallop 2+ tiles in a straight line and then strike the foe ahead. Off — the original: they charge only when you tap the foe at the end of the lane, and the gallop and the strike are one action. The AI always charges as in the original. Online battles keep it on. Applies at once.": "Вкл: ваши всадники идут в разгон всякий раз, когда проскачут 2+ клетки по прямой и затем ударят врага впереди. Выкл — как в оригинале: разгон только когда вы касаетесь врага в конце полосы, и скачок с ударом — одно действие. ИИ всегда разгоняется как в оригинале. В онлайн-битвах всегда вкл. Действует сразу.",
+  "Charge: press ⚡ Charge, then tap a highlighted foe — the rider gallops 2+ tiles in a straight line and strikes at once. A tap on a foe without it, or a gallop you make by hand, is an ordinary blow.": "Разгон: нажмите ⚡ Разгон и коснитесь подсвеченного врага — всадник проскачет 2+ клетки по прямой и сразу ударит. Касание врага без кнопки или скачок вручную — обычный удар.",
+  "⚡ Charge": "⚡ Разгон",
+  "tap a highlighted foe; press again to cancel": "коснитесь подсвеченного врага; нажмите ещё раз, чтобы отменить",
+  "gallop at a foe and strike: +30, no counter-attack": "скачок на врага и удар: +30, без ответного удара",
   "Realistic siege: off": "Реалистичная осада: выкл",
   "Realistic siege: on": "Реалистичная осада: вкл",
   "Off — the original: an AI army's archers, musketeers and war engines only shoot at foes near the point their group is marching to. On: they shoot anything in range, so garrisons fire from their walls. Applies from the next battle.":

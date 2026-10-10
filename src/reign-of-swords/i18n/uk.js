@@ -517,6 +517,13 @@ export default {
   "Effects volume": "Гучність ефектів",
   "Music volume": "Гучність музики",
   Gameplay: "Ігровий процес",
+  "Auto-charge: on": "Авторозгін: увімк",
+  "Auto-charge: off": "Авторозгін: вимк",
+  "On: your riders charge whenever they gallop 2+ tiles in a straight line and then strike the foe ahead. Off — the original: they charge only when you tap the foe at the end of the lane, and the gallop and the strike are one action. The AI always charges as in the original. Online battles keep it on. Applies at once.": "Увімк: ваші вершники йдуть у розгін щоразу, коли проскачуть 2+ клітинки по прямій і потім ударять ворога попереду. Вимк — як в оригіналі: розгін лише коли ви торкаєтеся ворога в кінці смуги, і скік з ударом — одна дія. ШІ завжди розганяється як в оригіналі. В онлайн-битвах завжди увімк. Діє одразу.",
+  "Charge: press ⚡ Charge, then tap a highlighted foe — the rider gallops 2+ tiles in a straight line and strikes at once. A tap on a foe without it, or a gallop you make by hand, is an ordinary blow.": "Розгін: натисніть ⚡ Розгін і торкніться підсвіченого ворога — вершник проскаче 2+ клітинки по прямій і одразу вдарить. Дотик до ворога без кнопки або скік уручну — звичайний удар.",
+  "⚡ Charge": "⚡ Розгін",
+  "tap a highlighted foe; press again to cancel": "торкніться підсвіченого ворога; натисніть ще раз, щоб скасувати",
+  "gallop at a foe and strike: +30, no counter-attack": "скік на ворога й удар: +30, без відповідного удару",
   "Realistic siege: off": "Реалістична облога: вимк",
   "Realistic siege: on": "Реалістична облога: увімк",
   "Off — the original: an AI army's archers, musketeers and war engines only shoot at foes near the point their group is marching to. On: they shoot anything in range, so garrisons fire from their walls. Applies from the next battle.":

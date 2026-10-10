@@ -947,11 +947,24 @@ describe("Settings panel", () => {
     render(<SettingsPanel onClose={() => {}} musicMuted={false} sfxMuted={false} />);
     const off = btn(/Realistic siege: off/);
     expect(off.getAttribute("aria-pressed")).toBe("false");
-    expect(screen.getByText(/Off — the original/)).toBeTruthy();
+    expect(screen.getByText(/Off — the original: an AI army/)).toBeTruthy();
     fireEvent.click(off);
     expect(getGameOptions().realisticSiege).toBe(true);
     expect(btn(/Realistic siege: on/).getAttribute("aria-pressed")).toBe("true");
     fireEvent.click(btn(/Realistic siege: on/));
     expect(getGameOptions().realisticSiege).toBe(false);
+  });
+
+  it("toggles ⚡ Auto-charge (on by default), saved for the next battle", () => {
+    setGameOption({ autoCharge: true });
+    render(<SettingsPanel onClose={() => {}} musicMuted={false} sfxMuted={false} />);
+    const on = btn(/Auto-charge: on/);
+    expect(on.getAttribute("aria-pressed")).toBe("true");
+    expect(screen.getByText(/The AI always charges as in the original/)).toBeTruthy();
+    fireEvent.click(on);
+    expect(getGameOptions().autoCharge).toBe(false);
+    expect(btn(/Auto-charge: off/).getAttribute("aria-pressed")).toBe("false");
+    fireEvent.click(btn(/Auto-charge: off/));
+    expect(getGameOptions().autoCharge).toBe(true);
   });
 });

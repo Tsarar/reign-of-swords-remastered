@@ -8,9 +8,10 @@ beforeAll(() => loadEpisode(2));
 afterEach(() => setGameOption({ ...OPTION_DEFAULTS }));
 
 describe("gameplay options", () => {
-  it("default to the original game", () => {
-    expect(OPTION_DEFAULTS).toEqual({ realisticSiege: false });
+  it("default to the original game — but ⚡ Auto-charge, on by default (user decision)", () => {
+    expect(OPTION_DEFAULTS).toEqual({ realisticSiege: false, autoCharge: true });
     expect(getGameOptions().realisticSiege).toBe(false);
+    expect(getGameOptions().autoCharge).toBe(true);
   });
 
   it("are saved to localStorage and announced to subscribers", () => {

@@ -808,6 +808,12 @@ export class CombatMethods {
     return this._moveSfxN % 2 ? a : b;
   }
   estimateDamage(attacker, defender) {
+    // ⚡ Charge armed: the blow from the launch tile at the end of the gallop, as a charge
+    const launch = this.chargeMode && this._chargeSpots && this._chargeSpots.get(defender);
+    if (launch) {
+      const atLaunch = Object.assign(Object.create(Object.getPrototypeOf(attacker)), attacker, launch);
+      return this.hitForecast(atLaunch, defender, defender.tx, defender.ty, { charge: true });
+    }
     return this.hitForecast(attacker, defender, defender.tx, defender.ty, {
       charge: this._wouldCharge(attacker, defender),
     });

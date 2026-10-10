@@ -24,9 +24,11 @@ import { tileType } from "../rules/terrain.js";
 const SCORE = {
   NONE: -1e4, // nothing chosen yet
   RANGED_MOVE: 1e4, // + 1000 per tile from the nearest foe + the support tie-break
-  ATTACK: 1e6, // + 100 × damage ratio (a blast: + 10 × its coverage)
+  ATTACK: 1e6, // + 100 × damage ratio
   CHARGE: 1e6 + 5e5, // + 100 × the summed ratio of every unit the ride strikes
 };
+// A score in the CHARGE band (well clear of any attack's ratio and of the Autopilot's risk adjustment).
+const isChargeScore = (score) => score >= (SCORE.ATTACK + SCORE.CHARGE) / 2;
 
 // Area-attack blast shapes for the AI's scoring (_aiAreaScore): [dx, dy, damage share] around the aim tile. The
 // shares are the real startAreaAttack table (BLAST_SHARE): Fireball 100 + 60 cross (also the catapult's Barrage
@@ -261,7 +263,7 @@ export class AiMethods {
     }
     this.game.reach = reach;
     this._aiPanThen((u.tx + best.tx) / 2, (u.ty + best.ty) / 2, () =>
-      this.game.moveUnit(u, this.game.pathTo(reach, best.tx, best.ty), () => {
+      this._aiMove(u, this.game.pathTo(reach, best.tx, best.ty), () => {
         u.acted = true;
         this.game.aiDelay = 0.25;
         this.game._emit();
@@ -334,7 +336,7 @@ export class AiMethods {
     }
     this.game.reach = reach;
     this._aiPanThen((u.tx + best.tx) / 2, (u.ty + best.ty) / 2, () =>
-      this.game.moveUnit(u, this.game.pathTo(reach, best.tx, best.ty), () => {
+      this._aiMove(u, this.game.pathTo(reach, best.tx, best.ty), () => {
         u.acted = true;
         this.game.aiDelay = 0.25;
         this.game._emit();
@@ -428,7 +430,7 @@ export class AiMethods {
     if (standoff) {
       this.game.reach = reach;
       this._aiPanThen((u.tx + standoff.tx) / 2, (u.ty + standoff.ty) / 2, () =>
-        this.game.moveUnit(u, this.game.pathTo(reach, standoff.tx, standoff.ty), () => {
+        this._aiMove(u, this.game.pathTo(reach, standoff.tx, standoff.ty), () => {
           const area = u.dead ? null : this._aiBestArea(u);
           if (area) this._aiCast(u, area);
           else {
@@ -467,7 +469,7 @@ export class AiMethods {
         if (!this._priestPray(u, enemies, finish, true)) finish(); // neither: the driver's own Shield
       };
       this._aiPanThen((u.tx + priestPlan.tx) / 2, (u.ty + priestPlan.ty) / 2, () =>
-        this.game.moveUnit(u, this.game.pathTo(reach, priestPlan.tx, priestPlan.ty), land),
+        this._aiMove(u, this.game.pathTo(reach, priestPlan.tx, priestPlan.ty), land),
       );
       return true;
     }
@@ -518,7 +520,7 @@ export class AiMethods {
       };
       const healMoves = hSpot.tx !== u.tx || hSpot.ty !== u.ty;
       this._aiPanThen((u.tx + hTgt.tx) / 2, (u.ty + hTgt.ty) / 2, () => {
-        if (healMoves) this.game.moveUnit(u, this.game.pathTo(reach, hSpot.tx, hSpot.ty), doHeal);
+        if (healMoves) this._aiMove(u, this.game.pathTo(reach, hSpot.tx, hSpot.ty), doHeal);
         else doHeal();
       });
       return true;
@@ -784,7 +786,7 @@ export class AiMethods {
     if (!best) return false;
     this.game.reach = reach;
     this._aiPanThen((u.tx + best.tx) / 2, (u.ty + best.ty) / 2, () =>
-      this.game.moveUnit(u, this.game.pathTo(reach, best.tx, best.ty), () => {
+      this._aiMove(u, this.game.pathTo(reach, best.tx, best.ty), () => {
         const engine = u.dead ? null : this.game._repairTargetFor(u);
         if (!engine) {
           u.acted = true;
@@ -949,7 +951,7 @@ export class AiMethods {
       if (plan.tx === u.tx && plan.ty === u.ty) this._aiPanThen(u.tx, u.ty, boom);
       else
         this._aiPanThen((u.tx + plan.tx) / 2, (u.ty + plan.ty) / 2, () =>
-          this.game.moveUnit(u, this.game.pathTo(reach, plan.tx, plan.ty), boom),
+          this._aiMove(u, this.game.pathTo(reach, plan.tx, plan.ty), boom),
         );
       return true;
     }
@@ -986,7 +988,13 @@ export class AiMethods {
       splash = !!u.T.splash;
     // Unit::isInBattleRange (iOS Ep2 @0x7af10) — see _battleRange: close enough that positioning for the shot matters.
     const rangedBattle = u.T.harasser && foeNow <= this._battleRange(u);
-    const plan = { bestSpot: { tx: u.tx, ty: u.ty }, bestTgt: null, bestScore: SCORE.NONE, bestRanged: false };
+    const plan = {
+      bestSpot: { tx: u.tx, ty: u.ty },
+      bestTgt: null,
+      bestScore: SCORE.NONE,
+      bestRanged: false,
+      bestCharge: false,
+    };
     // everything the choice below needs about this unit's turn
     const turn = {
       nearest,
@@ -1025,6 +1033,7 @@ export class AiMethods {
             plan.bestScore = score;
             plan.bestSpot = spot;
             plan.bestTgt = e;
+            plan.bestCharge = isChargeScore(score); // the Charge action (state 13): its gallop charges
           }
         }
       } else {
@@ -1058,28 +1067,29 @@ export class AiMethods {
 
   // ATTACK — Unit::determineBestAttack (iOS Ep2 @0x7a672): every attack is scored with calcDamageRatio
   // (@0x70054, see _aiDamageRatio) — the value-weighted damage it deals minus the value-weighted blow it takes
-  // back — and the best one above −3000 is taken (a forbidden trade scores −10000). A charge from this tile
-  // is scored as a charge (+30), so a charger naturally prefers its run-up tiles. Returns the score of striking `e`
-  // from `s`, or null when that attack isn't allowed.
+  // back — and the best one above −3000 is taken (a forbidden trade scores −10000). Before it, a charger's own
+  // Charge action (state 13) is weighed. Returns the score of striking `e` from `s`, or null when that attack isn't
+  // allowed.
   _aiAttackScore(u, spot, e, plan, turn, atStart) {
-    const { order, ranged, splash, reach, foeTeam } = turn;
+    const { order, ranged, splash, reach } = turn;
     const dToE = manhattan(e, spot);
-    const runX = spot.tx - u.tx,
-      runY = spot.ty - u.ty,
-      runAbsX = Math.abs(runX),
-      runAbsY = Math.abs(runY);
-    const runUp = Math.max(runAbsX, runAbsY) >= 3 && (runX === 0 || runY === 0 || runAbsX === runAbsY);
-    const chargeHere = !!(
-      u.T.hasCharge &&
-      !u.slowed &&
-      (this.game._chargeReaches(u, spot.tx, spot.ty, e) ||
-        (this.game._isFoot(e) && Math.max(Math.abs(e.tx - spot.tx), Math.abs(e.ty - spot.ty)) === 1 && runUp))
-    );
     if (!this._glValidTarget(u, spot, e)) return null; // Unit::isValidFormationTarget (group leash)
     // determineBestAttack (@0x7a9b2): a grouped unit strikes in melee only from a tile within half its move of
     // its group move order (the formation slot) — the line keeps its shape.
     if (order && dToE === 1 && !atStart && manhattan(spot, order) > Math.floor(this.game.moveOf(u) / 2)) return null;
-    const ratio = this._aiDamageRatio(u, spot, e, chargeHere);
+    // CHARGE — aiConsiderAction state 13 (tried first for a charger) on createChargeTargetList (@0x70ba4): a
+    // charge lane is scored by the SUM of the attack ratio of every unit it strikes on the ride (see
+    // _aiChargeScore); the best lane scoring > 0 is charged, ahead of any ordinary attack. It is the AI's only
+    // charge — the original's rule, whatever ⚡ Auto-charge says (that setting is the player's): Unit::charge
+    // (@0x6bfe6) runs for the Charge action alone.
+    if (u.T.hasCharge && !u.slowed && this.game._chargeReaches(u, spot.tx, spot.ty, e)) {
+      const chargeScore = this._aiChargeScore(u, spot, e, reach);
+      if (chargeScore > 0) return SCORE.CHARGE + chargeScore * 100;
+    }
+    // an ordinary attack: the foe in the weapon's reach from that tile (Move or Shoot weapons are out once moved)
+    const movedHere = !atStart || this.game._movedThisTurn(u);
+    if (!this.game._inWeaponRange(u, dToE, movedHere) || this.game._weaponUselessVs(u, e, dToE)) return null;
+    const ratio = this._aiDamageRatio(u, spot, e, false);
     if (ratio <= -3000) return null;
     let score = SCORE.ATTACK + ratio * 100;
     if (ranged)
@@ -1088,22 +1098,10 @@ export class AiMethods {
     // with the higher getSupportThreatRatio (both below one ratio step of 100).
     else if (dToE === 1 && !splash)
       score += atStart ? 99 : 0.09 * this._supportTie(u, spot, plan.reachCache || (plan.reachCache = new Map()));
-    if (splash && !u.T.canLightning) {
-      // SIEGE/blast (case 5 / I()): score the cross-blast's coverage — enemies caught count +, its OWN
-      let coverage = 0; // side counts −×3 (decompiled I(): the blast DOES hit allies, so the AI avoids aiming onto them)
-      for (const x of this.game.units) {
-        if (x.dead || manhattan(x, e) > 1 || (Math.abs(x.tx - e.tx) === 1 && Math.abs(x.ty - e.ty) === 1)) continue;
-        coverage += (x.team === foeTeam ? 1 : -3) * this._aiValue(x) * x.hp;
-      }
-      score = SCORE.ATTACK + coverage * 10;
-    }
-    // CHARGE — aiConsiderAction state 13 (tried first for a charger) on createChargeTargetList (@0x70ba4): a
-    // charge lane is scored by the SUM of the attack ratio of every unit it strikes on the ride (see
-    // _aiChargeScore); the best lane scoring > 0 is charged, ahead of any ordinary attack.
-    if (u.T.hasCharge && !u.slowed && this.game._chargeReaches(u, spot.tx, spot.ty, e)) {
-      const chargeScore = this._aiChargeScore(u, spot, e, reach);
-      if (chargeScore > 0) score = SCORE.CHARGE + chargeScore * 100;
-    }
+    // (A catapult's ordinary attack is scored like any other: determineBestAttack (iOS Ep2 @0x7a672) calls only
+    // calcDamageRatio, whose special branch is the Trebuchet's and the Cannon's (unit type 24/25 @0x70106). Its blast's
+    // own coverage — foes +, its own side −3× — is judged only by the area attack before it moves, state 10's
+    // totalAreaAttackDamage, see _aiBestArea.)
     return score;
   }
 
@@ -1207,6 +1205,7 @@ export class AiMethods {
   _aiCarryOut(u, plan, turn) {
     const { reach, wizMove } = turn;
     let { bestSpot, bestTgt } = plan;
+    const chargeMove = !!(plan.bestCharge && bestTgt); // the gallop of the AI's Charge action (state 13)
     const garrison = this._garrisonOf(u);
     // a garrison steps out of its fort only to strike (one tile, see _aiLeashedStops); with nothing to strike a move
     // stays inside — one that is out goes back in (the nearest fort tile it can reach)
@@ -1246,6 +1245,16 @@ export class AiMethods {
             return;
           }
         }
+        // Moved, and the planned strike is gone (none was planned, or its target fell or is out of reach): the chooser
+        // runs again from the new tile and createSortedTargetList may find a foe there — one the move revealed, or one
+        // the formation rule ruled out before it moved (see _aiTargetAfterMove).
+        if (moves && !u.dead && u._ambushedTurn !== this.game.turn && !u.T.mountedArcher && !turn.noAttack) {
+          const target = this._aiTargetAfterMove(u);
+          if (target) {
+            this.doAttackAI(u, target);
+            return;
+          }
+        }
         // A unit that HOLDS (didn't move, nothing to strike) shows nothing, so it gets no dwell — otherwise a garrison
         // of idle units adds 0.25 s of dead air each to the enemy's turn.
         u.acted = true;
@@ -1258,7 +1267,7 @@ export class AiMethods {
       finishAi();
     };
     const moveThenAct = () => {
-      if (moves) this.game.moveUnit(u, this.game.pathTo(reach, bestSpot.tx, bestSpot.ty), after);
+      if (moves) this._aiMove(u, this.game.pathTo(reach, bestSpot.tx, bestSpot.ty), after, chargeMove);
       else after();
     };
     const begin = () => {
@@ -1324,6 +1333,12 @@ export class AiMethods {
 
   // `onDone` (optional): a continuation run after the blow resolves instead of ending the unit's turn — used by
   // the Shoot-and-Move strafing run to chain another reposition+shot.
+  // Every AI move goes through here: it charges only when it is the gallop of the AI's own Charge action (`charge`),
+  // never by ⚡ Auto-charge — the player's setting (engine/input moveUnit / _judgeChargeRun).
+  _aiMove(u, path, done, charge = false) {
+    this.game.moveUnit(u, path, done, undefined, !!charge);
+  }
+
   doAttackAI(attacker, defender, onDone) {
     // FEAR: an AI unit striking a Griffon / Bear must pass the same courage check the player's units do.
     if (this.game._fearCheck(attacker, defender, () => this._aiActDone(attacker, onDone))) return;
@@ -1420,6 +1435,26 @@ export class AiMethods {
   // weighted (100 − deviation%) and each of its 8 neighbours deviation% / 8, summing damage × weight × value for every
   // FOE there (its own units are not counted), / 256 — no counter, no kill bonus. (The ×3…÷4 distance-to-point
   // factor in the binary is gated on GameScreen+0x2ac, the "AI plays the human side" mode, so the enemy never uses it.)
+  // createSortedTargetList (iOS Ep2 @0x7ac98) for a unit that has MOVED: the foes it can still strike from where it
+  // stands (Move or Shoot weapons are out, melee reaches only an adjacent foe — targetsFrom with `moved`), each judged
+  // by calcDamageRatio; the best above −3000 is struck. isValidFormationTarget (@0x66108) lets a moved unit strike an
+  // adjacent foe whatever its group's point; any other foe must lie within 8 of that point.
+  _aiTargetAfterMove(u) {
+    let best = null,
+      bestRatio = -3000;
+    for (const e of this.game.targetsFrom(u, u.tx, u.ty, true)) {
+      const dist = manhattan(e, u);
+      if (this.game._weaponUselessVs(u, e, dist)) continue;
+      if (dist !== 1 && !this._glValidTarget(u, u, e)) continue;
+      const ratio = this._aiDamageRatio(u, u, e, this.game._wouldCharge(u, e));
+      if (ratio > bestRatio) {
+        bestRatio = ratio;
+        best = e;
+      }
+    }
+    return best;
+  }
+
   _aiDamageRatio(u, spot, e, charge) {
     const clone = (o, extra) => Object.assign(Object.create(Object.getPrototypeOf(o)), o, extra);
     const attackerAt = clone(u, { tx: spot.tx, ty: spot.ty });
@@ -1971,7 +2006,7 @@ export class AiMethods {
       if (!best || (best.tx === u.tx && best.ty === u.ty)) return finish();
       this.game.reach = reach;
       this._aiPanThen((u.tx + best.tx) / 2, (u.ty + best.ty) / 2, () =>
-        this.game.moveUnit(u, this.game.pathTo(reach, best.tx, best.ty), finish),
+        this._aiMove(u, this.game.pathTo(reach, best.tx, best.ty), finish),
       );
     };
     this._aiPanThen((u.tx + target.tx) / 2, (u.ty + target.ty) / 2, () => this.doAttackAI(u, target, ride));
@@ -2241,7 +2276,7 @@ export class AiMethods {
       if (!chosenRide) return then();
       this.game.reach = chosenRide.reach;
       this._aiPanThen((u.tx + chosenRide.tx) / 2, (u.ty + chosenRide.ty) / 2, () =>
-        this.game.moveUnit(u, this.game.pathTo(chosenRide.reach, chosenRide.tx, chosenRide.ty), then),
+        this._aiMove(u, this.game.pathTo(chosenRide.reach, chosenRide.tx, chosenRide.ty), then),
       );
     };
     if (pickRide()) {

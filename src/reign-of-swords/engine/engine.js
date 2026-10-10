@@ -911,6 +911,13 @@ class Game {
     this._emit();
   }
 
+  // ⚡ Auto-charge (⚙ Settings; engine/input _judgeChargeRun) is read LIVE: it shapes only a player's own moves (the AI
+  // never uses it), so a change applies at once, mid-battle too. An online battle always plays it on, the default —
+  // both devices replay the same moves and must agree.
+  _autoChargeOn() {
+    return this.online ? true : getGameOptions().autoCharge !== false;
+  }
+
   selectMission(i) {
     if (i < 0 || i >= MISSIONS.length) return;
     this.mission = MISSIONS[i];
@@ -1072,6 +1079,9 @@ class Game {
       formationAllies: unit.T.formation ? this.formationAllies(unit) : 0, // live Formation cover
       statuses: this._statusesOf(unit), // active buff/debuff effects, with descriptions
       charge: unit.T.hasCharge ? this._chargeState(unit) : null, // idle / ready / short (run-up used the movement)
+      autoCharge: this._autoChargeOn(), // off: the ⚡ Charge button charges (the card's hint says so)
+      chargeOffer: !this._autoChargeOn() && this.chargeTargets(unit).length > 0, // the ⚡ Charge button is offered
+      chargeMode: !!this.chargeMode && this.selected === unit, // …and pressed
       chargeMove: unit.T.hasCharge ? this.moveOf(unit) : 0,
     };
   }
@@ -1244,6 +1254,7 @@ export async function mountReign(container, { base, spriteBase, onState, muted, 
     setSpell: (sp) => game.setSpell(sp),
     invokeRetribution: () => game.invokeRetribution(),
     invokeShield: () => game.invokeShield(),
+    toggleCharge: () => game.toggleCharge(), // ⚡ Charge (Auto-charge off): arm / disarm the Charge action
     confirmSkip: () => game.confirmSkip(), // "end this unit's turn without striking?" — yes
     cancelSkip: () => game.cancelSkip(), // ...no, go back and let it attack
     casualtyReport: () => game.casualtyReport(),

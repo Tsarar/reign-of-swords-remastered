@@ -320,11 +320,11 @@ value, cmd]`), 6 tile reached `[x, y, cmd]` / Ep2 `[x, y, counter, count, team, 
 - **March** — path = `Map::calcShortestPath(centre → target, leader)` @0x3b470; NEXT = the path point the group's
   pace reaches (min move over members; druids count 10); a formation width from the group size; each member takes a
   SLOT from the sixteen offset tables C.142–C.157 (`GroupLogic::getGroupPositionOffset` @0x38534 — facing = NEXT −
-  centre, horizontal / vertical / diagonal layouts); `GroupLogic::getMoveOrder` @0x38794 = NEXT + offset. A group is "arrived"
-  within 2 of its target.
+  centre, horizontal / vertical / diagonal layouts); `GroupLogic::getMoveOrder` @0x38794 = NEXT + offset. There is no "arrived" state: a group keeps re-forming on
+  NEXT each round.
 - **Release** — `applyDamage` sets group flags 0x50/0x51; a HOLD group hit one round and not the next drops to mode 0
-  (flag 0x52 chain at the top of `updateGroup`). An advancing group drops its path once an enemy is within
-  min(pace, 4) of its centre and then fights by the unit rules.
+  (flag 0x52 chain at the top of `updateGroup`). (The "drop the path once an enemy is within min(pace, 4)" rule
+  touches only a scripted static path, which no record sets — it never fires.)
 - **Per-unit AI** — `Unit::aiConsiderAction` @0x7bb1c switches on the unit's PENDING ACTION id (unit+0x2a8, written by
   `prepareAction`/`_executeAction`/`cleanUpAction`), not on a state; values 8/9/default reach the generic path at
   0x7d4ea: closest enemy (`Unit::getClosestEnemy` @0x65ef8) → group order → `createChargeTargetList` (charge at
@@ -352,8 +352,13 @@ value, cmd]`), 6 tile reached `[x, y, cmd]` / Ep2 `[x, y, counter, count, team, 
 - **Data check** — Marsur 2 (5307) flags the musketeers, cannons and hero to HOLD and leaves the militia block to
   advance in formation; Bordavia 1 (5309) flags every group, so the pike block holds the gate. Fields of Vuldyne's foes
   sit on no markers and simply advance.
-- **Ours, not the original's**: the fine per-tile scoring when a unit weighs equally good tiles (the original's
-  `Unit::checkLocation` @0x6967c was not ported line by line). Formation ranks and widths (`GroupLogic::updateGroup`),
+- **Ours, not the original's**: the order the choice is made in. The original first asks from where the unit
+  stands (`createSortedTargetList`), else moves and asks again from where it lands; here one pass weighs every tile
+  it can reach, with the same scores (`calcDamageRatio`; a grouped melee unit's attack tile within half its move of
+  its slot; Move-or-Shoot weapons out once moved) — so the choices match, and only the tie-break between two equally
+  good options may fall differently. After a move the unit still looks again from where it stands, as in the
+  original: a foe the move brought next to it (through a portal, or one its slot rule ruled out before) is struck.
+  The reachable-tile list (`createMoveDestinations` / `Unit::checkLocation` @0x6967c), formation ranks and widths (`GroupLogic::updateGroup`),
   the movers (`getBestMoveLocation` and its Ranged / Horse Bowmen / Charge / Priest / Wizard variants), the Wizard's
   spell choice and the absence of any retreat follow the binary. The original's tactics for the PLAYER's deployment groups (Tactics Path / Set Tactics,
   strings 98–100 and 106–107: "Advance to Destination", "Defend Destination", "Hold in Reserve", "Hold Turns";
@@ -514,11 +519,11 @@ value, cmd]`), 6 tile reached `[x, y, cmd]` / Ep2 `[x, y, counter, count, team, 
   portals, waves, triggered spawns and lines; mission types and rewards; the campaign structure and unlock graph;
   dialogue text, speakers and portraits; team heraldry bytes, tinctures, charges and frames; the group AI of §7; every
   sound id of §9 and every effect strip of §10; the tutorial battles and their lines.
-- **Ours**: the per-tile AI scoring, formation slot ranking and width; frame timings and projectile visuals; the parchment UI, camera and ambient playlist;
+- **Ours**: the AI's one-pass choice over the tiles a unit can reach and its tie-breaks (§7); frame timings and projectile visuals; the parchment UI, camera and ambient playlist;
   the special win rules pinned from objective text; the kind grouping and ability description prose; the player's
   heraldry ranks; the Ep2 world map keeping the Episode I kingdoms.
-- **Open**: the slot-rank table (C.118), the original's wall pathing bound (9999) in `calcShortestPath`, and the AI's
-  handling of a lone hero group. Every deliberate difference from the original is listed in §13.
+- **Open**: the original's wall pathing bound (9999) in `calcShortestPath`. Every deliberate difference from the
+  original is listed in §13.
 
 ## 13. Deviations from the original
 
@@ -567,6 +572,17 @@ not on this list is meant to match the binaries — a difference that is not lis
 - **Both diagonals line up a charge** (user decision). The AI's charge staging (`Unit::isValidChargePath`) accepts a
   diagonal lane only when dx = dy, refusing the other diagonal — a slip for |dx| = |dy| (the charge itself takes
   both). Here the AI lines up along either diagonal.
+- **⚡ Auto-charge** (a setting, ON by default — user decision; OFF = the original). In the original the charge bonus
+  (+30, no counter, riding on through the foot it cuts down) comes only from the Charge action: `Unit::charge`
+  (@0x6bfe6) is the one place that sets the charging flag (Unit+0xb4, read by `calculateAttackDamage`), and only
+  `_executeAction`'s action 13 calls it — given by the AI's charge state 13 or the player's Charge menu entry; an
+  ordinary move or attack clears the flag. With the setting on, a player's rider that has galloped 2+ tiles in a
+  straight line charges the foe directly ahead with whatever strike comes next — moving first and striking after,
+  or a tap on the foe, which gallops to the launch tile by itself. With it off, a tap on a foe is an ordinary approach
+  and blow, and the ⚡ Charge button on the unit card (the original's Charge entry: offered before the rider moves,
+  while some foe has a clear lane) highlights the foes it can charge — a tap on one gallops and strikes as one action.
+  The setting applies at once; an online battle always plays it on. The AI (enemies, allies, the Autopilot, scripted
+  moves) always charges as in the original, by its own charge choice only.
 - **A newly built village starts whole.** The original keeps the cell's worn structure HP, so a hamlet raised on ground
   fought over earlier falls to two blows.
 - **Story missions reward their first win only.** The original computes the first-win flag and `createRewardsMenu`
@@ -713,9 +729,11 @@ recreation does something different, the difference is stated.
 5. Otherwise path = shortest path centre → target for the leader; NEXT = the farthest path point within one pace.
 6. Width from the group size; facing = NEXT − centre picks one of the eight slot tables (horizontal, vertical, four
    diagonals); slot 0 is the front-centre and slots fill row by row outward.
-7. Each member is given the slot nearest to it within its rank class (the original ranks by a per-type table; the
-   recreation ranks melee foot, then cavalry, shooters, engines and casters). A member's move order is
-   NEXT + its slot offset; a group within 2 of its target is "arrived" and its members hold.
+7. Slots are filled rank by rank from the per-type table (`updateGroup` @0x38d14): Hero 0, Militiamen 1, Pikemen and
+   Greatswordsmen 2, the other foot 3, Priests, Shamans and Craftsmen 4, shooters, Sappers, Bodyguards and Dune
+   Sirens 5, riders, Druids and Conjurers 6, Wizards and Catapults 7 — each slot goes to the nearest free member of
+   the current rank. Trebuchets, Cannons, Ballistae, fliers, Rangers and Horse Bowmen take no slot and head for NEXT
+   itself. A member's move order is NEXT + its slot offset.
 
 ### Unit AI, the generic path (`Unit::aiConsiderAction` @0x7bb1c → 0x7d4ea)
 
@@ -724,8 +742,12 @@ recreation does something different, the difference is stated.
 3. Build the charge list; if a lane reaches a foe with a positive damage ratio, charge now.
 4. Otherwise pick the attack with the best damage ratio among the tiles it can reach, preferring to keep formation
    and cover; with no attack, walk toward the move order, or toward the closest enemy when it has none.
-   (The finest tile scoring inside step 4 is the recreation's own — `Unit::checkLocation` @0x6967c was not ported
-   line by line; `getBestMoveLocation` @0x7d6f2 and its movers were.)
+   Every attack is scored by `calcDamageRatio` — a catapult's ordinary attack too; its blast's coverage (foes +, its
+   own side −3×) counts only in the area attack before it moves (state 10, `totalAreaAttackDamage`). Only the
+   Trebuchet and the Cannon score the expected blow of a drifting shot (@0x70106). (Weighing every reachable tile in
+   one pass is the recreation's way of asking "from here, else move and ask again" — see §7.)
+   Having moved, the unit looks again from where it stands (`createSortedTargetList` with the moved flag): Move or
+   Shoot weapons are out, melee reaches an adjacent foe, and the best attack above −3000 is made.
 5. Skills come first for their carriers: a priest moves first (toward the threat, or with its group) or walks up to
    heal the most damaged ally in reach, and having moved prays — Shield when enemy shooters lead, Retribution when
    melee does — or heals an adjacent ally, else casts Shield anyway; Craftsmen mend an engine or build near the front; Dune Sirens lay quicksand across an

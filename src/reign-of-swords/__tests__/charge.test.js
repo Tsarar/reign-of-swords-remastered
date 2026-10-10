@@ -1,8 +1,21 @@
 // CHARGE (Unit::createChargeTargetList @0x70ec0): a straight gallop of 2+ tiles, the foe next in the lane; the whole
 // lane — run-up and the foe's tile, a diagonal step counted twice — must fit the rider's movement. A charge that cuts
 // down a foot soldier rides on (across empty tiles) to the next foe in the lane while movement lasts.
-import { describe, it, expect, beforeAll } from "vitest";
-import { loadEpisode, makeGame, startBattle, spawn, only, put, moveTo, attack, openLane, nextRound } from "./battle.js";
+import { describe, it, expect, beforeAll, afterEach, vi } from "vitest";
+import { setGameOption, OPTION_DEFAULTS } from "../util/options.js";
+import {
+  loadEpisode,
+  makeGame,
+  startBattle,
+  spawn,
+  only,
+  put,
+  moveTo,
+  attack,
+  openLane,
+  nextRound,
+  settle,
+} from "./battle.js";
 
 beforeAll(() => loadEpisode(2));
 
@@ -152,5 +165,103 @@ describe("a charge is one action", () => {
     expect(r.chargeDir).toBeNull();
     const m = spawn(g, "militiamen", "red", r.tx + 1, r.ty);
     expect(g._wouldCharge(r, m)).toBe(false);
+  });
+});
+
+describe("⚡ Auto-charge (⚙ Settings; on by default — a deviation, off = the original's Charge action only)", () => {
+  afterEach(() => setGameOption({ ...OPTION_DEFAULTS }));
+  // every blow's resolveDamage options, to see whether it landed as a charge
+  const blows = (g) => {
+    const seen = [];
+    const resolve = g.resolveDamage.bind(g);
+    vi.spyOn(g, "resolveDamage").mockImplementation((a, d, opts = {}) => {
+      seen.push({ a, d, charge: !!opts.charge });
+      return resolve(a, d, opts);
+    });
+    return seen;
+  };
+
+  it("on: a gallop the player moves by hand makes the next strike ahead a charge", () => {
+    const { g, r, lane, foes } = laneSetup(4, [3]);
+    expect(g._autoChargeOn()).toBe(true);
+    const seen = blows(g);
+    moveTo(g, r, lane.x + 2, lane.y);
+    expect(r.chargeDir).toEqual({ dx: 1, dy: 0 });
+    attack(g, r, foes[0]);
+    expect(seen.find((b) => b.a === r).charge).toBe(true);
+  });
+
+  it("off: the same two steps are an ordinary blow; the card's hint says how to charge", () => {
+    setGameOption({ autoCharge: false });
+    const { g, r, lane, foes } = laneSetup(4, [3]);
+    expect(g._autoChargeOn()).toBe(false);
+    const seen = blows(g);
+    moveTo(g, r, lane.x + 2, lane.y);
+    expect(r.chargeDir).toBeNull();
+    expect(g._chargeState(r)).toBe("idle");
+    expect(g._selectedView(r).autoCharge).toBe(false);
+    attack(g, r, foes[0]);
+    expect(seen.find((b) => b.a === r).charge).toBe(false);
+  });
+
+  it("off: a tap on the foe is an ordinary approach and blow; ⚡ Charge (the Charge action) charges it", () => {
+    setGameOption({ autoCharge: false });
+    let { g, r, lane, foes } = laneSetup(4, [3]);
+    let seen = blows(g);
+    attack(g, r, foes[0]); // one tap from the start, no button: walks up, strikes normally
+    expect(seen.find((b) => b.a === r).charge).toBe(false);
+    ({ g, r, lane, foes } = laneSetup(4, [3]));
+    seen = blows(g);
+    g.select(r);
+    expect(g._selectedView(r).chargeOffer).toBe(true); // the button is offered
+    g.toggleCharge();
+    expect(g._selectedView(r).chargeMode).toBe(true);
+    expect(g.targets).toEqual([foes[0]]); // only the foes it can charge
+    expect(g.estimateDamage(r, foes[0])).toBeGreaterThan(g.computeDamage({ ...r, tx: lane.x + 2 }, foes[0], {}));
+    g.click({ tx: foes[0].tx, ty: foes[0].ty });
+    settle(g);
+    expect(seen.find((b) => b.a === r).charge).toBe(true);
+    expect(r.tx).toBeGreaterThanOrEqual(lane.x + 2); // (a militiaman cut down: the charge rides on)
+  });
+
+  it("⚡ Charge: pressed again it disarms; it is not offered once the rider has moved, or with Auto-charge on", () => {
+    setGameOption({ autoCharge: false });
+    const { g, r, lane } = laneSetup(4, [3]);
+    g.select(r);
+    g.toggleCharge();
+    g.toggleCharge();
+    expect(g.chargeMode).toBe(false);
+    expect(g._selectedView(r).chargeMode).toBe(false);
+    moveTo(g, r, lane.x + 1, lane.y);
+    g.select(r);
+    expect(g._selectedView(r).chargeOffer).toBe(false);
+    setGameOption({ autoCharge: true });
+    const fresh = laneSetup(4, [3]);
+    fresh.g.select(fresh.r);
+    expect(fresh.g._selectedView(fresh.r).chargeOffer).toBe(false);
+    fresh.g.toggleCharge();
+    expect(fresh.g.chargeMode).toBeFalsy();
+  });
+
+  it("the AI never charges by Auto-charge: only the gallop of its own Charge action charges", () => {
+    const { g, r, lane } = laneSetup(4, [3]);
+    expect(g._autoChargeOn()).toBe(true);
+    const path = [0, 1, 2].map((dx) => ({ tx: lane.x + dx, ty: lane.y }));
+    g.ai._aiMove(r, path, () => {});
+    expect(r.chargeDir).toBeNull();
+    put(g, r, lane.x, lane.y);
+    g.ai._aiMove(r, path, () => {}, true);
+    expect(r.chargeDir).toEqual({ dx: 1, dy: 0 });
+  });
+
+  it("applies at once, mid-battle; an online battle always plays it on — both devices replay the same moves", () => {
+    const { g, r, lane } = laneSetup(4, [3]);
+    setGameOption({ autoCharge: false }); // switched off in the middle of the battle
+    moveTo(g, r, lane.x + 2, lane.y);
+    expect(r.chargeDir).toBeNull();
+    expect(g._autoChargeOn()).toBe(false);
+    g.online = { me: 0 };
+    expect(g._autoChargeOn()).toBe(true);
+    g.online = null;
   });
 });

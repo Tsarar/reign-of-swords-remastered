@@ -1,5 +1,16 @@
 # Reign of Swords — enemy AI reference (decompiled)
 
+> **Superseded (2026-10-11).** These are the September 2026 notes from the Android port's obfuscated bytecode. The
+> AI was later ported from the iOS Episode II binary, whose symbols are intact (`GameScreen::aiUpdate`,
+> `Unit::aiConsiderAction`, `Unit::determineBestAttack`, `GroupLogic`), and that port replaced the rules below; the
+> rules as they stand are in MECHANICS.md §7 and §14. Where this file disagrees, the iOS binary wins. In particular:
+> there is no retreat and no influence map (the iOS AI never reads a unit's HP to pull it back); an attack is chosen
+> by `calcDamageRatio` (made only above −3000), not by value × HP, and neither the `n >= 25600` gate of case 4 nor
+> case 5's summed threshold exists in the iOS AI; a catapult's ordinary attack is scored by `calcDamageRatio` too,
+> its blast coverage only by the area attack before it moves (`totalAreaAttackDamage`); formation ranks come from
+> `updateGroup`'s per-type table; Druids pick Stag, Bear or Eagle; Horse Bowmen fire while riding; a unit that has
+> moved looks for a target again from where it stands. The scorecard in §3 is kept as history.
+
 Reverse-engineering notes for the original game's battle AI, recovered from the Android
 `classes.dex` (androguard DAD decompilation). Companion to `DATA_REFERENCE.md`.
 

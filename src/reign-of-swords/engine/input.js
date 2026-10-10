@@ -318,6 +318,27 @@ export class InputMethods {
 
   // Tapped a foe with a unit selected: strike it in place if it's in range, else walk up and strike, else read it.
   _clickFoe(sel, u) {
+    // ⚡ CHARGE pressed (Auto-charge off): a highlighted foe is charged — the gallop and the strike as one action; any
+    // other tap leaves charge mode.
+    if (this.chargeMode) {
+      const spot = this._chargeSpots && this._chargeSpots.get(u);
+      this.chargeMode = false;
+      this._chargeSpots = null;
+      if (spot) {
+        this.moveUnit(
+          sel,
+          this.pathTo(this.reach, spot.tx, spot.ty),
+          () => {
+            if (!u.dead && this.targetsFrom(sel, sel.tx, sel.ty).includes(u)) this.doAttack(sel, u);
+            else this.enterAct(sel);
+          },
+          false,
+          true,
+        );
+        return;
+      }
+      this.recalcTargets();
+    }
     // Tap an in-range foe to strike it in place (a Shoot-and-Move unit only while its one shot is unspent).
     const inRange = !(sel.T.shootMove && sel.attackedTurn) && this.targetsFrom(sel, sel.tx, sel.ty).includes(u);
     if (inRange) {
@@ -331,10 +352,18 @@ export class InputMethods {
       const spot = this.bestApproach(sel, u);
       if (spot && !(spot.tx === sel.tx && spot.ty === sel.ty)) {
         const path = this.pathTo(this.reach, spot.tx, spot.ty);
-        this.moveUnit(sel, path, () => {
-          if (!u.dead && this.targetsFrom(sel, sel.tx, sel.ty).includes(u)) this.doAttack(sel, u);
-          else this.enterAct(sel);
-        });
+        // with ⚡ Auto-charge on, a tap on a foe at the end of a clear lane gallops and charges it; off, the approach
+        // is an ordinary one (the ⚡ Charge button charges, above)
+        this.moveUnit(
+          sel,
+          path,
+          () => {
+            if (!u.dead && this.targetsFrom(sel, sel.tx, sel.ty).includes(u)) this.doAttack(sel, u);
+            else this.enterAct(sel);
+          },
+          false,
+          spot.charge ? true : undefined,
+        );
         return;
       }
     }
@@ -467,38 +496,79 @@ export class InputMethods {
     this._emit();
   }
 
+  // The tile a tap on `enemy` walks `u` to: with ⚡ Auto-charge on, a charge launch first (see _chargeLaunch — a charge
+  // lands +30 and rides on, so it beats a plain adjacent step); else the nearest reachable tile in weapon range.
   bestApproach(u, enemy) {
     if (!this.reach) return null;
+    const launch = this._autoChargeOn() ? this._chargeLaunch(u, enemy) : null;
+    if (launch) return { ...launch, charge: true };
     let best = null,
-      bestDist = FAR,
-      bestCharge = null,
-      bestRun = FAR;
+      bestDist = FAR;
     for (const k of this.reach.stops) {
       const [x, y] = k.split(",").map(Number);
       const dist = Math.abs(enemy.tx - x) + Math.abs(enemy.ty - y);
-      // PREFER a charge launch: the tile ending a straight ≥3 lane with the foe one step beyond. Its lane may be
-      // DIAGONAL (launch is manhattan-2 from the foe), so it must be considered separately from plain weapon range,
-      // or a diagonal charge could never be triggered by tapping the foe. A charge lands +30 & tramples, so when one
-      // exists we take it over a plain adjacent step. CRUCIAL: verify the ACTUAL path is a clean straight run —
-      // _chargeReaches is pure geometry, but if the lane is blocked the path bends around the blocker, chargeDir
-      // never sets, and the unit would waste its turn stepping diagonally-adjacent to a foe it then can't melee.
-      if (this._chargeReaches(u, x, y, enemy) && this._pathChargesStraight(this.pathTo(this.reach, x, y), enemy)) {
-        const run = Math.max(Math.abs(x - u.tx), Math.abs(y - u.ty));
-        if (run < bestRun) {
-          bestRun = run;
-          bestCharge = { tx: x, ty: y };
-        }
-      } else if (dist >= u.T.minRange && dist <= u.T.range && dist < bestDist) {
+      if (dist >= u.T.minRange && dist <= u.T.range && dist < bestDist) {
         bestDist = dist;
         best = { tx: x, ty: y };
       }
     }
-    return bestCharge || best;
+    return best;
   }
-  // True only if the ACTUAL path is a clean straight run of ≥3 tiles (so moveUnit will set chargeDir) with the
+  // A CHARGE LAUNCH for `u` at `enemy`: the reachable tile ending a straight gallop of 2+ tiles with the foe one step
+  // beyond (the shortest such run), or null. Its lane may be DIAGONAL (launch is manhattan-2 from the foe), so it is
+  // looked for apart from plain weapon range. CRUCIAL: the ACTUAL path must be a clean straight run — _chargeReaches is
+  // pure geometry, but if the lane is blocked the path bends around the blocker, chargeDir never sets, and the unit
+  // would waste its turn stepping diagonally-adjacent to a foe it then can't melee.
+  _chargeLaunch(u, enemy) {
+    if (!this.reach) return null;
+    let best = null,
+      bestRun = FAR;
+    for (const k of this.reach.stops) {
+      const [x, y] = k.split(",").map(Number);
+      if (!this._chargeReaches(u, x, y, enemy) || !this._pathChargesStraight(this.pathTo(this.reach, x, y), enemy))
+        continue;
+      const run = Math.max(Math.abs(x - u.tx), Math.abs(y - u.ty));
+      if (run < bestRun) {
+        bestRun = run;
+        best = { tx: x, ty: y };
+      }
+    }
+    return best;
+  }
+  // ⚡ CHARGE BUTTON (⚡ Auto-charge off) — the original's Charge menu entry (GameScreen::onMenuEvent → prepareAction(13),
+  // createChargeTargetList): offered to a rider that has not moved this turn while some foe has a charge launch. Pressed,
+  // only those foes are targets and a tap charges one (_clickFoe); pressed again, the ordinary targets come back.
+  chargeTargets(u) {
+    const out = [];
+    if (!u || u !== this.selected || u.acted || !u.T.hasCharge || u.slowed || this._movedThisTurn(u)) return out;
+    if (this.mode !== "select" || !this.reach) return out;
+    for (const e of this.units) {
+      if (e.dead || e.team === u.team || this._isHidden(e)) continue;
+      const spot = this._chargeLaunch(u, e);
+      if (spot) out.push({ e, spot });
+    }
+    return out;
+  }
+  toggleCharge() {
+    if (this.chargeMode) {
+      this.chargeMode = false;
+      this._chargeSpots = null;
+      this.recalcTargets();
+    } else {
+      const list = this._autoChargeOn() ? [] : this.chargeTargets(this.selected);
+      if (!list.length) return;
+      this.chargeMode = true;
+      this._chargeSpots = new Map(list.map(({ e, spot }) => [e, spot]));
+      this.targets = list.map(({ e }) => e);
+    }
+    this.audio.play("select", 0.3);
+    this._emit();
+  }
+  // True only if the ACTUAL path is a clean straight gallop of 2+ tiles — 3+ path points with the start, the run
+  // _judgeChargeRun needs to set chargeDir (createChargeTargetList: the foe more than 2 from the start) — with the
   // foe one tile beyond its end along the same lane — i.e. this path really lands a charge, not a bent detour.
   _pathChargesStraight(path, enemy) {
-    if (!path || path.length < 4) return false;
+    if (!path || path.length < 3) return false;
     const dx = Math.sign(path[1].tx - path[0].tx),
       dy = Math.sign(path[1].ty - path[0].ty);
     if (dx === 0 && dy === 0) return false;
@@ -510,6 +580,8 @@ export class InputMethods {
 
   select(u) {
     this._spotReveal(u);
+    this.chargeMode = false; // ⚡ Charge is armed per selection
+    this._chargeSpots = null;
     this.inspect = null;
     this.tileInfo = null;
     this.selected = u;
@@ -526,6 +598,8 @@ export class InputMethods {
     this._emit();
   }
   deselect() {
+    this.chargeMode = false;
+    this._chargeSpots = null;
     this.selected = null;
     this.reach = null;
     this.targets = null;
@@ -552,6 +626,8 @@ export class InputMethods {
   }
 
   enterAct(u) {
+    this.chargeMode = false;
+    this._chargeSpots = null;
     this.reach = null;
     this.targets = this.targetsFrom(u, u.tx, u.ty);
     // A PRIEST that walked up keeps its PRAYERS: Unit::isAbilityAvailable (iOS Ep2 @0x74e94) puts no condition on
@@ -571,6 +647,8 @@ export class InputMethods {
     return this.units.some((a) => !a.dead && a.team === u.team && a.hp < 100 && manhattan(a, u) <= range);
   }
   finishUnit(u) {
+    this.chargeMode = false;
+    this._chargeSpots = null;
     u.acted = true;
     this.selected = null;
     this.reach = null;
@@ -771,8 +849,11 @@ export class InputMethods {
   }
 
   // Walk unit `u` along `path` (tiles, start included), then call `done`. Records the move for Undo unless `noUndo`,
-  // marks it as moved this turn, and judges whether the run-up makes a charge. A Wizard blinks instead of walking.
-  moveUnit(u, path, done, noUndo) {
+  // marks it as moved this turn, and judges whether the run-up makes a charge — `charge`: true = the Charge action's
+  // gallop (a tap on the foe, the AI's charge), which charges even with ⚡ Auto-charge off; false = never (the AI's
+  // other moves, scripted moves); left out = the player's own move, which charges by ⚡ Auto-charge. A Wizard blinks
+  // instead of walking.
+  moveUnit(u, path, done, noUndo, charge) {
     if (path.length <= 1) {
       u.chargeDir = null;
       done();
@@ -799,7 +880,7 @@ export class InputMethods {
       this._teleportMove(u, path[path.length - 1], done);
       return;
     }
-    this._judgeChargeRun(u, path);
+    this._judgeChargeRun(u, path, charge);
     const sound = this._moveSound(u);
     // glide pace (tiles/sec): mounts and siege move at a slower, heavier gait than foot, so a cavalry sweep
     // across the field reads as a deliberate gallop rather than an instant zip.
@@ -865,9 +946,19 @@ export class InputMethods {
   // START tile and within its move — so a straight gallop of TWO tiles (path of 3 incl. the start) then the strike
   // ("two spaces to build up speed", help 565). Ice Field disables charging, so a slowed mount can't build one.
   // Sets u.chargeDir (the lane's direction, or null) and u.chargeSpent (the movement the run-up used).
-  _judgeChargeRun(u, path) {
+  // ⚡ AUTO-CHARGE (⚙ Settings, on by default) — DELIBERATE DEVIATION (user decision, MECHANICS.md §13): judged on
+  // EVERY move, so any straight gallop makes the next strike ahead a charge. Off, it is the original: the charging
+  // flag (Unit+0xb4) is set only by Unit::charge @0x6bfe6, for the Charge action (13) alone — here the move made with
+  // `charge` (the tap on a foe, the AI's charge); a plain move followed by an attack is an ordinary blow. The AI
+  // always plays the original (ai.js _aiMove): Auto-charge only ever applies to a player's own move (`charge` left out).
+  _judgeChargeRun(u, path, charge) {
     // any unit with the Charge ability (incl. the mounted Hero), not galloping out of quicksand (_chargeBogged)
-    let straight = path.length >= 3 && u.T.hasCharge && !u.slowed && !this._chargeBogged(u, path[0].tx, path[0].ty);
+    let straight =
+      (charge === true || (charge === undefined && this._autoChargeOn())) &&
+      path.length >= 3 &&
+      u.T.hasCharge &&
+      !u.slowed &&
+      !this._chargeBogged(u, path[0].tx, path[0].ty);
     if (!straight) {
       u.chargeDir = null;
       return;
