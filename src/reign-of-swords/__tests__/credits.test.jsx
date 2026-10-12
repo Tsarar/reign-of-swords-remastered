@@ -28,6 +28,33 @@ describe("the original credits (credits.json)", () => {
     // no stray menu text pulled in past the credits
     for (const d of [ep1, ep2]) for (const s of d.sections) expect(s.names.join(" ")).not.toMatch(/maximum|Main Menu/);
   });
+
+  it("Episode I also lists its other builds: the Android 1.2.9 team and the three PC-only names — 52 people in all", () => {
+    const ep1 = load("reign-of-swords"),
+      ep2 = load("reign-of-swords-2");
+    const [android, pc] = ep1.otherBuilds;
+    expect(android.build).toBe("Android");
+    expect(android.version).toBe("v1.2.9");
+    expect(android.sections.map((s) => s.title)).toEqual([
+      "Creative Director",
+      "Engineers",
+      "Artists",
+      "QA",
+      "Special Thanks",
+    ]);
+    expect(android.sections[3].names).toContain("Ram Fenster");
+    // the paywall strings right after the credits stay out
+    expect(android.sections.flatMap((s) => s.names).join(" ")).not.toMatch(/Buy Now|Enter Code/);
+    expect(pc.build).toBe("PC");
+    expect(pc.sections[0].names).toEqual(["Brent Patterson", "Cuong Nguyen", "Nhung Ngo"]);
+    const people = new Set(
+      [ep1, ep2]
+        .flatMap((d) => [...d.sections, ...(d.otherBuilds || []).flatMap((b) => b.sections)])
+        .flatMap((s) => s.names),
+    );
+    people.delete("Clean Cuts Music and Sound Design");
+    expect(people.size).toBe(52);
+  });
 });
 
 describe("About", () => {
@@ -40,9 +67,11 @@ describe("About", () => {
     vi.stubGlobal("fetch", () => Promise.resolve({ json: () => Promise.resolve(load("reign-of-swords")) }));
     const onClose = vi.fn();
     render(<Credits dataBase="/games/reign-of-swords/" onClose={onClose} />);
-    await waitFor(() => expect(screen.getAllByText("Steve Nix").length).toBe(2));
-    expect(screen.getByText("Creative Director")).toBeTruthy();
+    await waitFor(() => expect(screen.getAllByText("Steve Nix").length).toBe(3)); // iPhone: director + designer; Android: director
+    expect(screen.getAllByText("Creative Director").length).toBe(2);
     expect(screen.getByText(/2008 Punch Entertainment/)).toBeTruthy();
+    expect(screen.getByText("Android version")).toBeTruthy();
+    expect(screen.getByText("Nhung Ngo")).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "Close" }));
     expect(onClose).toHaveBeenCalled();
   });

@@ -83,5 +83,82 @@
     "Darin Roland"
    ]
   }
+ ],
+ "otherBuilds": [
+  {
+   "build": "Android",
+   "version": "v1.2.9",
+   "sections": [
+    {
+     "title": "Creative Director",
+     "names": [
+      "Steve Nix"
+     ]
+    },
+    {
+     "title": "Engineers",
+     "names": [
+      "Kyle Poole",
+      "Naoki Ogishi"
+     ]
+    },
+    {
+     "title": "Artists",
+     "names": [
+      "Forrest Schehl",
+      "Kevin Messer",
+      "Scott Watanabe"
+     ]
+    },
+    {
+     "title": "QA",
+     "names": [
+      "Nick Harrison",
+      "Ram Fenster",
+      "Frank Kim",
+      "Erik Nix",
+      "Andrew Banegas",
+      "Eric Tung",
+      "Dennis Shin",
+      "Justin Beachler",
+      "Rudy Pham",
+      "Nathan Bui",
+      "Erick Caceres",
+      "Loan Nguyen",
+      "Hien Nguyen",
+      "Minh Le",
+      "Thiep Trinh",
+      "Thuy Nguyen",
+      "Chien Tran"
+     ]
+    },
+    {
+     "title": "Special Thanks",
+     "names": [
+      "Tobin Lent",
+      "Martin Geiger",
+      "Mike Williams",
+      "Son Bui",
+      "Spencer Chi",
+      "Darin Roland"
+     ]
+    }
+   ]
+  },
+  {
+   "build": "PC",
+   "version": "v1.6.0",
+   "note": "Credited in the PC build, per community research; not in any build we have, so their roles aren't listed.",
+   "sections": [
+    {
+     "title": "Also credited",
+     "names": [
+      "Brent Patterson",
+      "Cuong Nguyen",
+      "Nhung Ngo"
+     ]
+    }
+   ]
+  }
  ]
 }

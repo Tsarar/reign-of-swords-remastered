@@ -526,6 +526,10 @@ export default {
   "gallop at a foe and strike: +30, no counter-attack": "скачок на врага и удар: +30, без ответного удара",
   "About": "Об игре",
   "The original game's credits, as its About screen lists them. This remaster is an unofficial fan project.": "Титры оригинальной игры — так, как их показывал её экран «Об игре». Этот ремастер — неофициальный фанатский проект.",
+  "Android version": "Версия для Android",
+  "PC version": "Версия для ПК",
+  "Credited in the PC build, per community research; not in any build we have, so their roles aren't listed.": "Указаны в титрах ПК-версии — по данным исследования сообщества; ни в одной из имеющихся у нас версий их нет, поэтому роли не указаны.",
+  "Also credited": "Также в титрах",
   "Realistic siege: off": "Реалистичная осада: выкл",
   "Realistic siege: on": "Реалистичная осада: вкл",
   "Off — the original: an AI army's archers, musketeers and war engines only shoot at foes near the point their group is marching to. On: they shoot anything in range, so garrisons fire from their walls. Applies from the next battle.":

@@ -3,6 +3,20 @@ import { tr } from "../../i18n/i18n.js";
 
 // ABOUT — the original game's own credits screen (main menu → About): the people of Punch Entertainment who made
 // this episode, read from its string table by tools/ros/credits.py (credits.json). Names stay as the game lists them.
+// Episode I's credits changed between builds, so its other builds (Android, PC) follow under their own headings.
+
+// the game's own section titles stay in English; a build with a note (PC) has our titles, which translate
+function Sections({ sections, ours }) {
+  return sections.map((s) => (
+    <div className="ros-credits-sec" key={s.title}>
+      <div className="ros-settings-label">{ours ? tr(s.title) : s.title}</div>
+      {s.names.map((n) => (
+        <div key={n}>{n}</div>
+      ))}
+    </div>
+  ));
+}
+
 export default function Credits({ dataBase, onClose }) {
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -32,12 +46,14 @@ export default function Credits({ dataBase, onClose }) {
                   "The original game's credits, as its About screen lists them. This remaster is an unofficial fan project.",
                 )}
               </p>
-              {data.sections.map((s) => (
-                <div className="ros-credits-sec" key={s.title}>
-                  <div className="ros-settings-label">{s.title}</div>
-                  {s.names.map((n) => (
-                    <div key={n}>{n}</div>
-                  ))}
+              <Sections sections={data.sections} />
+              {(data.otherBuilds || []).map((b) => (
+                <div className="ros-credits-build" key={b.build}>
+                  <p className="ros-credits-game">
+                    <b>{tr(b.build + " version")}</b> {b.version}
+                  </p>
+                  {b.note && <p className="ros-settings-note">{tr(b.note)}</p>}
+                  <Sections sections={b.sections} ours={!!b.note} />
                 </div>
               ))}
             </>

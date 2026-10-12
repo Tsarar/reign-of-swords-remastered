@@ -723,6 +723,11 @@
 .ros-credits-sec .ros-settings-label {
   margin-bottom: 2px;
 }
+.ros-credits-build {
+  margin-top: 18px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
 .ros-settings-label {
   font-family: var(--ros-title);
   font-size: 0.95rem;

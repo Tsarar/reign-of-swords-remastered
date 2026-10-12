@@ -182,7 +182,7 @@ Please include what you can:
 Reign of Swords and Reign of Swords Episode II were made at Punch Entertainment by these people, as the games'
 own About screens list them (also in the game: Main Menu → About).
 
-**Episode I** (© 2008 Punch Entertainment)
+**Episode I** (iPhone v1.0.48, © 2008 Punch Entertainment)
 
 - Creative Director: Steve Nix
 - Designers: Steve Nix, Nick Harrison
@@ -195,7 +195,7 @@ own About screens list them (also in the game: Main Menu → About).
 - Game Audio: Clean Cuts Music and Sound Design
 - Special Thanks: Tobin Lent, Martin Geiger, Mike Williams, Son Bui, Spencer Chi, Darin Roland
 
-**Episode II** (© 2009 Punch Entertainment)
+**Episode II** (iPhone v1.0.11, © 2009 Punch Entertainment)
 
 - Original Game Design: Steve Nix
 - Game Designers: Nick Harrison, Kevin Messer
@@ -210,6 +210,20 @@ own About screens list them (also in the game: Main Menu → About).
 - QA: Thuy Nguyen, Nga Nguyen, Luyen Bui, Trang Tran, Huyen Nguyen
 - Game Audio: Clean Cuts Music and Sound Design
 - Special Thanks: Tobin Lent, Martin Geiger, Hung Lai, Brian Tan
+
+**Episode I, other builds.** The credits changed from build to build, and no single build lists everyone.
+
+- Android v1.2.9 (its own About screen, also in Main Menu → About):
+  - Creative Director: Steve Nix
+  - Engineers: Kyle Poole, Naoki Ogishi
+  - Artists: Forrest Schehl, Kevin Messer, Scott Watanabe
+  - QA: Nick Harrison, Ram Fenster, Frank Kim, Erik Nix, Andrew Banegas, Eric Tung, Dennis Shin, Justin Beachler,
+    Rudy Pham, Nathan Bui, Erick Caceres, Loan Nguyen, Hien Nguyen, Minh Le, Thiep Trinh, Thuy Nguyen, Chien Tran
+  - Special Thanks: Tobin Lent, Martin Geiger, Mike Williams, Son Bui, Spencer Chi, Darin Roland
+- PC v1.6.0: also credits Brent Patterson, Cuong Nguyen and Nhung Ngo. These names come from community research.
+  Our copy of the PC build is packed, so their roles aren't listed.
+
+In all, 52 people plus Clean Cuts Music and Sound Design.
 
 ## Disclaimer
 
