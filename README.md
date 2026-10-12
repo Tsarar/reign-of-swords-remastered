@@ -25,8 +25,8 @@
 I played Reign of Swords on an iPhone 4 during my summer holidays, when I was about fourteen, and I never got past
 **Caladrin Defense** in Episode II. It stayed with me.
 
-The games have long been gone from every store, but years later I found, through Reddit, a Discord of enthusiasts
-who still kept the iOS and Android files. So I dug the game out of the grave to get my rematch and finally close that
+The games have long been gone from every store, but their files survived, kept by fans over the years. So I dug the
+game out of the grave to get my rematch and finally close that
 chapter. Caladrin Defense is hard even now: after rebuilding the whole game, I still lost it three times in a row — it
 takes a specific tactic I simply didn't have at fourteen. In the end I crushed it, not without tips from the AI in my
 own Battle Lab, and it still felt like a win.
@@ -36,8 +36,10 @@ army composition, the pace and the core mechanics.
 
 ## The game
 
-Lead Sir Varius and the armies of the Empire of Carrone in turn-based battles on the original maps, with the original
-units, damage tables, scripted missions and enemy AI, decoded from the iOS games' own data and code.
+Lead Sir Varius and the armies of the Empire of Carrone in turn-based battles. It has all the original content (every
+map, unit, mission and line of dialogue) and the original rules, rebuilt from the iOS games' own data and code, with
+every difference documented in [`MECHANICS.md`](public/games/reign-of-swords/MECHANICS.md) §13, and a new interface.
+It is a remake, not an exact copy.
 
 - **Two full campaigns.** Episode I's 24 missions to win back the breakaway kingdoms of the Empire, and Episode II's 33
   missions that carry the war into the desert lands of Zayandi, Sabbi Amar and Abbisin.
@@ -217,6 +219,10 @@ Reign of Swords, its names, characters, art, music and sounds belong to their re
 If you hold rights to Reign of Swords and want any of this material removed, open an
 [issue](https://github.com/Tsarar/reign-of-swords-remastered/issues) or message me on
 [LinkedIn](https://bit.ly/dmytro-linkedin), and it will be taken down.
+
+Contributions to the code, and your own maps, scenarios or settings, are welcome. The original art, music, sounds,
+maps and text in this repository are Punch Entertainment's: re-hosting or passing them on outside this repository is
+the redistributor's own act and risk.
 
 Built with AI: the code, the decoding of the original games' data and binaries, and the documentation were written
 together with Claude, Anthropic's AI model.

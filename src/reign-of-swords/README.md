@@ -237,5 +237,9 @@ If you hold rights to Reign of Swords and want any of this material removed, ope
 [issue](https://github.com/Tsarar/reign-of-swords-remastered/issues) or message me on
 [LinkedIn](https://bit.ly/dmytro-linkedin), and it will be taken down.
 
+Contributions to the code, and your own maps, scenarios or settings, are welcome. The original art, music, sounds,
+maps and text in this repository are Punch Entertainment's: re-hosting or passing them on outside this repository is
+the redistributor's own act and risk.
+
 Built with AI: the code, the decoding of the original games' data and binaries, and the documentation were written
 together with Claude, Anthropic's AI model.
