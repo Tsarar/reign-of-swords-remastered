@@ -539,6 +539,29 @@ def export(ep, outdir):
         merovin = next(i for i in range(old, len(S)) if S[i].startswith('The Kingdom of Merovin'))
         episode_prologue = [emperor(i) for i in range(own, old)]
         prologue = [emperor(i) for i in range(old, merovin)]
+        # The Eastern Kingdoms' letters, read before each one's first battle: the blocks after Rukiev's briefing, split by
+        # the ' ' strings and in kingdom order (Zayandi 869-870, Sabbi Amar 872-873, Abbisin 875-876). Zayandi's and Sabbi
+        # Amar's are the Emperor's ("my throne", "my rule"). Abbisin's is the Council of Archwizards' (signed with the
+        # card after the Emperor's, "Archwizard Thaddius / Council of Archwizards", 840-841): it reports on the scroll from
+        # Caladrin and the Battlemage, which Abbisin's own story then calls "the Battlemage phenomenon the Archwizard
+        # mentioned". The original's letter screen code isn't decoded; the senders follow from the text. The Archwizard has
+        # no dialogue bust, so his letter shows none.
+        first = next(i for i, t in enumerate(S) if t.startswith('I have received requests for aid'))
+        end = S.index('Defeat. All is lost...')
+        letters, block = [], []
+        for i in range(first, end):
+            if S[i].strip():
+                block.append(i)
+            elif block:
+                letters.append(block)
+                block = []
+        if block:
+            letters.append(block)
+        archwizard = lambda i: {'speaker': 'Archwizard Thaddius', 'text': subst(S[i]), 'side': 'you', 'face': ''}
+        senders = {'zayandi': emperor, 'sabbi-amar': emperor, 'abbisin': archwizard}
+        eastern = [k for k in kingdoms if k['id'] in senders]
+        for k, block in zip(eastern, letters):
+            k['emperorBrief'] = [senders[k['id']](i) for i in block]
     dump('campaign.json', {'title': 'Reign of Swords', 'subtitle': 'Episode II' if ep == 2 else '', 'prologue': prologue,
                            'episodePrologue': episode_prologue, 'kingdoms': kingdoms}, True)
     print('wrote', outdir, ': levels', len(levels), 'waves', len(waves), 'events', len(events), 'ai', len(scripts_ai), 'busts', sorted(used_busts))

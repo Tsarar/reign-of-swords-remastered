@@ -138,6 +138,31 @@ describe("the campaign openings", () => {
       expect(UK_STORY[l.text]).toBeTruthy();
     }
   });
+
+  it("each Eastern Kingdom opens on its letter (strings 869-876): the Emperor's, then the Council of Archwizards'", () => {
+    const C2 = json(2, "campaign.json");
+    const letter = (id) => C2.kingdoms.find((k) => k.id === id).emperorBrief;
+    expect(letter("zayandi").map((l) => l.text.slice(0, 30))).toEqual([
+      "I have received requests for a",
+      "We need to ally ourselves with",
+    ]);
+    expect(letter("sabbi-amar").map((l) => l.text.slice(0, 30))).toEqual([
+      "I was disturbed to learn of th",
+      "The populace in the kingdoms o",
+    ]);
+    expect(letter("abbisin").map((l) => l.text.slice(0, 30))).toEqual([
+      "Your progress so far is commen",
+      "Research into the Battlemage p",
+    ]);
+    for (const id of ["zayandi", "sabbi-amar"])
+      expect(letter(id).every((l) => l.speaker === "Emperor Sebatini" && l.face === "face056")).toBe(true);
+    expect(letter("abbisin").every((l) => l.speaker === "Archwizard Thaddius" && l.face === "")).toBe(true);
+    for (const l of [...letter("zayandi"), ...letter("sabbi-amar"), ...letter("abbisin")]) {
+      expect(RU_STORY[l.text]).toBeTruthy();
+      expect(UK_STORY[l.text]).toBeTruthy();
+    }
+    expect(RU_STORY["Archwizard Thaddius"]).toBeTruthy();
+  });
 });
 
 describe("weapon descriptions (View Unit, UnitSelector::createUnitInfoMenu)", () => {

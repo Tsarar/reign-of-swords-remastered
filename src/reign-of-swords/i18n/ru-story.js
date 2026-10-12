@@ -1110,4 +1110,17 @@ export default {
     "...или я насажу ваши головы на пики в назидание вашим сородичам!",
   "Menus, battle controls, unit texts, the Field Manual and the story.":
     "Меню, управление боем, описания отрядов, Полевое руководство и сюжет.",
+  "Archwizard Thaddius": "Архимаг Таддеус",
+  "I have received requests for aid from the Council of Archwizards in Zayandi. Apparently, the peace of the Eastern Kingdoms has been disrupted as of late.":
+    "Я получил просьбы о помощи от Совета архимагов Заянди. Похоже, в последнее время мир в Восточных королевствах нарушен.",
+  "We need to ally ourselves with the Archwizards if we hope to counter the magic of those who seek to usurp my throne. My ships will carry you and your men across the channel of Mare Nostra, to the shores of Zayandi. Seek an audience at the Wizard's Palace and see what assistance we can offer their cause.":
+    "Нам нужен союз с архимагами, если мы хотим противостоять магии тех, кто стремится захватить мой трон. Мои корабли переправят вас и ваших людей через пролив Маре Ностра к берегам Заянди. Добейтесь аудиенции во Дворце волшебника и узнайте, чем мы можем помочь их делу.",
+  "I was disturbed to learn of the assault on the Wizard's Palace. The adversaries we face in the Eastern Kingdoms may be emboldened by the lack of military control in the region.":
+    "Меня встревожила весть о нападении на Дворец волшебника. Наши противники в Восточных королевствах могут осмелеть, видя, что в краю нет сильной военной власти.",
+  "The populace in the kingdoms of Sabbi-Amar and Abbisin must be defended. The people should expect a life of safety and prosperity under my rule. We need to find out who is responsible for these disturbances.":
+    "Население королевств Сабби-Амар и Аббисин должно быть защищено. Под моей властью люди вправе ждать безопасной и благополучной жизни. Нам нужно выяснить, кто стоит за этими беспорядками.",
+  "Your progress so far is commendable. We have analyzed the scroll you sent to us from Caladrin. We believe the scroll contains information relating to a weapon of archaic magic known as a 'Battlemage'. According to some ancient texts, the Battlemage weapon granted incredible powers to the armies that controlled it.":
+    "Ваши успехи похвальны. Мы изучили свиток, который вы прислали нам из Каладрина. Мы полагаем, что в нём говорится об оружии древней магии, известном как «Боевой маг». Согласно некоторым древним текстам, это оружие даровало небывалую мощь армиям, которые им владели.",
+  "Research into the Battlemage phenomenon is still ongoing, we will send further information as soon as we have it. Good luck to you in your search for Martin Landower.":
+    "Исследование явления «боевых магов» продолжается; мы пришлём новые сведения, как только они появятся. Удачи вам в поисках Мартина Лэндоуэра.",
 };
